@@ -30,7 +30,19 @@
               "src/assets/css/bootstrap-icons.css",
               "src/assets/css/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/jquery.backstretch.min.js",
+              "src/assets/js/animated-headline.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/countdown.js",
+              "src/assets/js/counter.js",
+              "src/assets/js/custom.js",
+              "src/assets/js/init.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/js/magnific-popup-options.js",
+              "src/assets/js/modernizr.js"
+            ]
           },
           "configurations": {
             "production": {

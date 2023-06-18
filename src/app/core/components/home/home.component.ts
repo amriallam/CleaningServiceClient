@@ -9,16 +9,11 @@ import { ServiceService } from 'src/app/core/services/service.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  services: Service[] = [];
-  model: NgbDateStruct;
+  // services: Service[] = [];
+  // model: NgbDateStruct;
 
-  constructor(private serviceService: ServiceService,private calendar: NgbCalendar) {
-    this.model={year:0,month:0,day:0}
-  }
-  ngOnInit() {
-    this.serviceService.getAll().subscribe((res) => {
-      this.services = res.data;
-    })
+  constructor() {
+    // this.model={year:0,month:0,day:0}
   }
 
 }

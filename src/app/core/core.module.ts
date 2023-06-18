@@ -6,10 +6,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, NavbarComponent,HomeComponent],
   imports: [
     CommonModule,
     NgbDropdownModule,
@@ -20,6 +22,6 @@ import { RouterModule } from '@angular/router';
     useClass: RetryInterceptor,
     multi: true
   }],
-  exports: [HeaderComponent, FooterComponent]
+  exports: [HeaderComponent, FooterComponent,NavbarComponent,HomeComponent]
 })
 export class CoreModule { }
