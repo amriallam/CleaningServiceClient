@@ -14,9 +14,9 @@ import { RegistrationComponent } from './shared/components/registration/registra
 
 const routes: Routes = [
 
-  { path: '', pathMatch: "full", redirectTo: 'home' },
+  // { path: '', pathMatch: "full", redirectTo: 'home' },
   {path:'home',component: HomeComponent},
-  { path: "service", loadChildren: () => import("./components/service/service.module").then(m => m.ServiceModule) },
+  { path: "", loadChildren: () => import("./components/service/service.module").then(m => m.ServiceModule) },
   // { path: "resource", loadChildren: () => import("./Components/resource/resource.module").then(m => m.ResourceModule) },
   // { path: "booking", loadChildren: () => import("./Components/booking/booking.module").then(m => m.BookingModule) },
 
