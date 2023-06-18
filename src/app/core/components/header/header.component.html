@@ -1,61 +1,27 @@
-<!-- <div ngbDropdown class="d-inline-block">
-  <button type="button"
-    class="font-semibold btn-outline-primary"
-    ngbDropdownToggle>
-    <img src="../../../../assets/img/flag.jpg" alt />
-    {{selectedLanguage}}
-  </button>
-  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-    <button ngbDropdownItem
-      (click)="updateSelectedLanguage(language.value)"
-      *ngFor="let language of languages" [value]="language.value">{{language.name}}
-    </button>
+<header class="site-header">
+  <div class="container">
+      <div class="row">
+
+          <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <p class="d-flex me-4 mb-0">
+                  <i class="bi-house-fill me-2"></i>
+                  One-Stop Cleaning Service
+              </p>
+
+              <p class="d-flex d-lg-block d-md-block d-none me-4 mb-0">
+                  <i class="bi-clock-fill me-2"></i>
+                  <strong class="me-2">Mon - Fri</strong> 8:00 AM - 5:30 PM
+              </p>
+
+              <p class="site-header-icon-wrap text-white d-flex mb-0 ms-auto">
+                  <i class="site-header-icon bi-whatsapp me-2"></i>
+
+                  <a href="tel: 102-483-9986" class="text-white">
+                      +20 102-483-9986
+                  </a>
+              </p>
+          </div>
+
+      </div>
   </div>
-</div> -->
-
-<!-- <div class="flex items-center gap-3">
-  <button class routerLink="/rooms">Rooms</button>
-  <button routerLink="/about">Aboust</button>
-  <button routerLink="/cantact">Contact</button>
-  <button routerLink="/login"> Login</button>
-  <button routerLink="/register">Register</button>
-</div> -->
-
-<div class="navbar-div">
-
-  <div class="logo-section">
-    <i class="fa-solid fa-spa fx"></i>
-    <p class="my-2 fw-bold">Tripify</p>
-    <span class="h-line bg-light"></span>
-  </div>
-
-  <div class="links-section">
-    <button routerLink="home" routerLinkActive="activeLink">Home</button>
-    <button routerLink="rooms" routerLinkActive="activeLink">Rooms</button>
-    <button routerLink="about" routerLinkActive="activeLink">About</button>
-    <button routerLink="cantact" routerLinkActive="activeLink">Contact</button>
-  </div>
-
-  <div ngbDropdown class="ms-auto">
-    <button id="languageDropDown" ngbDropdownToggle
-      class="language-button droplanguage">
-      <i class="me-1 fa-solid fa-earth-europe"></i>
-      Language
-    </button>
-    <div ngbDropdownMenu aria-labelledby="languageDropDown">
-      <button ngbDropdownItem
-        (click)="updateSelectedLanguage(language.value)"
-        *ngFor="let language of languages" class="droplanguage fw-light"
-        [value]="language.value">{{language.name}}
-      </button>
-    </div>
-  </div>
-
-  <div class="d-flex gap-2">
-    <a class="button-padding btn-purple"
-      routerLink="login">Login</a>
-    <a class="button-padding btn-purple"
-      routerLink="register">Register</a>
-  </div>
-
-</div>
+</header>
