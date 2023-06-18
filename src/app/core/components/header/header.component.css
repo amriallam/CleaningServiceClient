@@ -1,61 +1,30 @@
-.h-line {
-  margin-left: 1rem;
-  border-left: 2px solid rgb(232, 232, 235);
-  height: 2rem;
+.site-header {
+  background: var(--primary-color);
+  position: relative;
+  z-index: 22;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.navbar-div {
-  padding: 1rem 4rem;
-  box-shadow: 0px 1px 2px 0px rgb(232, 232, 235);
-  display: flex !important;
-  align-items: center !important;
+.site-header p,
+.site-header p a,
+.site-header .social-icon-link {
+  color: var(--white-color);
+  font-size: var(--copyright-font-size);
 }
 
-button:not(.droplanguage):hover,.activeLink {
-  border-bottom: 1px solid #6346fa;
-  color: #6346fa;
+.site-header .social-icon {
+  text-align: right;
 }
 
-.logo-section {
-  color: #6346fa;
-  display: flex !important;
-  align-items: center !important;
-  gap: 1rem !important;
-  font-size: 1.5rem !important;
-}
-
-.links-section {
-  margin-inline-start: 1.25rem;
-  --tw-text-opacity: 1;
-  color: rgb(119 126 144 / var(--tw-text-opacity));
-  display: flex !important;
-  align-items: center !important;
-  margin-left: 3rem !important;
-  gap: 3rem !important;
-  font-weight: 300 !important;
-}
-
-
-.language-button {
-  font-weight: inherit;
-  color: inherit;
-  background-color: transparent;
-  background-image: none;
-  margin: 0;
-  font-family: inherit;
+.site-header .social-icon-link {
+  background: transparent;
+  width: inherit;
+  height: inherit;
   line-height: inherit;
-  text-transform: none;
-  -webkit-appearance: button;
-  letter-spacing: 0.1px;
-  margin-inline-end: 0.5rem;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  border-width: 1px !important;
-  margin-right: 0.5rem !important;
-  padding-right: 1rem !important;
-  padding-left: 1rem !important;
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
-  border-radius: var(--bs-border-radius) !important;
-  cursor: pointer;
+  margin-right: 15px;
+}
+
+.site-header-icon {
+  display: inline-block;
 }
