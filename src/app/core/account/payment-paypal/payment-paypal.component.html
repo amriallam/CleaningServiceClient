@@ -1,0 +1,25 @@
+
+<!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+
+<div class="d-flex justify-content-center flex-column border shadow-sm p-5 w-75 m-auto mb-5 mt-5">
+  <h1
+    class="text-center"
+    style="color:#dfa974; font-size : 2.5rem; font-weight: 700; padding-bottom: 10px;"
+  >
+    Booking Checkout
+  </h1>
+
+  <h3
+  class="text-center"
+    style=" font-size : 1.5rem; font-weight: 500; padding-bottom: 10px;">
+    The total price is: <span style="color:#dfa974;">{{totalPrice}} $ </span>
+  </h3>
+
+  <div #paymentRef></div>
+
+</div>
+
+<!-- <ngx-paypal *ngIf="showPaypalButtons" 
+  [config]="payPalConfig">
+</ngx-paypal>
+<button  *ngIf="showPaypalButtons" (click)="back()">Volver atras</button> -->
