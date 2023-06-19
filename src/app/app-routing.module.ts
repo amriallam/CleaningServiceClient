@@ -11,6 +11,7 @@ import { ForgetPasswordComponent } from './core/account/forget-password/forget-p
 import { ResetPasswordComponent } from './core/account/reset-password/reset-password.component';
 import { ConfirmEmailComponent } from './core/account/confirm-email/confirm-email.component';
 import { ResourceDetailsComponent } from './components/resource/resource-details/resource-details.component';
+import { BookingModule } from './components/booking/booking.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -22,8 +23,9 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
-  { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
-
+    { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
+  {path: 'resource' , loadChildren: () => import("./components/resource/resource.module").then(m=> m.ResourceModule) },
+{path :'booking' , loadChildren:() => import("./components/booking/booking.module").then(m => BookingModule )},
   //core components
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },

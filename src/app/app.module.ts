@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccountModule } from './core/account/account.module';
 
 
 
@@ -36,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     }),
     RouterModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AccountModule
   ],
   providers: [],
   bootstrap: [AppComponent]

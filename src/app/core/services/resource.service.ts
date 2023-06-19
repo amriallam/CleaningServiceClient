@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../Models/ResponseModel';
-import { Room } from '../Models/Room';
 import { apiUrl } from '../../../environment';
 import { Resource } from '../Models/Resource';
-import { ResourceData } from '../Models/ResourceData';
 import { ResponseModelObject } from '../Models/ResponseModelObject';
 import { Time } from '@angular/common';
 
@@ -21,13 +19,13 @@ export class ResourceService {
   }
 
   //Fixed Backend
-  GetResourcesDataByResouceTypeId(ResourceTypeId: number): Observable<ResponseModel<ResourceData>> {
-    return this.http.get<ResponseModel<ResourceData>>(apiUrl + "ResourceData/Type/" + ResourceTypeId)
-  }
+  // GetResourcesDataByResouceTypeId(ResourceTypeId: number): Observable<ResponseModel<ResourceData>> {
+  //   return this.http.get<ResponseModel<ResourceData>>(apiUrl + "ResourceData/Type/" + ResourceTypeId)
+  // }
 
-  GetResouceDataById(id: number): Observable<ResponseModel<ResourceData>> {
-    return this.http.get<ResponseModel<ResourceData>>(apiUrl + "Resource/" + id)
-  }
+  // GetResouceDataById(id: number): Observable<ResponseModel<ResourceData>> {
+  //   return this.http.get<ResponseModel<ResourceData>>(apiUrl + "Resource/" + id)
+  // }
 
 
   GetResourcesByResouceTypeId(ResourceTypeId: number): Observable<ResponseModel<Resource>> {
@@ -40,9 +38,9 @@ export class ResourceService {
   }
 
   //Fixed Backend
-  GetRoomScheduleById(id: number): Observable<ResponseModelObject<Room>> {
-    return this.http.get<ResponseModelObject<Room>>(apiUrl + "Schedule/" + id)
-  }
+  // GetRoomScheduleById(id: number): Observable<ResponseModelObject<Room>> {
+  //   return this.http.get<ResponseModelObject<Room>>(apiUrl + "Schedule/" + id)
+  // }
 
   GetAvailableResources(serviceId: number, date: string, from: string, to: string){
     const sId = Number(serviceId)
