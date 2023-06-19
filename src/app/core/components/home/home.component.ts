@@ -1,5 +1,4 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Service } from 'src/app/core/Models/Service';
 import { ServiceService } from 'src/app/core/services/service.service';
 import { BookingWatchService } from '../../services/booking-watch.service';

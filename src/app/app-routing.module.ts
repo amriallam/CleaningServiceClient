@@ -8,16 +8,14 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { RegistrationComponent } from './shared/components/registration/registration.component';
 import { AboutUsComponent } from './shared/components/about-us/about-us.component';
 import { ContactUsComponent } from './shared/components/contact-us/contact-us.component';
+import { FilterComponent } from './components/booking/filter/filter.component';
 
 // import { AuthgaurdsGuard } from './shared/gaurds/authgaurds.guard';
 
 
 const routes: Routes = [
-
   { path: '', pathMatch: "full", redirectTo: 'home'},
   { path: 'home', component: HomeComponent},
-  // { path: "service", loadChildren: () => import("./Components/service/service.module").then(m => m.ServiceModule) },
-  // { path: '', pathMatch: "full", redirectTo: 'home' },
   { path: "service/:servicename", loadChildren: () => import("./components/service/service.module").then(m => m.ServiceModule) },
   { path: "resource", loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) },
   // { path: "booking", loadChildren: () => import("./Components/booking/booking.module").then(m => m.BookingModule) },
@@ -30,8 +28,6 @@ const routes: Routes = [
   //core components
   { path: "about", component: AboutUsComponent },
   { path: "contact", component: ContactUsComponent },
-
-
 ];
 
 
