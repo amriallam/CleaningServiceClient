@@ -44,7 +44,7 @@ export class ResourceService {
     return this.http.get<ResponseModelObject<Room>>(apiUrl + "Schedule/" + id)
   }
 
-  GetAvailableResources(serviceId: string, date: string, from: string, to: string){
+  GetAvailableResources(serviceId: number, date: string, from: string, to: string){
     const sId = Number(serviceId)
     return this.http.get<Resource[]>(apiUrl + `Schedule/GetAvailableResources?_day=${date}&_serviceId=${sId}&_startTime=${from}&_endTime=${to}`);
   }

@@ -13,9 +13,11 @@ export class BookingWatchService {
   constructor(private servicesService:ServiceService) { }
 
   GetMaxNumberOfResource(serviceId:number){
-    this.servicesService.getMetadataById(serviceId).subscribe(
-      e=>this.maxNumberOfResources=e.data[0].noOfResources
-    )
+    this.servicesService.getMetadataById(serviceId).subscribe(e=>
+      {
+        this.maxNumberOfResources=e.data[0].noOfResources
+        console.log(e)
+      })
   }
   IncreateCurrentNumberOfResource(){
     this.currentNoOfResources++;
