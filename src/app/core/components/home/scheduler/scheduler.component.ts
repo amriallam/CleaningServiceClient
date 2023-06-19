@@ -13,7 +13,28 @@ export class SchedulerComponent {
   get startTime(){return this.form.controls['startTime']}
   get endTime(){return this.form.controls['endTime']}
   get location(){return this.form.controls['location']}
-
+  cities = [
+    'Cairo',
+    'Alexandria',
+    'Giza',
+    'Shubra El-Kheima',
+    'Port Said',
+    'Suez',
+    'Luxor',
+    'Aswan',
+    'Tanta',
+    'Mansoura',
+    'Damietta',
+    'Zagazig',
+    'Asyut',
+    'Ismailia',
+    'Fayoum',
+    'Beni Suef',
+    'Sohag',
+    'Shibin El Kom',
+    'Banha',
+    'Arish'
+  ];
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       day: ['', [Validators.required]],
