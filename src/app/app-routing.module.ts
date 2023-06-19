@@ -10,27 +10,27 @@ import { RegistrationComponent } from './core/account/registration/registration.
 import { ForgetPasswordComponent } from './core/account/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './core/account/reset-password/reset-password.component';
 import { ConfirmEmailComponent } from './core/account/confirm-email/confirm-email.component';
-import { ResourceDetailsComponent } from './components/resource/resource-details/resource-details.component';
 import { BookingModule } from './components/booking/booking.module';
+import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
-  {
-    path: 'service/:servicename', loadChildren: () => import('./components/service/service.module').then( (m) => m.ServiceModule ),
-  },
+  { path: 'service/:servicename', component: DetailsServiceComponent },
+
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
-    { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
-  {path: 'resource' , loadChildren: () => import("./components/resource/resource.module").then(m=> m.ResourceModule) },
-{path :'booking' , loadChildren:() => import("./components/booking/booking.module").then(m => BookingModule )},
+
+  { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
+  { path: 'resource', loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) }, //1 , 1.1
+  { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => BookingModule) }, //2
+
   //core components
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },
 
-  { path: 'resource/:id', component: ResourceDetailsComponent },
   // not found component
   { path: '**', component: NotFoundComponent },
 ];
