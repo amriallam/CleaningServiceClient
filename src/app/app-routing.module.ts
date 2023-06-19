@@ -29,9 +29,7 @@ const routes: Routes = [
 
   //core components
   { path: "about", component: AboutUsComponent },
-  { path: "contact", component: ContactUsComponent },
-
-
+  { path: "contact", component: ContactUsComponent }
 ];
 
 
