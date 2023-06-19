@@ -8,7 +8,7 @@
           </div>
 
           <div *ngFor="let res of availableResources; let i = index">
-            <div class="col-lg-6 col-12"   [class.selected]="isResourceSelected(res)" [class.disabled]="isSelectionDisabled" (click)="selectResource(res)">
+            <div class="col-lg-6 col-12"  [class.selected]="isResourceSelected(res)" (click)="selectResource(res)">
               <div class="services-thumb mb-lg-0" >
                   <div class="row">
                       <div class="col-lg-5 col-md-5 col-12">
@@ -65,7 +65,15 @@
               </div>
           </div>
         </div>
-        <button *ngIf="status" [@slideDown]="status" [@slideUp]="!status" class="btn btn-primary stt">Book Now</button> 
+
+        <div class=" text-end">
+          <a *ngIf="status" [@slideDown]="status" [@slideUp]="!status" (click)="book()" class="custom-btn btn button  mt-2 ms-auto stt">
+            <span>Book Now</span>
+        </a>
+        </div>
+        <!-- <div  >
+          <button *ngIf="status" [@slideDown]="status" [@slideUp]="!status" class="btn btn-primary mt-3 stt">Book Now</button>
+        </div> -->
       </div>
   </div>
 </section>
