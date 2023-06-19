@@ -3,7 +3,7 @@ import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Service } from 'src/app/core/Models/Service';
 import { ServiceService } from 'src/app/core/services/service.service';
 declare function backstretch(): any;
-declare function animateHeadline(headline:string): any;
+declare function initHeadline(): any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,7 +18,7 @@ export class HomeComponent implements AfterViewInit{
   }
   ngAfterViewInit(): void {
     backstretch();
-    animateHeadline('.cd-headline');
+    initHeadline();
   }
 
 

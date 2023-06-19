@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { AboutUsComponent } from './shared/components/about-us/about-us.component';
-import { ContactUsComponent } from './shared/components/contact-us/contact-us.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { ForgetPasswordComponent } from './shared/components/forget-password/forget-password.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { RegistrationComponent } from './shared/components/registration/registration.component';
+import { AboutUsComponent } from './shared/components/about-us/about-us.component';
+import { ContactUsComponent } from './shared/components/contact-us/contact-us.component';
 
 // import { AuthgaurdsGuard } from './shared/gaurds/authgaurds.guard';
 

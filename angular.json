@@ -32,10 +32,12 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/animated-headline.js",
               "src/assets/js/jquery.backstretch.min.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/countdown.js",
               "src/assets/js/counter.js",
+              "src/assets/js/custom.js",
               "src/assets/js/modernizr.js"
             ]
           },

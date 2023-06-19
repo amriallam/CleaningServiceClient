@@ -275,36 +275,6 @@
   object-fit: cover;
 }
 
-
-/*---------------------------------------
-  PARTNERS
------------------------------------------*/
-.partners-section {
-  text-align: center;
-  padding-top: 25px;
-  padding-bottom: 50px;
-}
-
-.partners-section-title {
-  border-radius: var(--border-radius-large);
-  display: inline-block;
-  position: relative;
-  bottom: 50px;
-  margin-bottom: -50px;
-  padding: 10px 20px;
-}
-
-.partners-image {
-  display: block;
-  width: 150px;
-  margin: auto;
-  transition: all 0.3s;
-}
-
-.partners-image:hover {
-  transform: scale(1.05);
-}
-
 /*---------------------------------------
   FEATURED
 -----------------------------------------*/

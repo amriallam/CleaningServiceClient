@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+
 	//set animation timing
 	var animationDelay = 2500,
 		//loading bar effect
@@ -14,14 +14,14 @@ jQuery(document).ready(function($){
 		revealDuration = 600,
 		revealAnimationDelay = 1500;
 
-	// initHeadline();
+	initHeadline();
 
 
 	function initHeadline() {
 		//insert <i> element for each letter of a changing word
 		singleLetters($('.cd-headline.letters').find('b'));
 		//initialise headline animation
-		animateHeadline('.cd-headline');
+		animateHeadline($('.cd-headline'));
 	}
 
 	function singleLetters($words) {
@@ -38,7 +38,33 @@ jQuery(document).ready(function($){
 		});
 	}
 
+	function animateHeadline($headlines) {
+		var duration = animationDelay;
+		$headlines.each(function(){
+			var headline = $(this);
 
+			if(headline.hasClass('loading-bar')) {
+				duration = barAnimationDelay;
+				setTimeout(function(){ headline.find('.cd-words-wrapper').addClass('is-loading') }, barWaiting);
+			} else if (headline.hasClass('clip')){
+				var spanWrapper = headline.find('.cd-words-wrapper'),
+					newWidth = spanWrapper.width() + 10
+				spanWrapper.css('width', newWidth);
+			} else if (!headline.hasClass('type') ) {
+				//assign to .cd-words-wrapper the width of its longest word
+				var words = headline.find('.cd-words-wrapper b'),
+					width = 0;
+				words.each(function(){
+					var wordWidth = $(this).width();
+				    if (wordWidth > width) width = wordWidth;
+				});
+				headline.find('.cd-words-wrapper').css('width', width);
+			};
+
+			//trigger animation
+			setTimeout(function(){ hideWord( headline.find('.is-visible').eq(0) ) }, duration);
+		});
+	}
 
 	function hideWord($word) {
 		var nextWord = takeNext($word);
@@ -125,33 +151,3 @@ jQuery(document).ready(function($){
 		$oldWord.removeClass('is-visible').addClass('is-hidden');
 		$newWord.removeClass('is-hidden').addClass('is-visible');
 	}
-});
-
-
-function animateHeadline(headlines) {
-  var duration = animationDelay;
-  $(headlines).each(function(){
-    var headline = $(this);
-
-    if(headline.hasClass('loading-bar')) {
-      duration = barAnimationDelay;
-      setTimeout(function(){ headline.find('.cd-words-wrapper').addClass('is-loading') }, barWaiting);
-    } else if (headline.hasClass('clip')){
-      var spanWrapper = headline.find('.cd-words-wrapper'),
-        newWidth = spanWrapper.width() + 10
-      spanWrapper.css('width', newWidth);
-    } else if (!headline.hasClass('type') ) {
-      //assign to .cd-words-wrapper the width of its longest word
-      var words = headline.find('.cd-words-wrapper b'),
-        width = 0;
-      words.each(function(){
-        var wordWidth = $(this).width();
-          if (wordWidth > width) width = wordWidth;
-      });
-      headline.find('.cd-words-wrapper').css('width', width);
-    };
-
-    //trigger animation
-    setTimeout(function(){ hideWord( headline.find('.is-visible').eq(0) ) }, duration);
-  });
-}
