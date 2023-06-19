@@ -1,28 +1,9 @@
 
-.amr{
+.appointment{
+  /* position: absolute; */
   position: relative;
-  bottom: 15rem;
-  background-color: #7cb8eb;
   padding: 10px 30px;
   border-radius: 10px;
-}
-
-.w-fit{
-  width: fit-content;
-}
-
-.form-div{
-  /* text-align: left; */
-  font-family: "Roboto", Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.8;
-  font-weight: 400;
-  color: gray;
-  box-sizing: border-box;
-  background-color: #fff !important;
-  display: flex !important;
-  padding-bottom: 0 !important;
-  /* padding-left: 1.5rem !important; */
-  box-shadow: 0px 12px 31px -16px rgba(0, 0, 0, 0.15);
-  margin-top: 50px;
+  bottom: 80px;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.15) !important;
 }

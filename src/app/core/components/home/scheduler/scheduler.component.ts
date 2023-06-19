@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-scheduler',
@@ -46,6 +46,10 @@ export class SchedulerComponent {
 
   onSubmit() {
     console.log(this.form.value);
+  }
+
+  getCurrentDate(){
+    return new Date().toISOString()
   }
 
 }
