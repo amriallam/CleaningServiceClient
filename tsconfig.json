@@ -24,6 +24,9 @@
       "dom"
     ]
   },
+  "paths": {
+    "@images/*": "['./src/assets/images/*']"
+  },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

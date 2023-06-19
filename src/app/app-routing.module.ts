@@ -14,7 +14,8 @@ import { RegistrationComponent } from './shared/components/registration/registra
 
 const routes: Routes = [
 
-  { path: '', pathMatch: "full", component: HomeComponent},
+  { path: '', pathMatch: "full", redirectTo: 'home'},
+  { path: 'home', component: HomeComponent},
   // { path: "service", loadChildren: () => import("./Components/service/service.module").then(m => m.ServiceModule) },
   // { path: '', pathMatch: "full", redirectTo: 'home' },
   { path: "service/:servicename", loadChildren: () => import("./components/service/service.module").then(m => m.ServiceModule) },
