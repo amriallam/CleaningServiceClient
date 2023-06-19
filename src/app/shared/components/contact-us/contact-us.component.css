@@ -1,3 +1,29 @@
-tr td:nth-child(2){
-  font-size: 0.9rem !important;
+.contact-section {
+  background: var(--white-color);
 }
+
+.contact-form {
+  background: var(--section-bg-color);
+  border-radius: var(--border-radius-small);
+  padding: 40px;
+}
+
+.contact-info {
+  background: var(--white-color);
+  border-radius: var(--border-radius-medium);
+  display: inline-block;
+  margin-top: 20px;
+  padding: 40px;
+}
+
+.team-info a,
+.contact-info h5,
+.contact-info h5 a {
+  color: var(--p-color);
+}
+
+.team-info a:hover,
+.contact-info h5 a:hover {
+  color: var(--link-hover-color);
+}
+
