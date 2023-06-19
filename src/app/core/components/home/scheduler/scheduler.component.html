@@ -1,0 +1,36 @@
+<div class="form-div">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="container">
+    <div class="d-flex">
+      <div class="col-12 col-md d-flex align-items-center">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0">
+          <label for="day">Day:</label>
+          <input placeholder="Select Date" formControlName="day" class="form-control" (click)="d.toggle()" type="text" ngbDatepicker #d="ngbDatepicker"/>
+          <div *ngIf="day.errors?.['required']" class="text-danger">Day is required</div>
+        </div>
+      </div>
+      <div class="col-12 col-md d-flex align-items-center">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0">
+          <label for="start">Start:</label>
+          <input type="time" formControlName="startTime" class="form-control">
+          <div *ngIf="startTime.errors?.['required']" class="text-danger">Start time is required</div>
+        </div>
+      </div>
+      <div class="col-12 col-md d-flex align-items-center">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0">
+          <label for="end">End:</label>
+          <input type="time" formControlName="endTime" class="form-control">
+          <div *ngIf="endTime.errors?.['required']" class="text-danger">End time is required</div>
+        </div>
+      </div>
+      <div class="col-12 col-md d-flex align-items-center">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0">
+          <label for="location">Location:</label>
+          <select formControlName="location" class="form-control"></select>
+        </div>
+      </div>
+      <div class="col-12 col-md d-flex align-items-center">
+        <input type="submit" value="Make an Appointment" class="btn btn-primary py-3 px-4">
+      </div>
+    </div>
+  </form>
+</div>
