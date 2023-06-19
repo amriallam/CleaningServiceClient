@@ -1,3 +1,4 @@
+import { BookingDetailsVM } from './../ViewModels/booking-details-vm';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, retry, throwError } from 'rxjs';
@@ -9,9 +10,16 @@ import { apiUrl } from 'src/environment';
   providedIn: 'root'
 })
 export class BookingService {
-  selcetdResourceIds : number[]=[]; 
+  bookingDetails!: BookingDetailsVM;
+
   constructor(private httpClient: HttpClient) { }
 
+  AddBookingDetails(selcetdResourceIds : number[],date: string, from : string, to : string){
+    this.bookingDetails.selectedResIds = selcetdResourceIds;
+    this.bookingDetails.date = date;
+    this.bookingDetails.from = from;
+    this.bookingDetails.to = to;
+  }
 
   getAllBookingItems(): Observable<ResponseModel<BookingItem>> {
     return this.httpClient.get<ResponseModel<BookingItem>>(apiUrl + `BookingItem`);
@@ -35,8 +43,5 @@ export class BookingService {
     return this.httpClient.patch<BookingItem>(`${apiUrl}/BookingItem?bookingId=${bookingId}`,bookingItem);
   }
 
-  getSelectedResources(){
-
-  }
 
 }
