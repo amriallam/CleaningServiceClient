@@ -11,4 +11,8 @@ import { Observable, throwError } from 'rxjs';
 })
 export class ResourseDetailsService {
   constructor(private http: HttpClient) {}
+
+  getResourceDetails(id: string): Observable<any> {
+    return this.http.get<any>(`https://localhost:7158/api/ResourceData/Resource/${id}`);
+  } 
 }
