@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../Models/ResponseModel';
 import { Room } from '../Models/Room';
-import { apiUrl } from 'src/environment';
+import { apiUrl } from '../../../environment';
 import { Resource } from '../Models/Resource';
 import { ResourceData } from '../Models/ResourceData';
 import { ResponseModelObject } from '../Models/ResponseModelObject';
+import { Time } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,11 @@ export class ResourceService {
   //Fixed Backend
   GetRoomScheduleById(id: number): Observable<ResponseModelObject<Room>> {
     return this.http.get<ResponseModelObject<Room>>(apiUrl + "Schedule/" + id)
+  }
+
+  GetAvailableResources(serviceId: string, date: string, from: string, to: string){
+    const sId = Number(serviceId)
+    return this.http.get<Resource[]>(apiUrl + `Schedule/GetAvailableResources?_day=${date}&_serviceId=${sId}&_startTime=${from}&_endTime=${to}`);
   }
 
 }
