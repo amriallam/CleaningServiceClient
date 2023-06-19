@@ -1,0 +1,161 @@
+<section class="banner-section d-flex justify-content-center align-items-end">
+  <div class="section-overlay"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-12">
+        <h1 class="text-white mb-lg-0">Login</h1>
+           <!-- I need sentence to welcome-->
+           <h4 class="text-white mb-lg-0">Welcome to Best Cleaning Service</h4>
+      </div>
+
+      <div
+        class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto"
+      >
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Login</li>
+         
+
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section spad">
+  <div class="container">
+    
+
+      
+      <div class="custom-form bg-white shadow-lg my-5 w-75 mx-auto">
+        <form
+          class="custom-form consulting-form"
+          [formGroup]="loginFormGroup"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="row">
+            <div class="col-lg-12">
+              <input
+                id="email"
+                name="email"
+                type="text"
+                placeholder="Enter your email"
+                formControlName="email"
+                class="form-control"
+              />
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="this.missingFeildsErrosObject?.hasOwnProperty('Email')"
+            >
+              <div
+                *ngFor="
+                  let missingFieldErrorItem of missingFeildsErrosObject['Email']
+                "
+                class="alert alert-danger"
+              >
+                <div>
+                  {{ missingFieldErrorItem }}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12" *ngIf="this.emailFEValidation|| false">
+              <div class="alert alert-danger" *ngIf="this.emailFEValidation" >
+                <div >
+                  <div
+                    *ngIf="
+                      loginFormGroup.controls['email'].hasError('required')
+                    "
+                  >
+                    email is required
+                  </div>
+                  <div
+                    *ngIf="loginFormGroup.controls['email'].hasError('pattern')"
+                  >
+                    email must be in the folowing format example@example.com
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
+            <div class="col-lg-12">
+              <input
+                type="password"
+                placeholder="Enter your Password"
+                formControlName="password"
+                class="form-control"
+
+              />
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="this.missingFeildsErrosObject?.hasOwnProperty('Password')"
+            >
+              <div
+                *ngFor="
+                  let missingFieldErrorItem of missingFeildsErrosObject[
+                    'Password'
+                  ]
+                "
+                class="alert alert-danger"
+              >
+                <div>
+                  {{ missingFieldErrorItem }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12" *ngIf="this.passwordFEValidation">
+              <div class="alert alert-danger"
+
+              >
+                <div *ngIf="this.passwordFEValidation">
+                  <div
+                    *ngIf="
+                      loginFormGroup.controls['password'].hasError('required')
+                    "
+                  >
+                    password is required
+                  </div>
+                  <!-- <div
+                    *ngIf="
+                      loginFormGroup.controls['password'].hasError('pattern')
+                    "
+                  >
+                    password must be in the folowing format
+                    <ul class="ps-4">
+                      <li>At least one upper case English letter</li>
+                      <li>At least one lower case English letter</li>
+                      <li>At least one digit</li>
+                      <li>At least one special character</li>
+                    </ul>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-12">
+              <button type="submit" class="w-100 mb-3 form-control">Login</button>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-center my-2">
+              <a class="text-decoration-underline text-dark fs-6 "
+                href='/forgetPassword'
+              >
+                Forgot your password?
+              </a>
+            </div>
+          </div>
+        </form>
+      
+        </div>
+
+      
+   
+  </div>
+</section>

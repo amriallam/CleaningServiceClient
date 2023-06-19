@@ -10,9 +10,10 @@ import { apiUrl } from 'src/environment';
   providedIn: 'root'
 })
 export class BookingService {
-  bookingDetails: BookingDetailsVM ;
+  bookingDetails: BookingDetailsVM;
+
   constructor(private httpClient: HttpClient) {
-    this.bookingDetails = new BookingDetailsVM();
+    this.bookingDetails=new BookingDetailsVM();
   }
 
   AddBookingDetails(selcetdResourceIds : number[],date: string, from : string, to : string){
