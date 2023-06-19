@@ -47,6 +47,7 @@ https://www.tooplate.com/view/2132-clean-work
 body {
   background-color: var(--white-color);
   font-family: var(--body-font-family);
+  height: 100vh;
 }
 
 
