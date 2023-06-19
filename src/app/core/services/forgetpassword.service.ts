@@ -15,9 +15,18 @@ export class ForgetpasswordService {
   constructor(private http: HttpClient) {}
 
   public forgetPassword(email: string): Observable<any> {
-  const url = `https://localhost:7158/api/Account/ForgetPassword?Email=${(email)}`;
-    return this.http.post<any>(url, email);
-   
-    
+    const url = `https://localhost:7158/api/Account/ForgetPassword?Email=${email}`;
+    return this.http.post<any>(url, email).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          // Handle the 404 response here
+          console.log('Not found');
+        } else {
+          // Handle other error responses
+          console.error(error);
+        }
+        return throwError('Something went wrong');
+      })
+    );
   }
 }
