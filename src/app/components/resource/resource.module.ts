@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListResourceComponent } from './list-resource/list-resource.component';
+import { ListAvailableResourceComponent } from './list-available-resource/list-available-resource.component';
 
+import { Routes , RouterModule } from '@angular/router';
 
+const routes: Routes = [
+  {path: '', component: ListAvailableResourceComponent}
+]
 
 @NgModule({
   declarations: [
-    ListResourceComponent
+    ListAvailableResourceComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class ResourceModule { }

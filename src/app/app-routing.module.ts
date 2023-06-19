@@ -19,7 +19,7 @@ const routes: Routes = [
   // { path: "service", loadChildren: () => import("./Components/service/service.module").then(m => m.ServiceModule) },
   // { path: '', pathMatch: "full", redirectTo: 'home' },
   { path: "service/:servicename", loadChildren: () => import("./components/service/service.module").then(m => m.ServiceModule) },
-  // { path: "resource", loadChildren: () => import("./Components/resource/resource.module").then(m => m.ResourceModule) },
+  { path: "resource", loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) },
   // { path: "booking", loadChildren: () => import("./Components/booking/booking.module").then(m => m.BookingModule) },
 
   //accoont route
