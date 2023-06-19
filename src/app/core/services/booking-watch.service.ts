@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class BookingWatchService {
   currentNoOfResources:number=0;
-  maxNumberOfResources:number=3;
+  maxNumberOfResources:number=0;
   LimitReached=new BehaviorSubject(false);
 
   constructor(private servicesService:ServiceService) { }

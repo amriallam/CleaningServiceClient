@@ -38,13 +38,7 @@ declare function initHeadline(): any;
   ]
 })
 export class HomeComponent implements AfterViewInit {
-  // services: Service[] = [];
-  // model: NgbDateStruct;
-  Status:boolean=false;
-  constructor(readonly watchService: BookingWatchService) {
-    this.watchService.LimitReached.subscribe(LimitReachedStatus=>this.Status=LimitReachedStatus)
-    // this.model={year:0,month:0,day:0}
-  }
+
   ngAfterViewInit(): void {
     backstretch();
     initHeadline();
