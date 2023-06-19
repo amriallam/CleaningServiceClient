@@ -17,7 +17,7 @@ export class BookinListItemsComponent {
   constructor(private resourceService: ResourceService,
     private location :Location, 
     private bookingService : BookingService){
-      this.resourceIds = bookingService.selcetdResourceIds;
+      // this.resourceIds = bookingService.selcetdResourceIds;
     }
   ngOnInit(){
     this.resourceIds.forEach(element => {
