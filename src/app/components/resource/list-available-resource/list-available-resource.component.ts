@@ -41,7 +41,7 @@ import { ResourceService } from 'src/app/core/services/resource.service';
 })
 export class ListAvailableResourceComponent {
   availableResources: Resource[] = [];
-  serviceId!: string;
+  serviceId!: number;
   date!: string;
   from!: string;
   to!:string;
@@ -49,7 +49,6 @@ export class ListAvailableResourceComponent {
   counter: number = 0;
   selectedResources: any[] = [];
   selectdedResIds : number[] = [];
-  isSelectionDisabled: boolean = false;
 
   status: boolean = false;
   constructor(private resourceService: ResourceService,
@@ -64,12 +63,17 @@ export class ListAvailableResourceComponent {
         this.to = params['to'];
       });
 
+      watchService.GetMaxNumberOfResource(this.serviceId)
       this.watchService.LimitReached.subscribe(LimitReachedStatus=>{
         this.status=LimitReachedStatus;
-        this.isSelectionDisabled = LimitReachedStatus;
       });
 
   }
+
+  isSelectionDisabled(res: any): boolean {
+    return this.selectedResources.includes(res);
+  }
+
   ngOnInit() {
     this.resourceService.GetAvailableResources(this.serviceId, this.date, this.from, this.to).subscribe(res=> {
       this.availableResources = res;
@@ -81,21 +85,25 @@ export class ListAvailableResourceComponent {
   }
 
   selectResource(res: any) {
-
-    if (this.selectedResources.includes(res)) {
-      const index = this.selectedResources.indexOf(res);
+    const index = this.selectedResources.indexOf(res);
+    if (index > -1) {
       this.selectedResources.splice(index, 1);
+      this.watchService.DecreaseCurrentNumberOfResource();
     } else {
       this.selectedResources.push(res);
+      this.watchService.IncreateCurrentNumberOfResource();
     }
   }
 
-
   book(){
+
+    // console.log(this.selectedResources)
     this.selectedResources.forEach(res => {
       this.selectdedResIds.push(res.id);
     });
+    // console.log(this.selectdedResIds)
     this.bookingService.AddBookingDetails(this.selectdedResIds, this.date, this.from, this.to)
+    console.log("Booking")
     this.router.navigate(['booking/bookingList']);
   }
 
