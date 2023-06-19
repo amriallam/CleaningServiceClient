@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 declare function backstretch(): any;
-declare function animateHeadline(): any;
+declare function animateHeadline(headline:string): any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,6 +9,6 @@ declare function animateHeadline(): any;
 export class HomeComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     backstretch();
-    animateHeadline();
+    animateHeadline('.cd-headline');
   }
 }

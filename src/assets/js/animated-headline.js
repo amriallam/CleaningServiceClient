@@ -14,11 +14,10 @@
 		revealDuration = 600,
 		revealAnimationDelay = 1500;
 
-	function animateHeadline($headlines) {
+	function animateHeadline(headlines) {
 		var duration = animationDelay;
-		$headlines.each(function(){
+		$(headlines).each(function(){
 			var headline = $(this);
-
 			if(headline.hasClass('loading-bar')) {
 				duration = barAnimationDelay;
 				setTimeout(function(){ headline.find('.cd-words-wrapper').addClass('is-loading') }, barWaiting);
