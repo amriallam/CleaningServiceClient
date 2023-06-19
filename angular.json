@@ -28,7 +28,9 @@
               "src/styles.css",
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/bootstrap-icons.css",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -106,5 +108,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "bea774f1-6cf9-41e8-9563-6dcb6e4c9470"
   }
 }

@@ -20,7 +20,7 @@ const routes: Routes = [
   // { path: '', pathMatch: "full", redirectTo: 'home' },
   { path: "service/:servicename", loadChildren: () => import("./components/service/service.module").then(m => m.ServiceModule) },
   // { path: "resource", loadChildren: () => import("./Components/resource/resource.module").then(m => m.ResourceModule) },
-  // { path: "booking", loadChildren: () => import("./Components/booking/booking.module").then(m => m.BookingModule) },
+  { path: "booking", loadChildren: () => import("./components/booking/booking.module").then(m => m.BookingModule) },
 
   //accoont route
   { path: 'login', component: LoginComponent },

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../Models/ResponseModel';
 import { Room } from '../Models/Room';
-import { apiUrl } from '../../environment';
+import { apiUrl } from 'src/environment';
 import { Resource } from '../Models/Resource';
 import { ResourceData } from '../Models/ResourceData';
 import { ResponseModelObject } from '../Models/ResponseModelObject';
