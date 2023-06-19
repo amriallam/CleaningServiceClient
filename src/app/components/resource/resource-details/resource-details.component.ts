@@ -19,18 +19,18 @@ export class ResourceDetailsComponent {
       this.resourceDetailsRating = data.data.averageRating;
       console.log(this.resourceDetailsRating);
     });
-   
+
   }
 
 
-  
-    
+
+
 
 
   ngOnInit(): void {
     console.log(this.id);
     this.getResourceDetails(this.id);
-    
+
   }
 
 }

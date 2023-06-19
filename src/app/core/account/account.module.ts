@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
- 
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -11,10 +11,6 @@ import { RegistrationComponent } from '../../core/account/registration/registrat
 import { ForgetPasswordComponent } from '../../core/account/forget-password/forget-password.component';
 import { ResetPasswordComponent } from '../../core/account/reset-password/reset-password.component';
 
-// import { PaymentPaypalComponent } from './payment-paypal/payment-paypal.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -22,15 +18,7 @@ import { ResetPasswordComponent } from '../../core/account/reset-password/reset-
     RegistrationComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-
-
-    
-    // PaymentPaypalComponent,
-
   ],
-
-
-
   imports: [
     CommonModule,
     ReactiveFormsModule,

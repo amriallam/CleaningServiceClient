@@ -1,5 +1,4 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { Service } from 'src/app/core/Models/Service';
 declare function backstretch(): any;
 declare function animateHeadline(): any;
 @Component({
