@@ -11,7 +11,7 @@
           <h1 class="cd-headline rotate-1 text-white mb-4 pb-2">
             <span>We clean your</span>
             <span class="cd-words-wrapper ms-3">
-              <b class="is-visible">House</b>
+              <b>House</b>
               <b>Office</b>
               <b>Kitchen</b>
             </span>
@@ -122,7 +122,8 @@
               <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
                 <div class="services-info mt-4 mt-lg-0 mt-md-0">
                   <h4 class="services-title mb-1 mb-lg-2">
-                    <a class="services-title-link" routerLink="/service/office-cleaning">Office Cleaning</a>
+                    <a class="services-title-link"
+                      routerLink="/service/office-cleaning">Office Cleaning</a>
                   </h4>
 
                   <p>Best Cleaning Service Provider Ipsum dolor sit consectetur
@@ -138,7 +139,8 @@
                     </div>
                     <a
                       class="custom-btn  btn button button--pan mt-2 ms-auto"
-                      routerLinkActive="active"  routerLink="/service/office-cleaning">
+                      routerLinkActive="active"
+                      routerLink="/service/office-cleaning">
                       <span class>Learn More</span>
                     </a>
 
@@ -183,7 +185,8 @@
               <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
                 <div class="services-info mt-4 mt-lg-0 mt-md-0">
                   <h4 class="services-title mb-1 mb-lg-2">
-                    <a class="services-title-link"  routerLink="/service/kitchen-cleaning">Kitchen
+                    <a class="services-title-link"
+                      routerLink="/service/kitchen-cleaning">Kitchen
                       Cleaning</a>
                   </h4>
 
@@ -201,7 +204,8 @@
 
                     <a
                       class="custom-btn  btn button button--pan mt-2 ms-auto"
-                      routerLinkActive="active"  routerLink="/service/kitchen-cleaning">
+                      routerLinkActive="active"
+                      routerLink="/service/kitchen-cleaning">
                       <span class>Learn More</span>
                     </a>
                   </div>
@@ -245,7 +249,8 @@
               <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
                 <div class="services-info mt-4 mt-lg-0 mt-md-0">
                   <h4 class="services-title mb-1 mb-lg-2">
-                    <a class="services-title-link" routerLink="/service/car-washing">Car
+                    <a class="services-title-link"
+                      routerLink="/service/car-washing">Car
                       Washing</a>
                   </h4>
 
@@ -263,7 +268,8 @@
 
                     <a
                       class="custom-btn  btn button button--pan mt-2 ms-auto"
-                      routerLinkActive="active"   routerLink="/service/car-washing">
+                      routerLinkActive="active"
+                      routerLink="/service/car-washing">
                       <span class>Learn More</span>
                     </a>
                   </div>
@@ -307,7 +313,8 @@
               <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
                 <div class="services-info mt-4 mt-lg-0 mt-md-0">
                   <h4 class="services-title mb-1 mb-lg-2">
-                    <a class="services-title-link" routerLink="/service/factory-cleaning">Factory
+                    <a class="services-title-link"
+                      routerLink="/service/factory-cleaning">Factory
                       Cleaning</a>
                   </h4>
 
@@ -325,7 +332,8 @@
 
                     <a
                       class="custom-btn  btn button button--pan mt-2 ms-auto"
-                      routerLinkActive="active"  routerLink="/service/factory-cleaning">
+                      routerLinkActive="active"
+                      routerLink="/service/factory-cleaning">
                       <span class>Learn More</span>
                     </a>
                   </div>
@@ -529,3 +537,12 @@
     </div>
   </section>
 </main>
+
+<div class="d-flex gap-2">
+  <button (click)="watchService.IncreateCurrentNumberOfResource()"
+    class="btn btn-primary">Increase</button>
+  <button (click)="watchService.DecreaseCurrentNumberOfResource()"
+    class="btn btn-primary">Decrease</button>
+</div>
+<p>Status: {{Status}}</p>
+<button *ngIf="Status" [@slideDown]="Status" [@slideUp]="!Status" class="btn btn-primary stt">Book Now</button>

@@ -285,3 +285,9 @@
 .featured-block {
   padding: 20px;
 }
+
+.stt{
+  position: fixed;
+  bottom: 60px;
+  right: 80px;
+}
