@@ -12,7 +12,6 @@ export class BookingService {
   selcetdResourceIds : number[]=[]; 
   constructor(private httpClient: HttpClient) { }
 
-
   getAllBookingItems(): Observable<ResponseModel<BookingItem>> {
     return this.httpClient.get<ResponseModel<BookingItem>>(apiUrl + `BookingItem`);
   }
@@ -33,10 +32,6 @@ export class BookingService {
 
   UpdateBookingItem(bookingId: number, bookingItem: BookingItem): Observable<BookingItem> {
     return this.httpClient.patch<BookingItem>(`${apiUrl}/BookingItem?bookingId=${bookingId}`,bookingItem);
-  }
-
-  getSelectedResources(){
-
   }
 
 }
