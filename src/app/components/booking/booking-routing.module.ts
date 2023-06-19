@@ -4,9 +4,9 @@ import { FilterComponent } from './filter/filter.component';
 import { BookinListItemsComponent } from './bookin-list-items/bookin-list-items.component';
 
 const routes: Routes = [
-  {'path':'filter' , component:FilterComponent},
-  {'path':'bookingList' , component: BookinListItemsComponent}
-
+  {path:'filter' , component:FilterComponent},
+  {path:'bookingList' , component: BookinListItemsComponent}
+  
 ];
 
 @NgModule({

@@ -34,13 +34,13 @@ export class ResourceService {
   }
 
   //Fixed Backend
-  GetResouceById(id: number): Observable<ResponseModel<Resource>> {
-    return this.http.get<ResponseModel<Resource>>(apiUrl + "Resource/" + id)
+  GetResouceById(id: number): Observable<ResponseModelObject<Resource>> {
+    return this.http.get<ResponseModelObject<Resource>>(apiUrl + "Resource/" + id)
   }
 
   //Fixed Backend
-  GetRoomScheduleById(id: number): Observable<ResponseModel<Room>> {
-    return this.http.get<ResponseModel<Room>>(apiUrl + "Schedule/" + id)
+  GetRoomScheduleById(id: number): Observable<ResponseModelObject<Room>> {
+    return this.http.get<ResponseModelObject<Room>>(apiUrl + "Schedule/" + id)
   }
 
 }
