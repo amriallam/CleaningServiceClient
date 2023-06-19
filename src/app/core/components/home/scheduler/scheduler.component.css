@@ -1,12 +1,14 @@
-form{
-  text-align: left;
-  font-family: "Roboto", Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.8;
-  font-weight: 400;
-  color: gray;
-  box-sizing: border-box;
-  width: 100% !important;
+
+.amr{
+  position: relative;
+  bottom: 15rem;
+  background-color: #7cb8eb;
+  padding: 10px 30px;
+  border-radius: 10px;
+}
+
+.w-fit{
+  width: fit-content;
 }
 
 .form-div{
