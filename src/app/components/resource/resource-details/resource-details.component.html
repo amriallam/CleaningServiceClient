@@ -62,12 +62,15 @@
         <div class="col-lg-6 col-12">
           <div class="services-info px-4 pt-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h2 class="">{{ this.resourceDetails?.name }}</h2>
-              <h2 class="">{{ this.resourceDetails?.price }}$</h2>
+              <!-- <h2 class="">{{ this.resourceDetails?.name }}</h2> -->
+              <h2 class="">Resource 3</h2> 
+              <!-- <h2 class="">{{ this.resourceDetails?.price }}$</h2> -->
+              <h2 class="">100$</h2>
             </div>
             <h4 class="text-muted mb-2">
               Rating:
-              <span>{{ this.resourceDetails?.averageRating }}</span>
+              <!-- <span>{{ this.resourceDetails?.averageRating }}</span> -->
+              <!-- <span> 5</span> -->
 
               <span *ngFor="let star of [1, 2, 3, 4, 5]">
                 <i
@@ -82,8 +85,8 @@
               </i>
               </span>
             </h4>
-            <p>Rated by {{ this.resourceDetails?.numRatings }} users</p>
-
+            <!-- <p>Rated by {{ this.resourceDetails?.numRatings }} users</p> -->
+            <p>Rated by 0 users</p>
             <hr />
 
             <h4>Description:</h4>
