@@ -11,6 +11,7 @@ import { ContactUsComponent } from '../shared/components/contact-us/contact-us.c
 import { AboutUsComponent } from '../shared/components/about-us/about-us.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulerComponent } from './components/home/scheduler/scheduler.component';
+import { Select2Module } from 'ng-select2-component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SchedulerComponent } from './components/home/scheduler/scheduler.compon
     NgbModule,
     ReactiveFormsModule,
     NgbDatepicker,
-    FormsModule
+    FormsModule,
+    Select2Module
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
