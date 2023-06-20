@@ -28,7 +28,7 @@
                                      <div class="services-info mt-4 mt-lg-0 mt-md-0">
                                          <h4 class="services-title mb-1 mb-lg-2">
                                              <a class="services-title-link" routerLink="/">{{resource.name}}</a>
-                                         </h4>                                                  
+                                         </h4>
                                          <div class="d-flex flex-wrap align-items-center">
                                              <div class="reviews-icons">
                                                  <i class="bi-star-fill"></i>
@@ -58,7 +58,7 @@
                 <button class="btn btn-primary mt-0" (click)="back()">Back</button>
             </div>
             <div class=" text-end">
-                <button class="btn btn-primary me-4" [routerLink]="['payment']">Booking Now</button>
+                <button class="btn btn-primary me-4" (click)="confirmBooking()">Booking Now</button>
             </div>
         </div>
     </div>

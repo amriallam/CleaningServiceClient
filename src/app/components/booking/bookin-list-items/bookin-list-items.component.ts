@@ -11,20 +11,23 @@ import { ResourceService } from 'src/app/core/services/resource.service';
 })
 export class BookinListItemsComponent {
 
-  resourceIds :number[] =[1, 2, 3];
+  resourceIds :number[] =[];
   resourceList :Resource[]=[];
   totalPrice : number =0;
   constructor(private resourceService: ResourceService,
-    private location :Location, 
+    private location :Location,
     private bookingService : BookingService){
-      // this.resourceIds = bookingService.selcetdResourceIds;
+      if(this.bookingService.bookingDetails.selectedResIds != undefined)
+        this.resourceIds = this.bookingService.bookingDetails.selectedResIds ;
+
+      console.log(this.resourceIds)
     }
   ngOnInit(){
     this.resourceIds.forEach(element => {
       this.resourceService.GetResouceById(+element).subscribe((res)=>{
         console.log(res.data)
-        this.resourceList.push(res.data)  
-        this.totalPrice += res.data.price;    
+        this.resourceList.push(res.data)
+        this.totalPrice += res.data.price;
       });
     })
 
@@ -32,4 +35,9 @@ export class BookinListItemsComponent {
   back(){
     this.location.back()
   }
+
+  confirmBooking(){
+    
+  }
+
 }
