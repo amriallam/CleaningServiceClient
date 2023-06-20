@@ -6,3 +6,6 @@
   bottom: 80px;
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.15) !important;
 }
+.form-control{
+  box-shadow: none !important;
+}
