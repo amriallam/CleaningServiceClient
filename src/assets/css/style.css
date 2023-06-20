@@ -413,8 +413,7 @@ strong {
   background-size: cover;
   position: relative;
   overflow: hidden;
-  min-height: 340px;
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 50px;
 }
 
