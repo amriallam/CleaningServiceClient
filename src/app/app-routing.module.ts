@@ -14,8 +14,7 @@ import { BookingModule } from './components/booking/booking.module';
 import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
+  { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'service/:servicename', component: DetailsServiceComponent },
 
   { path: 'login', component: LoginComponent },

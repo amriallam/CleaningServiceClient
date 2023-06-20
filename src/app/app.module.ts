@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountModule } from './core/account/account.module';
-
+import { ResourceModule } from './components/resource/resource.module';
 
 
 @NgModule({
@@ -38,7 +38,9 @@ import { AccountModule } from './core/account/account.module';
     RouterModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    AccountModule
+    AccountModule,
+    ResourceModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

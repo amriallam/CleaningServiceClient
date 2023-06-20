@@ -18,29 +18,9 @@ export class ResourceService {
     return this.http.get<ResponseModel<Resource>>(apiUrl + "Resource")
   }
 
-  //Fixed Backend
-  // GetResourcesDataByResouceTypeId(ResourceTypeId: number): Observable<ResponseModel<ResourceData>> {
-  //   return this.http.get<ResponseModel<ResourceData>>(apiUrl + "ResourceData/Type/" + ResourceTypeId)
-  // }
-
-  // GetResouceDataById(id: number): Observable<ResponseModel<ResourceData>> {
-  //   return this.http.get<ResponseModel<ResourceData>>(apiUrl + "Resource/" + id)
-  // }
-
-
-  GetResourcesByResouceTypeId(ResourceTypeId: number): Observable<ResponseModel<Resource>> {
-    return this.http.get<ResponseModel<Resource>>(apiUrl + "Resource/ResourceType/" + ResourceTypeId)
-  }
-
-  //Fixed Backend
   GetResouceById(id: number): Observable<ResponseModelObject<Resource>> {
     return this.http.get<ResponseModelObject<Resource>>(apiUrl + "Resource/" + id)
   }
-
-  //Fixed Backend
-  // GetRoomScheduleById(id: number): Observable<ResponseModelObject<Room>> {
-  //   return this.http.get<ResponseModelObject<Room>>(apiUrl + "Schedule/" + id)
-  // }
 
   GetAvailableResources(serviceId: number, date: string, from: string, to: string){
     const sId = Number(serviceId)

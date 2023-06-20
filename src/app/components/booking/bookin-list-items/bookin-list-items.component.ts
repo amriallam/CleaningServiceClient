@@ -72,7 +72,7 @@ export class BookinListItemsComponent {
         })
       }
       else{
-        alert('backend handeling');
+        alert('backend handeled ');
       }
   }
 }
