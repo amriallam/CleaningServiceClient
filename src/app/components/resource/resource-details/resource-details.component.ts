@@ -11,13 +11,11 @@ export class ResourceDetailsComponent {
   constructor(private resourseDetailsService: ResourseDetailsService) { }
 
   resourceDetails: any;
-  resourceDetailsRating : any;
   getResourceDetails(id: string) {
     this.resourseDetailsService.getResourceDetails(id).subscribe((data) => {
       console.log(data.data);
       this.resourceDetails = data.data;
-      this.resourceDetailsRating = data.data.averageRating;
-      console.log(this.resourceDetailsRating);
+     
     });
    
   }

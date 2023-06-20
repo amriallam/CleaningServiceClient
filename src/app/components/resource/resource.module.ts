@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { ResourceDetailsComponent } from './resource-details/resource-details.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +11,13 @@ import { ResourceDetailsComponent } from './resource-details/resource-details.co
     ResourceDetailsComponent
   ],
   imports: [
-    CommonModule
+    BrowserModule,
+    CommonModule,
+    FormsModule,
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ]
 })
 export class ResourceModule { }

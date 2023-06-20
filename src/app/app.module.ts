@@ -11,7 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ResourceModule } from './components/resource/resource.module';
 
 
 @NgModule({
@@ -37,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    ResourceModule,
     
   ],
   providers: [],
