@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ResponseModel } from '../Models/ResponseModel';
 import { BookingItem } from '../Models/BookingItem';
 import { apiUrl } from 'src/environment';
+import { BookingModel } from '../Models/BookinModel';
 
 @Injectable({
   providedIn: 'root'
@@ -34,19 +35,18 @@ export class BookingService {
     return this.httpClient.get<ResponseModel<BookingItem>>(`${apiUrl}BookingItem?BookId=${BookId}`);
   }
 
+
   AddBookingItem(bookingItem: BookingItem): Observable<BookingItem> {
-    return this.httpClient.post<BookingItem>(`${apiUrl}/BookingItem/AddOne`, bookingItem);
+    return this.httpClient.post<BookingItem>(`${apiUrl}BookingItem/AddOne`, bookingItem);
   }
   AddRangeOfBookingItem(bookingItems: BookingItem[]): Observable<BookingItem> {
-    return this.httpClient.post<BookingItem>(`${apiUrl}/BookingItem/AddRange`, bookingItems);
+    return this.httpClient.post<BookingItem>(`${apiUrl}BookingItem/AddRange`, bookingItems);
   }
 
   UpdateBookingItem(bookingId: number, bookingItem: BookingItem): Observable<BookingItem> {
-    return this.httpClient.patch<BookingItem>(`${apiUrl}/BookingItem?bookingId=${bookingId}`,bookingItem);
+    return this.httpClient.patch<BookingItem>(`${apiUrl}BookingItem?bookingId=${bookingId}`,bookingItem);
   }
-
-  getSelectedResources(){
-
-  }
-
+  AddNewBoooking(BookingModel: BookingModel):Observable<BookingModel>{
+    return this.httpClient.post<BookingModel>(`${apiUrl}ClientBooking/CreateNewBooking`,BookingModel );
+  } 
 }
