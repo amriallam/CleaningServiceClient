@@ -72,11 +72,14 @@
               <span *ngFor="let star of [1, 2, 3, 4, 5]">
                 <i
                   class="bi bi-star text-warning"
+                  
                   [ngClass]="{
                     'bi-star': star > this.resourceDetails?.averageRating,
                     'bi-star-fill': star <= this.resourceDetails?.averageRating
                   }"
-                ></i>
+                >
+              
+              </i>
               </span>
             </h4>
             <p>Rated by {{ this.resourceDetails?.numRatings }} users</p>

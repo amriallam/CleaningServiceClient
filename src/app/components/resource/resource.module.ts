@@ -14,7 +14,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    ListAvailableResourceComponent
+    ListAvailableResourceComponent,
+    ResourceDetailsComponent
   ],
   imports: [
     CommonModule,
