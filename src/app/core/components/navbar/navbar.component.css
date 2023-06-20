@@ -1,12 +1,5 @@
 .navbar {
-  background: transparent;
-  position: absolute;
-  top: 49px;
-  right: 0;
-  left: 0;
-  z-index: 9;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  background-color: var(--primary-color);
 }
 
 .navbar-brand,
@@ -17,7 +10,6 @@
 }
 
 .logo {
-  background-color: var(--white-color);
   border-radius: var(--border-radius-large);
   width: 80px;
   height: 80px;
@@ -41,8 +33,7 @@
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
-  background: transparent;
-  color: var(--primary-color);
+  border-bottom: 1px solid white;
 }
 
 .dropdown-menu {

@@ -7,7 +7,6 @@ https://www.tooplate.com/view/2132-clean-work
 */
 
 
-
 /*---------------------------------------
   CUSTOM PROPERTIES ( VARIABLES )
 -----------------------------------------*/
@@ -36,7 +35,7 @@ https://www.tooplate.com/view/2132-clean-work
   --btn-font-size:                18px;
   --copyright-font-size:          14px;
 
-  --border-radius-large:          100px;
+  --border-radius-large:          70px;
   --border-radius-medium:         20px;
   --border-radius-small:          10px;
 
@@ -370,7 +369,8 @@ strong {
   font-weight: var(--font-weight-normal);
   line-height: normal;
   transition: all 0.3s;
-  padding: 15px 25px;
+  margin-top: 10px;
+  padding: 8px 25px;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link.custom-btn {
@@ -595,6 +595,7 @@ h6 {
 }
 
 p {
+  margin: 0;
   color: var(--p-color);
   font-size: var(--p-font-size);
   font-weight: var(--font-weight-normal);
@@ -856,6 +857,7 @@ strong {
   bottom: 50px;
   margin-bottom: -50px;
   padding: 10px 20px;
+  box-shadow: 0px 3px 11px -9px rgba(0,0,0,0.75);
 }
 
 .partners-image {

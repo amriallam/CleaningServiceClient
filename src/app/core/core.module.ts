@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RetryInterceptor } from './interceptors/retry.interceptor';
-import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbDatepicker, NgbDropdownModule, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
@@ -15,7 +14,7 @@ import { SchedulerComponent } from './components/home/scheduler/scheduler.compon
 
 
 @NgModule({
-  declarations: [HeaderComponent, NavbarComponent,HomeComponent,FooterComponent,ContactUsComponent,AboutUsComponent, SchedulerComponent],
+  declarations: [NavbarComponent,HomeComponent,FooterComponent,ContactUsComponent,AboutUsComponent, SchedulerComponent],
   imports: [
     CommonModule,
     NgbDropdownModule,
@@ -30,6 +29,6 @@ import { SchedulerComponent } from './components/home/scheduler/scheduler.compon
     useClass: RetryInterceptor,
     multi: true
   }],
-  exports: [HeaderComponent, FooterComponent,NavbarComponent,HomeComponent]
+  exports: [FooterComponent,NavbarComponent,HomeComponent]
 })
 export class CoreModule { }
