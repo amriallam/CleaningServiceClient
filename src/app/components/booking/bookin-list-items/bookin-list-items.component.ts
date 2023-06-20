@@ -66,10 +66,10 @@ export class BookinListItemsComponent {
       console.log(this.Bookingmodel);
       if(this.Bookingmodel!= undefined){
 
-        this.bookingService.AddNewBoooking(this.Bookingmodel).subscribe(res =>{
-          console.log(res);
-          alert('gooing to payment ');
-        })
+        // this.bookingService.AddNewBoooking(this.Bookingmodel).subscribe(res =>{
+        //   console.log(res);
+        //   alert('gooing to payment ');
+        // })
       }
       else{
         alert('backend handeled ');
