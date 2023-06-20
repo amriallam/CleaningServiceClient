@@ -5,3 +5,7 @@ function backstretch(){
     "../../assets/images/slideshow/unrecognizable-cleaner-walking-into-hotel-room-with-tools-detergents.jpg"
   ],  {duration: 2000, fade: 750});
 }
+
+function select2jquery(className){
+  $(className).select2();
+}

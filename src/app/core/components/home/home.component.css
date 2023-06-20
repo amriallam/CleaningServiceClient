@@ -235,29 +235,6 @@
 }
 
 /*---------------------------------------
-  TESTIMONIAL
------------------------------------------*/
-.testimonial-section {
-  background-image: url('../../../../assets/images/coffe-shop-with-wooden-walls-unfocused.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-}
-
-.testimonial-section .featured-block {
-  background-color: var(--primary-color);
-  border-radius: var(--border-radius-medium);
-  margin-bottom: 24px;
-  padding: 30px;
-}
-
-.testimonial-section .featured-block h4,
-.testimonial-section .featured-block p {
-  color: var(--white-color);
-}
-
-/*---------------------------------------
   AVATAR IMAGE - TESTIMONIAL
 -----------------------------------------*/
 .avatar-image {

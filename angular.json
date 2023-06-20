@@ -29,17 +29,16 @@
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/bootstrap-icons.css",
               "src/assets/css/style.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/css/select2.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/animated-headline.js",
               "src/assets/js/jquery.backstretch.min.js",
               "src/assets/js/bootstrap.min.js",
-              "src/assets/js/countdown.js",
-              "src/assets/js/counter.js",
               "src/assets/js/custom.js",
-              "src/assets/js/modernizr.js"
+              "src/assets/js/select2.full.min.js"
             ]
           },
           "configurations": {
