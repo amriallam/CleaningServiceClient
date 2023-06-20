@@ -22,6 +22,7 @@ https://www.tooplate.com/view/2132-clean-work
   --p-color:                      #717275;
   --border-color:                 #e9eaeb;
   --link-hover-color:             #4f83d1;
+  --dark-primary:                 #426380;
 
   --body-font-family:             'Poppins', sans-serif;
 
@@ -645,7 +646,7 @@ strong {
 }
 
 .section-overlay {
-  background-color: var(--secondary-color);
+  background-color: var(--dark-primary);
   position: absolute;
   top: 0;
   left: 0;

@@ -44,29 +44,29 @@ export class ListAvailableResourceComponent {
   serviceId!: number;
   date!: string;
   from!: string;
-  to!:string;
+  to!: string;
 
   counter: number = 0;
   selectedResources: any[] = [];
-  selectdedResIds : number[] = [];
+  selectdedResIds: number[] = [];
 
   status: boolean = false;
   constructor(private resourceService: ResourceService,
-              private route: ActivatedRoute,
-              readonly watchService: BookingWatchService,
-              private bookingService: BookingService,
-              private router: Router){
-      this.route.queryParams.subscribe(params => {
-        this.serviceId = params['serviceId'];
-        this.date = params['date'];
-        this.from = params['from'];
-        this.to = params['to'];
-      });
+    private route: ActivatedRoute,
+    readonly watchService: BookingWatchService,
+    private bookingService: BookingService,
+    private router: Router) {
+    this.route.queryParams.subscribe(params => {
+      this.serviceId = params['serviceId'];
+      this.date = params['date'];
+      this.from = params['from'];
+      this.to = params['to'];
+    });
 
-      watchService.GetMaxNumberOfResource(this.serviceId)
-      this.watchService.LimitReached.subscribe(LimitReachedStatus=>{
-        this.status=LimitReachedStatus;
-      });
+    watchService.GetMaxNumberOfResource(this.serviceId)
+    this.watchService.LimitReached.subscribe(LimitReachedStatus => {
+      this.status = LimitReachedStatus;
+    });
 
   }
 
@@ -75,7 +75,7 @@ export class ListAvailableResourceComponent {
   }
 
   ngOnInit() {
-    this.resourceService.GetAvailableResources(this.serviceId, this.date, this.from, this.to).subscribe(res=> {
+    this.resourceService.GetAvailableResources(this.serviceId, this.date, this.from, this.to).subscribe(res => {
       this.availableResources = res;
     });
   }
@@ -95,16 +95,12 @@ export class ListAvailableResourceComponent {
     }
   }
 
-  book(){
-
-    // console.log(this.selectedResources)
+  book() {
     this.selectedResources.forEach(res => {
       this.selectdedResIds.push(res.id);
     });
-    // console.log(this.selectdedResIds)
     this.bookingService.AddBookingDetails(this.selectdedResIds, this.date, this.from, this.to)
-    console.log("Booking")
-    this.router.navigate(['booking/bookingList']);
+    this.router.navigateByUrl('booking/bookingList');
   }
 
 }
