@@ -45,6 +45,11 @@ export class BookingService {
     return this.httpClient.patch<BookingItem>(`${apiUrl}/BookingItem?bookingId=${bookingId}`,bookingItem);
   }
 
+  AddBooking(bookingItem: BookingItem): Observable<BookingItem> {
+    return this.httpClient.post<BookingItem>(`${apiUrl}/BookingItem/AddOne`, bookingItem);
+  }
+
+
   getSelectedResources(){
 
   }
