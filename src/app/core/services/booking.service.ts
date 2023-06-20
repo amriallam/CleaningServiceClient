@@ -1,7 +1,7 @@
 import { BookingDetailsVM } from './../ViewModels/booking-details-vm';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ResponseModel } from '../Models/ResponseModel';
 import { BookingItem } from '../Models/BookingItem';
 import { apiUrl } from 'src/environment';
