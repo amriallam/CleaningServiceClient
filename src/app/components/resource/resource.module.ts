@@ -18,9 +18,9 @@ const routes: Routes = [
     ResourceDetailsComponent
   ],
   imports: [
-    CommonModule,
+ 
     RouterModule.forChild(routes),
-    BrowserModule,
+   
     CommonModule,
     FormsModule,
   ],
