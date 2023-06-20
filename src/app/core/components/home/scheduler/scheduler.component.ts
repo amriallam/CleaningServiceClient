@@ -52,7 +52,7 @@ export class SchedulerComponent {
 
   onSubmit() {
     if(this.form.valid) {
-      this.router.navigateByUrl(`resource?serviceId=1&date=${this.FormatNgbDate(this.day.value)}-&from=${this.startTime.value}:00&to=${this.endTime.value}:00`);
+      this.router.navigateByUrl(`resource?serviceId=1&date=${this.FormatNgbDate(this.day.value)}&from=${this.startTime.value}:00&to=${this.endTime.value}:00`);
     }
   }
 

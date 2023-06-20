@@ -50,12 +50,15 @@ export class ListAvailableResourceComponent {
   selectedResources: any[] = [];
   selectdedResIds: number[] = [];
 
-  status: boolean = false;
+  status: boolean  ;
+
   constructor(private resourceService: ResourceService,
     private route: ActivatedRoute,
     readonly watchService: BookingWatchService,
     private bookingService: BookingService,
     private router: Router) {
+
+      this.status = false;
     this.route.queryParams.subscribe(params => {
       this.serviceId = params['serviceId'];
       this.date = params['date'];
