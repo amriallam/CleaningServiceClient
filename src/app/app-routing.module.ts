@@ -26,6 +26,8 @@ const routes: Routes = [
   { path: 'resource', loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) }, //1 , 1.1
   { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => BookingModule) }, //2
 
+  { path: "profile", loadChildren:()=> import("./components/profile/profile.module").then(m=>m.ProfileModule)},
+
   //core components
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },

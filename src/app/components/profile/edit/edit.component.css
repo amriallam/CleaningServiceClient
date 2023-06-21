@@ -1,0 +1,126 @@
+.card{
+    margin-top:30px; 
+    margin-bottom:30px; 
+}
+.bio-graph-heading {
+    background: #4f83d1;
+    text-align: center;
+    padding: 20px 90px;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-family: "Cabin", sans-serif;
+}
+.right-aligned {
+    text-align: right;
+    border: none;
+  }
+
+  .edit{
+    cursor: pointer;
+    color: #0088cc;
+  }
+
+  .button{
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    padding: 5px 10px;
+    border: none;
+  }
+  .save{
+    
+    color: white;
+    background: #4f83d1;
+    
+  }
+
+  .cancel{
+    color: white;
+    background: red;
+    
+  }
+  input{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 10px;
+    color: #333;
+    overflow: visible;
+
+    text-indent: 0px;
+
+    display: inline-block;
+    text-align: start;
+    cursor: text;
+    overflow-wrap: break-word;
+    
+  }
+  .titel{
+    width: 200px;
+    padding-right: 20px;
+    font-family: "Cabin", sans-serif;
+    color: #6b6b6b;
+    font-weight: 400;
+    line-height: 26px;
+  }
+  .EditActivate{
+    background-color: #fafafa;
+  }
+
+
+
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .Action{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px;
+    padding-left: 10px;
+    margin-top: 4px;
+  }
+
+  .Action button {
+    padding-top: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 10px;
+  }
+  .card-body{
+    font-size: 19px;
+    
+  }
+  .Info{
+    text-transform: uppercase;
+    color: #4f83d1;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-family: "Cabin", sans-serif;
+  }
+  .section{
+    padding: 10px;
+  }
+  p{
+    font-size: 19px;
+
+  }
+
+  hr {
+    margin: 0;
+    padding: 0;
+    height:.5px;
+    border-width:0;
+    background-color: rgb(122, 119, 119);
+  }
