@@ -12,6 +12,7 @@ import { ResetPasswordComponent } from './core/account/reset-password/reset-pass
 import { ConfirmEmailComponent } from './core/account/confirm-email/confirm-email.component';
 import { BookingModule } from './components/booking/booking.module';
 import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
+import { FaqComponent } from './shared/components/faq/faq.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -21,12 +22,13 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
+  { path: 'faq', component: FaqComponent },
 
   { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: 'resource', loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) }, //1 , 1.1
   { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => BookingModule) }, //2
 
-  { path: "profile", loadChildren:()=> import("./components/profile/profile.module").then(m=>m.ProfileModule)},
+  { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
 
   //core components
   { path: 'about', component: AboutUsComponent },

@@ -417,7 +417,18 @@ strong {
   padding-bottom: 50px;
 }
 
-.banner-section .breadcrumb {
+.banner-section-faq {
+  background-image: url('../images/faq.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.banner-section,banner-section-faq .breadcrumb {
   margin-bottom: 0;
 }
 

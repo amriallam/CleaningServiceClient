@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RetryInterceptor } from './interceptors/retry.interceptor';
 import { FooterComponent } from './components/footer/footer.component';
-import { NgbDatepicker, NgbDropdownModule, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepicker, NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,10 +12,19 @@ import { AboutUsComponent } from '../shared/components/about-us/about-us.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulerComponent } from './components/home/scheduler/scheduler.component';
 import { Select2Module } from 'ng-select2-component';
+import { FaqComponent } from '../shared/components/faq/faq.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent,HomeComponent,FooterComponent,ContactUsComponent,AboutUsComponent, SchedulerComponent],
+  declarations: [
+    NavbarComponent,
+    HomeComponent,
+    FooterComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    SchedulerComponent,
+    FaqComponent
+  ],
   imports: [
     CommonModule,
     NgbDropdownModule,
