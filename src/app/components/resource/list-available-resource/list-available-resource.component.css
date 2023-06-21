@@ -1,5 +1,5 @@
 .selected {
-  border: 2px solid  #7cb8eb;
+  border: 5px solid  #7cb8eb;
   border-radius: 10px;
 }
 
@@ -7,4 +7,39 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
+#foreground-image {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px; /* Adjust the height as per your requirement */
+}
+
+.banner-section {
+  background-image: url('../../../../assets/images/high-angle-woman-cleaning-floors.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.banner-section .breadcrumb {
+  margin-bottom: 0;
+}
+
+.breadcrumb-item+.breadcrumb-item::before,
+.breadcrumb-item.active {
+  color: var(--white-color);
+}
+
+.section-padding {
+  padding-top: 20px;
+  padding-bottom: 120px;
+}
+
+
 

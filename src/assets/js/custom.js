@@ -9,3 +9,24 @@ function backstretch(){
 function select2jquery(className){
   $(className).select2();
 }
+
+function startSlideshow(imageUrls) {
+  var imageIndex = 0;
+  var imageContainer = document.getElementById('foreground-image');
+  var imageElement = document.createElement('img');
+  imageContainer.appendChild(imageElement);
+
+  function changeImage() {
+    $(imageElement).fadeOut(700, function() {
+      imageElement.src = imageUrls[imageIndex];
+      imageIndex = (imageIndex + 1) % imageUrls.length;
+      $(imageElement).fadeIn(700);
+    });
+    setTimeout(changeImage, 2000);
+  }
+
+  changeImage();
+}
+
+
+

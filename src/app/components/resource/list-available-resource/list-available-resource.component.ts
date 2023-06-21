@@ -2,10 +2,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Resource } from 'src/app/core/Models/Resource';
 import { BookingWatchService } from 'src/app/core/services/booking-watch.service';
 import { BookingService } from 'src/app/core/services/booking.service';
 import { ResourceService } from 'src/app/core/services/resource.service';
+import { ResourceDetailsComponent } from '../resource-details/resource-details.component';
 
 @Component({
   selector: 'app-list-available-resource',
@@ -39,6 +41,7 @@ import { ResourceService } from 'src/app/core/services/resource.service';
     ])
   ]
 })
+
 export class ListAvailableResourceComponent {
   availableResources: Resource[] = [];
   serviceId!: number;
@@ -49,16 +52,17 @@ export class ListAvailableResourceComponent {
   counter: number = 0;
   selectedResources: any[] = [];
   selectdedResIds: number[] = [];
-
   status: boolean  ;
+
 
   constructor(private resourceService: ResourceService,
     private route: ActivatedRoute,
     readonly watchService: BookingWatchService,
     private bookingService: BookingService,
-    private router: Router) {
+    private router: Router,
+    private modal: NgbModal,) {
 
-      this.status = false;
+    this.status = false;
     this.route.queryParams.subscribe(params => {
       this.serviceId = params['serviceId'];
       this.date = params['date'];
@@ -106,4 +110,12 @@ export class ListAvailableResourceComponent {
     this.router.navigateByUrl('booking/bookingList');
   }
 
+  openModal(Resource: Resource) {
+    const modelRef = this.modal.open(ResourceDetailsComponent, {
+      centered: true,
+    });
+    modelRef.componentInstance.resId = Resource.id;
+  }
+
+  
 }

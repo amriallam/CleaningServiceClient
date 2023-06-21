@@ -1,0 +1,58 @@
+<form
+  class="appointment d-flex flex-column align-items-center flex-lg-row gap-3 px-5 py-4 justify-content-center bg-white"
+  [formGroup]="form"(ngSubmit)="onSubmit()">
+  <div class="d-flex flex-row gap-3">
+    <div>
+      <label for="name">Select Service</label>
+      <div class="form-field">
+        <div class="select-wrap">
+          <div class="icon"><span class="fa fa-chevron-down"></span></div>
+          <select
+            [ngClass]="{'border-danger border-1':service.errors?.['required'] && (service.touched || service.dirty)}"
+            formControlName="service" class="select2jquery">
+            <option value>Select Service</option>
+            <option *ngFor="let service of availableServices"
+              value="{{service.id}}">{{service.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label for="name">Select Location</label>
+      <div class="form-field">
+        <div class="select-wrap">
+          <div class="icon"><span class="fa fa-chevron-down"></span></div>
+          <select
+            [ngClass]="{'border-danger border-1':location.errors?.['required'] && (location.touched || location.dirty)}"
+            formControlName="location" class="select2jquery">
+            <option value>Select Location</option>
+            <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="day">Day:</label>
+    <input
+      [ngClass]="{'border-danger border-1':day.errors?.['required'] && (day.touched || day.dirty)}"
+      placeholder="yyyy-mm-dd" formControlName="day" [minDate]="minDate"
+      class="form-control" (click)="d.toggle()" type="text" ngbDatepicker
+      #d="ngbDatepicker" />
+  </div>
+  <div>
+    <label for="start">Start:</label>
+    <input
+      [ngClass]="{'border-danger border-1':startTime.errors?.['required'] && (startTime.touched || startTime.dirty)}"
+      type="time" formControlName="startTime" class="form-control">
+  </div>
+  <div>
+    <label for="start">End:</label>
+    <input
+      [ngClass]="{'border-danger border-1':endTime.errors?.['required'] && (endTime.touched || endTime.dirty)}"
+      type="time" formControlName="endTime" min="09:00" class="form-control">
+  </div>
+  <input [disabled]="form.invalid" type="submit" value="Make an Appointment" class="btn btn-primary">
+</form>
+
+
