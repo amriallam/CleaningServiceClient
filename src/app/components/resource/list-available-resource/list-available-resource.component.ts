@@ -54,6 +54,7 @@ export class ListAvailableResourceComponent {
   selectdedResIds: number[] = [];
   status: boolean  ;
 
+  totalPrice : number =0;
 
   constructor(private resourceService: ResourceService,
     private route: ActivatedRoute,
@@ -96,9 +97,11 @@ export class ListAvailableResourceComponent {
     if (index > -1) {
       this.selectedResources.splice(index, 1);
       this.watchService.DecreaseCurrentNumberOfResource();
+      this.totalPrice -= res.price;
     } else {
       this.selectedResources.push(res);
       this.watchService.IncreateCurrentNumberOfResource();
+      this.totalPrice += res.price;
     }
   }
 
@@ -117,5 +120,5 @@ export class ListAvailableResourceComponent {
     modelRef.componentInstance.resId = Resource.id;
   }
 
-  
+
 }

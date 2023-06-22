@@ -19,7 +19,7 @@ export class BookinListItemsComponent {
   totalPrice : number =0;
   Bookingmodel?: BookingModel;
   constructor(private resourceService: ResourceService,
-    private location :Location, 
+    private location :Location,
     private bookingService : BookingService){
 
       bookingService.bookingDetails = new BookingDetailsVM(
@@ -34,8 +34,8 @@ export class BookinListItemsComponent {
     this.resourceIds.forEach(element => {
       this.resourceService.GetResouceById(+element).subscribe((res)=>{
         console.log(res.data)
-        this.resourceList.push(res.data)  
-        this.totalPrice += res.data.price;    
+        this.resourceList.push(res.data)
+        this.totalPrice += res.data.price;
       });
     })
 
@@ -43,12 +43,12 @@ export class BookinListItemsComponent {
   back(){
     this.location.back()
   }
-  
+
   ConfirmBooing() {
     alert("booking process ");
     const dateString = this.bookingService.bookingDetails.date;
     const date = dateString !== undefined ? new Date(dateString as unknown as string) : undefined;
-  
+
     if(date){
 
       this.Bookingmodel = new BookingModel(

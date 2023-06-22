@@ -22,7 +22,7 @@ export class ServiceService {
     return this.httpClient.get<ResponseModel<Service>>(`${apiUrl}Service?Id=${id}`)
   }
   getMetadataById(id: number): Observable<ResponseModel<ServiceMetadata>> {
-    return this.httpClient.get<ResponseModel<ServiceMetadata>>(`${apiUrl}ServiceMetadata?ServiceId=${1}`)
+    return this.httpClient.get<ResponseModel<ServiceMetadata>>(`${apiUrl}ServiceMetadata?ServiceId=${id}`)
   }
 
 }

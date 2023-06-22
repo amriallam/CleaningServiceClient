@@ -63,7 +63,7 @@ export class FilterComponent {
     });
   }
   ngAfterViewInit(): void {
-    select2jquery('.select2jquery');
+    // select2jquery('.select2jquery');
   }
 
   onSubmit() {

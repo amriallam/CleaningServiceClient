@@ -15,7 +15,7 @@ export class BookingWatchService {
   GetMaxNumberOfResource(serviceId:number){
     this.servicesService.getMetadataById(serviceId).subscribe(e=>
       {
-        this.maxNumberOfResources=e.data.noOfResources
+        this.maxNumberOfResources=e.data[0].noOfResources
         console.log(e)
       })
   }
