@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { apiUrl } from 'src/environment'
 import { ResponseModel } from '../Models/ResponseModel';
 import { ServiceMetadata } from '../Models/ServiceMetadata';
+import { Region } from '../Models/Region';
+import { ServiceScheduleVM } from '../ViewModels/service-schedule-vm';
 // import { ServiceMetadata } from '../Models/service-metadata';
 
 @Injectable({
@@ -24,5 +26,7 @@ export class ServiceService {
   getMetadataById(id: number): Observable<ResponseModel<ServiceMetadata>> {
     return this.httpClient.get<ResponseModel<ServiceMetadata>>(`${apiUrl}ServiceMetadata?ServiceId=${1}`)
   }
-
+  getAvailableServiceByRegion(regionId:number):Observable<ResponseModel<ServiceScheduleVM[]>> {
+    return this.httpClient.get<ResponseModel<Region[]>>(`${apiUrl}Service?RegionId=${regionId}`)
+  }
 }

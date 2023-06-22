@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ServiceSchedule } from 'src/app/core/ViewModels/service-schedule';
-import { FormControlName } from '@angular/forms';
+import { ServiceScheduleVM } from 'src/app/core/ViewModels/service-schedule-vm';
 
 declare function select2jquery(className:string): any;
 
@@ -45,7 +44,7 @@ export class FilterComponent {
     'Arish'
   ];
 
-  availableServices: ServiceSchedule[] = [{ id: 1, name: 'Office Cleaning' },
+  availableServices: ServiceScheduleVM[] = [{ id: 1, name: 'Office Cleaning' },
                                           { id: 2, name: 'Kitchen Cleaning' },
                                           {id:3,name:'Car Cleaning'},
                                           {id:4,name:'Factory Cleaning'}]

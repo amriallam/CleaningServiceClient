@@ -35,7 +35,6 @@ export class BookingService {
     return this.httpClient.get<ResponseModel<BookingItem>>(`${apiUrl}BookingItem?BookId=${BookId}`);
   }
 
-
   AddBookingItem(bookingItem: BookingItem): Observable<BookingItem> {
     return this.httpClient.post<BookingItem>(`${apiUrl}BookingItem/AddOne`, bookingItem);
   }
@@ -48,5 +47,5 @@ export class BookingService {
   }
   AddNewBoooking(BookingModel: BookingModel):Observable<BookingModel>{
     return this.httpClient.post<BookingModel>(`${apiUrl}ClientBooking/CreateNewBooking`,BookingModel );
-  } 
+  }
 }
