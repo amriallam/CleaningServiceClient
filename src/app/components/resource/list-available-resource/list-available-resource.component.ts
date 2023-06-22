@@ -1,5 +1,10 @@
-
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,31 +20,40 @@ import { ResourceDetailsComponent } from '../resource-details/resource-details.c
   styleUrls: ['./list-available-resource.component.css'],
   animations: [
     trigger('slideDown', [
-      state('true', style({
-        transform: 'translateY(0)',
-        opacity: 1
-      })),
+      state(
+        'true',
+        style({
+          transform: 'translateY(0)',
+          opacity: 1,
+        })
+      ),
       transition('void => *', [
         style({
           transform: 'translateY(100%)',
-          opacity: 0
+          opacity: 0,
         }),
-        animate('0.3s ease-in-out')
-      ])
+        animate('0.3s ease-in-out'),
+      ]),
     ]),
     trigger('slideUp', [
-      state('true', style({
-        transform: 'translateY(0)',
-        opacity: 1
-      })),
+      state(
+        'true',
+        style({
+          transform: 'translateY(0)',
+          opacity: 1,
+        })
+      ),
       transition('* => void', [
-        animate('0.3s ease-in-out', style({
-          transform: 'translateY(100%)',
-          opacity: 0
-        }))
-      ])
-    ])
-  ]
+        animate(
+          '0.3s ease-in-out',
+          style({
+            transform: 'translateY(100%)',
+            opacity: 0,
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 
 export class ListAvailableResourceComponent {
@@ -52,27 +66,28 @@ export class ListAvailableResourceComponent {
   counter: number = 0;
   selectedResources: any[] = [];
   selectdedResIds: number[] = [];
-  status: boolean  ;
+  status: boolean;
 
-  totalPrice : number =0;
+  totalPrice: number = 0;
+  noOfResources!: number;
 
-  constructor(private resourceService: ResourceService,
+  constructor(
+    private resourceService: ResourceService,
     private route: ActivatedRoute,
     readonly watchService: BookingWatchService,
     private bookingService: BookingService,
     private router: Router,
-    private modal: NgbModal,) {
-
+    private modal: NgbModal
+  ) {
     this.status = false;
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.serviceId = params['serviceId'];
       this.date = params['date'];
       this.from = params['from'];
       this.to = params['to'];
     });
 
-    watchService.GetMaxNumberOfResource(this.serviceId)
-    this.watchService.LimitReached.subscribe(LimitReachedStatus => {
+    this.watchService.LimitReached.subscribe((LimitReachedStatus) => {
       this.status = LimitReachedStatus;
     });
 
@@ -83,10 +98,20 @@ export class ListAvailableResourceComponent {
   }
 
   ngOnInit() {
-    this.resourceService.GetAvailableResources(this.serviceId, this.date, this.from, this.to).subscribe(res => {
-      this.availableResources = res;
-    });
+    this.resourceService
+      .GetAvailableResources(this.serviceId, this.date, this.from, this.to)
+      .subscribe((res) => {
+        this.availableResources = res;
+      });
+
+    this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
+      (maxNumberOfResources) => {
+        this.watchService.maxNumberOfResources = maxNumberOfResources;
+        this.noOfResources = maxNumberOfResources;
+      }
+    );
   }
+
 
   isResourceSelected(res: any): boolean {
     return this.selectedResources.includes(res);
@@ -106,10 +131,15 @@ export class ListAvailableResourceComponent {
   }
 
   book() {
-    this.selectedResources.forEach(res => {
+    this.selectedResources.forEach((res) => {
       this.selectdedResIds.push(res.id);
     });
-    this.bookingService.AddBookingDetails(this.selectdedResIds, this.date, this.from, this.to)
+    this.bookingService.AddBookingDetails(
+      this.selectdedResIds,
+      this.date,
+      this.from,
+      this.to
+    );
     this.router.navigateByUrl('booking/bookingList');
   }
 
@@ -119,6 +149,4 @@ export class ListAvailableResourceComponent {
     });
     modelRef.componentInstance.resId = Resource.id;
   }
-
-
 }
