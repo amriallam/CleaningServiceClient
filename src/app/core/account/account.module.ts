@@ -10,6 +10,7 @@ import { LoginComponent } from '../../core/account/login/login.component';
 import { RegistrationComponent } from '../../core/account/registration/registration.component';
 import { ForgetPasswordComponent } from '../../core/account/forget-password/forget-password.component';
 import { ResetPasswordComponent } from '../../core/account/reset-password/reset-password.component';
+import { EmailVerfiySentComponent } from './email-verfiy-sent/email-verfiy-sent.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ResetPasswordComponent } from '../../core/account/reset-password/reset-
     RegistrationComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
+    EmailVerfiySentComponent,
   ],
   imports: [
     CommonModule,

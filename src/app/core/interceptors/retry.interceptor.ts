@@ -7,10 +7,11 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, retry, tap, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class RetryInterceptor implements HttpInterceptor {
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService, private router: Router) {}
 
   // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
   //   return next.handle(req).pipe(
@@ -26,7 +27,10 @@ export class RetryInterceptor implements HttpInterceptor {
   // }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-
+    // if requrest has a url of https://localhost:7158/api/Account/register dont intercept
+    if (req.url === 'https://localhost:7158/api/Account/register') {
+      return next.handle(req);
+    } else {
       // Only intercept the POST requests to 'baseUrl'
       return next.handle(req).pipe(
         tap((data: any) => {
@@ -37,12 +41,13 @@ export class RetryInterceptor implements HttpInterceptor {
           return this.handleError(error);
         })
       );
-    
+    }
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    if(error.status === 200){
-      this.toastr.success('Operation Successful', 'Done');
+    if (error.status === 200) {
+      // this.toastr.success('Operation Successful', 'Done');
+      // this.router.navigate(['/email-sent']);
     }
     if (error.status === 400) {
       this.toastr.error('Please try again later', error.error[0].description);
@@ -56,7 +61,6 @@ export class RetryInterceptor implements HttpInterceptor {
       // console.log('An error occurred:', error.error);
     } else {
       console.log('An error occurred:', error.error);
-
 
       // ! commented out to avoid error
       // this.toastr.error(error.message, `Error Code ${error.status}`);

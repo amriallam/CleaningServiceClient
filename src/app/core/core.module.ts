@@ -24,7 +24,7 @@ import { Select2Module } from 'ng-select2-component';
     ReactiveFormsModule,
     NgbDatepicker,
     FormsModule,
-    Select2Module
+   Select2Module
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

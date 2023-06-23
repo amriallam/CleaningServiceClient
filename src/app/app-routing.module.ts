@@ -7,6 +7,7 @@ import { ContactUsComponent } from './shared/components/contact-us/contact-us.co
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { LoginComponent } from './core/account/login/login.component';
 import { RegistrationComponent } from './core/account/registration/registration.component';
+import { EmailVerfiySentComponent } from './core/account/email-verfiy-sent/email-verfiy-sent.component';
 import { ForgetPasswordComponent } from './core/account/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './core/account/reset-password/reset-password.component';
 import { ConfirmEmailComponent } from './core/account/confirm-email/confirm-email.component';
@@ -21,7 +22,7 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
-
+  { path: 'email-sent', component: EmailVerfiySentComponent },
   { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: 'resource', loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) }, //1 , 1.1
   { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => BookingModule) }, //2

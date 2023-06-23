@@ -24,11 +24,9 @@ export class RegisterService {
   public register( email:string , firstName:string , userName:string , lastName:string , password:string): Observable<any> {
     return this.http.post<any>(this.baseUrl, { email , firstName , userName , lastName , password }).pipe(
       tap((data : any) => {
-          // show toast from ngx-toastr
-          this.ToastrService.success('Registration Successful', 'Welcome');
-          this.ToastrService.info('Please confirm your email', 'Info');
+          // show toast from ngx-toast
           setTimeout(() => {
-            this.router.navigate(['/confirm-email']);
+            this.router.navigate(['/email-sent']);
           }, 2000);
 
       }),
@@ -40,8 +38,8 @@ export class RegisterService {
           this.ToastrService.error('', 'Error');
           // console.log('Not found');
         } else if(error.status === 200){
-          this.ToastrService.success('Registration Successful', 'Success');
-          this.ToastrService.info('Please confirm your email', 'Info');
+          // this.router.navigate(['/email-sent']);
+
 
         }
 

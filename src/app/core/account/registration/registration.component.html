@@ -215,230 +215,347 @@
     </div>
   </div>
 </form> -->
-
-<div class="custom-form bg-white shadow-lg my-5 w-75 mx-auto">
-  <form
-    [formGroup]="userRegisterForm"
-    class="custom-form consulting-form"
-    (ngSubmit)="onSubmit()"
-  >
-    <div class="consulting-form-body">
-      <div class="row">
-        <div class="col-12">
-          <div class="row">
-            <!-- firstName input -->
-            <div class="col-md-12">
-              <label for="firstName">First Name</label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="Enter First Name"
-                formControlName="firstName"
-                class="form-control"
-              />
-            </div>
-            <!-- BE VALIDATION -->
-            <div
-              class="col-md-12"
-              *ngIf="this.missingFeildsErrosObject?.hasOwnProperty('FirstName')"
-            >
-              <div
-                *ngFor="
-                  let missingFieldErrorItem of missingFeildsErrosObject[
-                    'FirstName'
-                  ]
-                "
-                class="alert alert-danger"
-              >
-                <div>
-                  {{ missingFieldErrorItem }}
-                </div>
-              </div>
-            </div>
-            <!-- FE VALIDATION -->
-            <div class="col-md-12" *ngIf="this.firstNameFEValidation">
-              <div class="alert alert-danger">
-                <div *ngIf="userRegisterForm.controls['firstName'].errors">
-                  <div
-                    *ngIf="
-                      userRegisterForm.controls['firstName'].hasError(
-                        'required'
-                      )
-                    "
-                  >
-                    first name is required
-                  </div>
-                  <div
-                    *ngIf="
-                      userRegisterForm.controls['firstName'].hasError('pattern')
-                    "
-                  >
-                    first name must contain only letters
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- last name input -->
-            <div class="col-md-12">
-              <label for="lastName">Last Name</label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Enter Last Name"
-                formControlName="lastName"
-                class="form-control"
-              />
-            </div>
-            <div class="col-md-12" *ngIf="this.lastNameFEValidation">
-              <div class="alert alert-danger" *ngIf="this.lastNameFEValidation">
-                <div *ngIf="this.lastNameFEValidation">
-                  <div
-                    *ngIf="
-                      userRegisterForm.controls['lastName'].hasError('required')
-                    "
-                  >
-                    last name is required
-                  </div>
-                  <div
-                    *ngIf="
-                      userRegisterForm.controls['lastName'].hasError('pattern')
-                    "
-                  >
-                    last name must contain only letters
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- username input -->
-        <div class="col-md-12">
-          <label for="username">User Name</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Enter username"
-            formControlName="userName"
-            class="form-control"
-          />
-        </div>
-        <div
-          class="col-md-12"
-          *ngIf="this.missingFeildsErrosObject?.hasOwnProperty('UserName')"
-        >
-          <div
-            *ngFor="
-              let missingFieldErrorItem of missingFeildsErrosObject['UserName']
-            "
-            class="alert alert-danger"
-          >
-            <div>
-              {{ missingFieldErrorItem }}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12" *ngIf="this.userNameFEValidation">
-          <div class="alert alert-danger" *ngIf="this.userNameFEValidation">
-            <div *ngIf="this.userNameFEValidation">
-              <div
-                *ngIf="
-                  userRegisterForm.controls['userName'].hasError('required')
-                "
-              >
-                user name is required
-              </div>
-              <div
-                *ngIf="
-                  userRegisterForm.controls['userName'].hasError('pattern')
-                "
-              >
-                user name must contain only letters
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Email input -->
-        <div class="col-md-12">
-          <label for="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="text"
-            placeholder="Enter Email"
-            formControlName="email"
-            class="form-control"
-          />
-        </div>
-        <div class="col-md-12" *ngIf="this.emailFEValidation">
-          <div class="alert alert-danger" *ngIf="this.emailFEValidation">
-            <div *ngIf="this.emailFEValidation">
-              <div
-                *ngIf="userRegisterForm.controls['email'].hasError('required')"
-              >
-                email is required
-              </div>
-              <div
-                *ngIf="userRegisterForm.controls['email'].hasError('pattern')"
-              >
-                email must be in the folowing format example@example.com
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-md-12"
-          *ngIf="this.missingFeildsErrosObject?.hasOwnProperty('Email')"
-        >
-          <div
-            *ngFor="
-              let missingFieldErrorItem of missingFeildsErrosObject['Email']
-            "
-            class="alert alert-danger"
-          >
-            <div>
-              {{ missingFieldErrorItem }}
-            </div>
-          </div>
-        </div>
-
-        <!-- password input -->
-        <div class="col-md-12">
-          <label for="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Enter Password"
-            formControlName="password"
-            class="form-control"
-          />
-        </div>
-        <div
-          class="col-md-12"
-          *ngIf="this.missingFeildsErrosObject?.hasOwnProperty('Password')"
-        >
-          <div
-            *ngFor="
-              let missingFieldErrorItem of missingFeildsErrosObject['Password']
-            "
-            class="alert alert-danger"
-          >
-            <div>
-              {{ missingFieldErrorItem }}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-12 text-center">
-          <button type="submit" class="form-control">Register</button>
-        </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-lg-5 order-2 order-lg-1">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <img
+          src="../../../../assets/images/register.svg"
+          alt=""
+          class="w-75 mx-auto"
+        />
+        <h5 class="text-center text-primary">
+          Step into a World of Sparkling Cleanliness!
+        </h5>
       </div>
     </div>
-  </form>
+    <div class="col-12 col-lg-7 order-1 order-lg-2">
+      <div class="custom-form bg-white">
+        <form
+          [formGroup]="userRegisterForm"
+          class="custom-form consulting-form"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="consulting-form-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-title mb-3">
+                  <h3 class="text-primary">Register</h3>
+                  <p>All fields marked with an asterisk (*) are required</p>
+                </div>
+                <div class="row">
+                  <!-- firstName input -->
+                  <div class="col-md-6 order-1 order-md-1">
+                    <label for="firstName">First Name *</label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      placeholder="Enter First Name"
+                      formControlName="firstName"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <!-- last name input -->
+                  <div class="col-md-6 order-3 order-md-2">
+                    <label for="lastName">Last Name *</label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      placeholder="Enter Last Name "
+                      formControlName="lastName"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <!-- FirstName BE VALIDATION -->
+                  <div
+                    class="col-md-6 order-2 order-md-3"
+                    *ngIf="
+                      this.missingFeildsErrosObject?.hasOwnProperty('FirstName')
+                    "
+                  >
+                    <div
+                      *ngFor="
+                        let missingFieldErrorItem of missingFeildsErrosObject[
+                          'FirstName'
+                        ]
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div>
+                        {{ missingFieldErrorItem }}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- FirstName FE VALIDATION -->
+                  <div
+                    class="col-md-6 order-2 order-md-3"
+                    *ngIf="this.firstNameFEValidation"
+                  >
+                    <div class="alert alert-danger">
+                      <div
+                        *ngIf="userRegisterForm.controls['firstName'].errors"
+                      >
+                        <div
+                          *ngIf="
+                            userRegisterForm.controls['firstName'].hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          first name is required
+                        </div>
+                        <div
+                          *ngIf="
+                            userRegisterForm.controls['firstName'].hasError(
+                              'pattern'
+                            )
+                          "
+                        >
+                          first name must contain only letters
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- last name validation -->
+                  <div
+                    class="col-md-6 order-4 order-md-4"
+                    *ngIf="this.lastNameFEValidation"
+                  >
+                    <div
+                      class="alert alert-danger"
+                      *ngIf="this.lastNameFEValidation"
+                    >
+                      <div *ngIf="this.lastNameFEValidation">
+                        <div
+                          *ngIf="
+                            userRegisterForm.controls['lastName'].hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          last name is required
+                        </div>
+                        <div
+                          *ngIf="
+                            userRegisterForm.controls['lastName'].hasError(
+                              'pattern'
+                            )
+                          "
+                        >
+                          last name must contain only letters
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- username input -->
+              <div class="col-md-12">
+                <label for="username">User Name *</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Enter username"
+                  formControlName="userName"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div
+                class="col-md-12"
+                *ngIf="
+                  this.missingFeildsErrosObject?.hasOwnProperty('UserName')
+                "
+              >
+                <div
+                  *ngFor="
+                    let missingFieldErrorItem of missingFeildsErrosObject[
+                      'UserName'
+                    ]
+                  "
+                  class="alert alert-danger"
+                >
+                  <div>
+                    {{ missingFieldErrorItem }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12" *ngIf="this.userNameFEValidation">
+                <div
+                  class="alert alert-danger"
+                  *ngIf="this.userNameFEValidation"
+                >
+                  <div *ngIf="this.userNameFEValidation">
+                    <div
+                      *ngIf="
+                        userRegisterForm.controls['userName'].hasError(
+                          'required'
+                        )
+                      "
+                    >
+                      user name is required
+                    </div>
+                    <div
+                      *ngIf="
+                        userRegisterForm.controls['userName'].hasError(
+                          'pattern'
+                        )
+                      "
+                    >
+                      user name must contain only letters
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email input -->
+              <div class="col-md-12">
+                <label for="email">Email *</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  placeholder="Enter Email"
+                  formControlName="email"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="col-md-12" *ngIf="this.emailFEValidation">
+                <div class="alert alert-danger" *ngIf="this.emailFEValidation">
+                  <div *ngIf="this.emailFEValidation">
+                    <div
+                      *ngIf="
+                        userRegisterForm.controls['email'].hasError('required')
+                      "
+                    >
+                      email is required
+                    </div>
+                    <div
+                      *ngIf="
+                        userRegisterForm.controls['email'].hasError('pattern')
+                      "
+                    >
+                      email must be in the folowing format example@example.com
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-12"
+                *ngIf="this.missingFeildsErrosObject?.hasOwnProperty('Email')"
+              >
+                <div
+                  *ngFor="
+                    let missingFieldErrorItem of missingFeildsErrosObject[
+                      'Email'
+                    ]
+                  "
+                  class="alert alert-danger"
+                >
+                  <div>
+                    {{ missingFieldErrorItem }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- password input -->
+              <div class="col-md-6">
+                <label for="password">Password *</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Enter Password"
+                  formControlName="password"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <!-- password input -->
+              <div class="col-md-6">
+                <label for="password">Confirm Password *</label>
+                <input
+                  id="confirmpassword"
+                  name="confirmpassword"
+                  type="password"
+                  placeholder="confirm password"
+                  formControlName="confirmpassword"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <!-- password validation -->
+              <div class="col-md-12" *ngIf="this.passwordFEValidation">
+                <div
+                  class="alert alert-danger"
+                  *ngIf="this.passwordFEValidation"
+                >
+                  <div *ngIf="this.passwordFEValidation">
+                    <div
+                      *ngIf="
+                        userRegisterForm.controls['password'].hasError(
+                          'required'
+                        )
+                      "
+                    >
+                      password is required
+                    </div>
+                    <div
+                      *ngIf="
+                        userRegisterForm.controls['password'].hasError(
+                          'pattern'
+                        )
+                      "
+                    >
+                      password must contain (uppercase, lowercase, number,
+                      special character, min 8 characters)
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-md-12"
+                *ngIf="
+                  this.missingFeildsErrosObject?.hasOwnProperty('Password')
+                "
+              >
+                <div
+                  *ngFor="
+                    let missingFieldErrorItem of missingFeildsErrosObject[
+                      'Password'
+                    ]
+                  "
+                  class="alert alert-danger"
+                >
+                  <div>
+                    {{ missingFieldErrorItem }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12" *ngIf="this.matchPassword">
+                <div class="alert alert-danger">Passwords do not match</div>
+              </div>
+
+              <div class="col-lg-12 text-center">
+                <button type="submit" class="form-control">Register</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
