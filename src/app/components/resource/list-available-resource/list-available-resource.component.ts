@@ -72,9 +72,6 @@ export class ListAvailableResourceComponent {
   totalPrice: number = 0;
   noOfResources!: number;
 
-  currentPage = 1;
-  itemsPerPage = 6;
-
   constructor(
     private resourceService: ResourceService,
     private route: ActivatedRoute,
@@ -169,13 +166,4 @@ export class ListAvailableResourceComponent {
     });
   }
 
-  get paginatedResources(): Resource[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.filteredResources.slice(startIndex, endIndex);
-  }
-
-  onPageChange(page: number) {
-    this.currentPage = page;
-  }
 }
