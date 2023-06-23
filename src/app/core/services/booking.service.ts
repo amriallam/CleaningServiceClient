@@ -11,6 +11,7 @@ import { BookingModel } from '../Models/BookinModel';
   providedIn: 'root'
 })
 export class BookingService {
+  
   bookingDetails: BookingDetailsVM;
 
   constructor(private httpClient: HttpClient) {

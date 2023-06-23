@@ -98,6 +98,17 @@ export class ListAvailableResourceComponent {
       this.status = LimitReachedStatus;
     });
 
+    // if(bookingService.bookingDetails!= null){
+    //   this.serviceId = this.bookingService.bookingDetails.serviceId || 0;
+    //   this.date = this.bookingService.bookingDetails.date || "";
+    //   this.from = this.bookingService.bookingDetails.from || "";
+    //   this.to = this.bookingService.bookingDetails.to || "";
+    //   this.selectdedResIds = this.bookingService.bookingDetails.selectedResIds||[]
+
+
+
+    // }
+
   }
 
   ngOnInit() {
@@ -158,7 +169,7 @@ export class ListAvailableResourceComponent {
       this.serviceId,
       this.totalPrice
     );
-    console.log(this.bookingService.bookingDetails);
+
     this.router.navigateByUrl('booking/bookingList');
   }
 
