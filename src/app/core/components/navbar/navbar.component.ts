@@ -11,5 +11,6 @@ export class NavbarComponent {
   }
   logout() {
     localStorage.removeItem('userBookingAppToken');
+    localStorage.removeItem('userBookingAppId');
   }
 }
