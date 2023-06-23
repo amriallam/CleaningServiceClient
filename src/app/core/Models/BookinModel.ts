@@ -4,14 +4,14 @@ import { BookingStaus } from "./BookingStaus";
 export class BookingModel{
     constructor(
         public date: string,
-        public startTime: string | undefined,
-        public endTime :string | undefined,
-        public location : string |undefined,
-        public status : BookingStaus,
+        public startTime: string ,
+        public endTime :string ,
+        public location : string ,
         public totalCost:number,
-        public userID: string |undefined ,
+        public userID : string ,
         public serviceID: number,
-        public resourceIDs: number[] |undefined,
+        public resourceIDs: number[],
+        public status? : BookingStaus,
         public id? :number 
     ){}
 }
