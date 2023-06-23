@@ -1,33 +1,32 @@
 <form
-  class="appointment d-flex flex-column align-items-center px-5 py-3 mb-0 justify-content-center bg-white"
-  [formGroup]="form"(ngSubmit)="onSubmit()">
+  class="appointment d-flex flex-column align-items-center px-5 py-3 mb-0 justify-content-center bg-white">
   <div class="d-flex flex-row gap-3">
     <div>
-      <!-- <label for="name" >Enter Resource Name</label> -->
+      <label for="name" >Resource Name</label>
       <div class="form-field">
         <div >
-          <input type="text" placeholder="Enter Resource Name" class="form-control">
+          <input type="text" placeholder="Resource Name" name="resourceNameFilter" [(ngModel)] ="resourceNameFilter" (input)="applyFilters()" class="form-control">
         </div>
       </div>
     </div>
     <div>
-      <!-- <label for="name">Enter Price</label> -->
-      <div class="form-field">
-        <div>
-          <input type="text" placeholder="Enter Price" class="form-control">
-        </div>
-      </div>
-    </div>
+  <label for="name">Price</label>
+  <div class="form-field">
     <div>
-      <!-- <label for="name">Enter Rate</label> -->
-      <div class="form-field">
-        <div >
-          <input type="text" placeholder="Enter Rate" class="form-control">
-        </div>
-      </div>
+      <input type="number" placeholder="Price" name="priceFilter" [(ngModel)]="priceFilter" (input)="applyFilters()" class="form-control"
+        [ngModelOptions]="{standalone: true}" min="1" required>
     </div>
   </div>
-  <!-- <input [disabled]="form.invalid" type="submit" value="Make an Appointment" class="btn btn-primary"> -->
+</div>
+    <!-- <div>
+      <label for="name">Rate</label>
+      <div class="form-field">
+        <div >
+          <input type="number" min="0" max="5" placeholder="Rate" name="rateFilter" [(ngModel)] ="rateFilter" (input)="applyFilters()" class="form-control">
+        </div>
+      </div>
+    </div> -->
+  </div>
 </form>
 
 

@@ -15,7 +15,7 @@ export class FaqComponent implements OnInit {
   searchTerm: string = "";
   constructor(private faqService: FaqService) { }
   ngOnInit(): void {
-    this.faqService.getAllFAQ().subscribe(res => this.faqCategories = res.data);
+    // this.faqService.getAllFAQ().subscribe(res => this.faqCategories = res.data);
   }
   selectCategory(category: FaqCategory): void {
     this.selectedCategory = category;
