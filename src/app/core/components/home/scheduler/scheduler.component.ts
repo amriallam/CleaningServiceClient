@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Select2Data } from 'ng-select2-component';
+import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
+import { ToastrService } from 'ngx-toastr';
 import { Region } from 'src/app/core/Models/Region';
 import { ServiceScheduleVM } from 'src/app/core/ViewModels/service-schedule-vm';
 import { RegionService } from 'src/app/core/services/region.service';
@@ -27,11 +28,11 @@ export class SchedulerComponent implements OnInit {
   get startTime() { return this.BookingForm.controls['startTime'] }
   get endTime() { return this.BookingForm.controls['endTime'] }
 
-  ServiceData: Select2Data = [];
+  ServiceData: Select2Option[] = [];
   currentService: string = "";
   ServiceWarning: boolean = false;
 
-  RegionData: Select2Data = [];
+  RegionData: Select2Option[] = [];
   currentLocation: string = "";
   LocationWarning: boolean = false;
 
@@ -49,7 +50,7 @@ export class SchedulerComponent implements OnInit {
 
   minDate: NgbDateStruct;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private serviceService: ServiceService, private regionService: RegionService) {
+  constructor(private toastr:ToastrService,private formBuilder: FormBuilder, private router: Router, private serviceService: ServiceService, private regionService: RegionService) {
     let today = new Date().toISOString().split('T')[0].split('-');
     this.minDate = { year: +today[0], month: +today[1], day: +today[2] };
   }
@@ -57,7 +58,7 @@ export class SchedulerComponent implements OnInit {
   ngOnInit(): void {
     this.regionService.getSystemRegions().subscribe(
       e =>
-        this.RegionData = [{ label: '', options: this.RegionToSelect2Option(e.data) }]
+        this.RegionData =this.RegionToSelect2Option(e.data)
     )
   }
 
@@ -66,15 +67,22 @@ export class SchedulerComponent implements OnInit {
     return true;
   }
 
-  SubmitRegion() {
+  SubmitRegion(caller:Select2) {
     this.loadingFlag = true;
     this.serviceService.getAvailableServiceByRegion(+this.currentLocation).subscribe(
       e => {
-        this.ServiceData = [{ label: '', options: this.ServicesToSelect2Option(e.data) }];
+        if (e.data.length > 0) {
+          this.ServiceData = this.ServicesToSelect2Option(e.data);
+          this.SwitchForm = true;
+        }
+        else {
+          this.RegionData.find(region=>region.value==this.currentLocation)!.disabled=true;
+          this.currentLocation = '';
+          caller.value='';
+          this.toastr.warning("Unforunatly no services for this region")
+        }
         this.loadingFlag = false;
-        this.SwitchForm = true;
-      }
-    )
+      })
   }
 
   SubmitBookingFilter() {
@@ -92,7 +100,7 @@ export class SchedulerComponent implements OnInit {
 
   private RegionToSelect2Option(Regions: Region[]) {
     return Regions.map(region => {
-      return { value: region.id, label: region.name }
+      return { value: region.id, label: region.name,disabled:false }
     })
   }
 
@@ -100,6 +108,10 @@ export class SchedulerComponent implements OnInit {
     return Services.map(Service => {
       return { value: Service.id, label: Service.name }
     })
+  }
+  backToRegionForm(){
+    this.SwitchForm=!this.SwitchForm;
+    this.currentLocation='';
   }
 
 }

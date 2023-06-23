@@ -1,4 +1,5 @@
 export interface ServiceScheduleVM {
+  id:number,
   name:string,
-  id:number
+  description?:string
 }

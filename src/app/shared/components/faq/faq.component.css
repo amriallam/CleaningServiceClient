@@ -1,0 +1,8 @@
+.nav-link{
+  cursor: pointer;
+  color:grey;
+}
+
+.nav-link:hover,.nav-link:focus{
+  color:black;
+}

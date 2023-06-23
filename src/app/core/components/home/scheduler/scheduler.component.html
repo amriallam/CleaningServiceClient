@@ -1,19 +1,22 @@
 <form *ngIf="!SwitchForm; else registerForm"
   class="appointment d-flex flex-column align-items-center flex-lg-row gap-lg-3 px-5 py-4 justify-content-center bg-white"
-  (ngSubmit)="SubmitRegion()">
+  (ngSubmit)="SubmitRegion(select2Region)">
   <div class="d-flex flex-row gap-3 justify-content-between align-items-centerd">
     <div class="pt-lg-4">
-      <select2 [data]="RegionData" styleMode="material"
+      <select2 #select2Region [data]="RegionData" styleMode="material"
         (update)="updateLocation($event.value)" placeholder="Select Location"></select2>
     </div>
   </div>
-  <button [disabled]="currentLocation==''"
+  <button [disabled]="currentLocation=='' || loadingFlag"
     class="btn btn-primary mt-lg-3 py-lg-2">
     <div *ngIf="loadingFlag" class="spinner-border spinner-border-sm text-light"
       role="status"></div>
-    Check Available Services
+    <span *ngIf="!loadingFlag; else checkingAvailableServices"
+      class="text-light"> Check
+      Available Services</span>
+    <ng-template #checkingAvailableServices><span class="text-light"> Checking
+      </span></ng-template>
   </button>
-  <!-- <input [disabled]="currentLocation==''"  type="submit" value="Check Available Services" class="btn btn-primary mt-lg-3 py-lg-2"> -->
 </form>
 <ng-template #registerForm>
   <form
@@ -50,12 +53,16 @@
           type="time" formControlName="endTime" min="09:00" class="form-control">
       </div>
     </div>
-    <button [disabled]="!IsBookingFormValid()"
+
+    <button [disabled]="!IsBookingFormValid() || loadingFlag"
       class="btn btn-primary mt-lg-3 py-lg-2">
       <div *ngIf="loadingFlag"
         class="spinner-border spinner-border-sm text-light" role="status"></div>
-      Make an Appointment
+      <span *ngIf="!loadingFlag; else CheckResources" class="text-light">
+        Schedule an Appointment</span>
+      <ng-template #CheckResources><span class="text-light"> Checking Resources
+        </span></ng-template>
     </button>
   </form>
-
+  <p (click)="backToRegionForm()" class="back-to-region"><i class="bi bi-arrow-left me-1"></i> Select another region</p>
 </ng-template>

@@ -27,6 +27,6 @@ export class ServiceService {
     return this.httpClient.get<ResponseModel<ServiceMetadata>>(`${apiUrl}ServiceMetadata?ServiceId=${1}`)
   }
   getAvailableServiceByRegion(regionId:number):Observable<ResponseModel<ServiceScheduleVM[]>> {
-    return this.httpClient.get<ResponseModel<Region[]>>(`${apiUrl}Service?RegionId=${regionId}`)
+    return this.httpClient.get<ResponseModel<Region[]>>(`${apiUrl}Service/region/${regionId}`)
   }
 }

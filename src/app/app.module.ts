@@ -32,7 +32,6 @@ import { ResourceModule } from './components/resource/resource.module';
       tapToDismiss: true,
       preventDuplicates: true,
       closeButton: true,
-      progressBar: true,
       disableTimeOut: true,
     }),
     RouterModule,
@@ -40,7 +39,7 @@ import { ResourceModule } from './components/resource/resource.module';
     ReactiveFormsModule,
     AccountModule,
     ResourceModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

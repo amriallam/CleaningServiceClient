@@ -4,6 +4,7 @@ import { ResponseModel } from '../Models/ResponseModel';
 import { Observable } from 'rxjs';
 import { Faq } from '../Models/faq';
 import { HttpClient } from '@angular/common/http';
+import { FaqCategory } from '../Models/faqCategory';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,8 +12,8 @@ export class FaqService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllFAQ(): Observable<ResponseModel<Faq[]>> {
-    return this.httpClient.get<ResponseModel<Faq[]>>(apiUrl + "faq");
+  getAllFAQ(): Observable<ResponseModel<FaqCategory[]>> {
+    return this.httpClient.get<ResponseModel<FaqCategory[]>>(apiUrl + "FAQCategory");
   }
 
 }

@@ -31,13 +31,12 @@ export class RetryInterceptor implements HttpInterceptor {
       return next.handle(req).pipe(
         tap((data: any) => {
           // show toast from ngx-toastr
-          console.log(data);
         }),
         catchError((error: HttpErrorResponse) => {
           return this.handleError(error);
         })
       );
-    
+
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
