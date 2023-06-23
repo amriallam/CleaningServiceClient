@@ -58,6 +58,7 @@ import { ResourceDetailsComponent } from '../resource-details/resource-details.c
 
 export class ListAvailableResourceComponent {
   availableResources: Resource[] = [];
+  filteredResources: Resource[] = [];
   serviceId!: number;
   date!: string;
   from!: string;
@@ -70,6 +71,9 @@ export class ListAvailableResourceComponent {
 
   totalPrice: number = 0;
   noOfResources!: number;
+
+  currentPage = 1;
+  itemsPerPage = 6;
 
   constructor(
     private resourceService: ResourceService,
@@ -93,15 +97,12 @@ export class ListAvailableResourceComponent {
 
   }
 
-  isSelectionDisabled(res: any): boolean {
-    return this.selectedResources.includes(res);
-  }
-
   ngOnInit() {
     this.resourceService
       .GetAvailableResources(this.serviceId, this.date, this.from, this.to)
       .subscribe((res) => {
         this.availableResources = res;
+        this.filteredResources = res;
       });
 
     this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
@@ -110,9 +111,16 @@ export class ListAvailableResourceComponent {
         this.noOfResources = maxNumberOfResources;
       }
     );
+
   }
 
-
+  isSelectionDisabled(res: any): boolean {
+    if (this.isResourceSelected(res)) {
+      return false;
+    } else {
+      return this.selectedResources.length >= this.noOfResources;
+    }
+  }
   isResourceSelected(res: any): boolean {
     return this.selectedResources.includes(res);
   }
@@ -148,5 +156,26 @@ export class ListAvailableResourceComponent {
       centered: true,
     });
     modelRef.componentInstance.resId = Resource.id;
+  }
+
+  handleFiltersChanged(filters: any) {
+    const { resourceName, price } = filters;
+    console.log(filters)
+    this.filteredResources = this.availableResources.filter((resource: Resource) => {
+      const matchesResourceName = !resourceName || resource.name.toLowerCase().includes(resourceName.toLowerCase());
+      const matchesPrice = !price || resource.price === price;
+
+      return matchesResourceName && matchesPrice;
+    });
+  }
+
+  get paginatedResources(): Resource[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.filteredResources.slice(startIndex, endIndex);
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
   }
 }

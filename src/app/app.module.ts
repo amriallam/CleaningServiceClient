@@ -38,8 +38,7 @@ import { ResourceModule } from './components/resource/resource.module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AccountModule,
-    ResourceModule,
-
+    ResourceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

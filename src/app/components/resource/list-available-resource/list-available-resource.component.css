@@ -1,5 +1,5 @@
 .selected {
-  border: 5px solid  #7cb8eb;
+  border: 5px solid #7cb8eb;
   border-radius: 10px;
 }
 
@@ -7,6 +7,7 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
 
 #foreground-image {
   background-size: contain;
@@ -46,4 +47,30 @@
   bottom: 55px;
 }
 
+.services-thumb {
+  background-color: var(--white-color);
+  border-radius: var(--border-radius-small);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0px;
+  padding: 0;
+}
 
+.card-container {
+  margin-bottom: 0;
+}
+
+.my-card {
+  padding: 20px; /* Add padding to create space between cards */
+  border: 5px solid transparent; /* Add transparent border */
+  border-radius: 10px;
+  transition: border-color 0.3s ease; /* Add transition for border color change */
+}
+
+.my-card.selected {
+  border-color: #7cb8eb; /* Apply border color when selected */
+}
+.my-card.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

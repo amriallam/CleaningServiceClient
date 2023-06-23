@@ -56,10 +56,10 @@ export class SchedulerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.regionService.getSystemRegions().subscribe(
-      e =>
-        this.RegionData =this.RegionToSelect2Option(e.data)
-    )
+    // this.regionService.getSystemRegions().subscribe(
+    //   e =>
+    //     this.RegionData =this.RegionToSelect2Option(e.data)
+    // )
   }
 
   IsBookingFormValid() {
@@ -72,7 +72,7 @@ export class SchedulerComponent implements OnInit {
     this.serviceService.getAvailableServiceByRegion(+this.currentLocation).subscribe(
       e => {
         if (e.data.length > 0) {
-          this.ServiceData = this.ServicesToSelect2Option(e.data);
+          // this.ServiceData = this.ServicesToSelect2Option(e.data);
           this.SwitchForm = true;
         }
         else {

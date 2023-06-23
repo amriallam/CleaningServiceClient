@@ -9,6 +9,7 @@ import { Routes , RouterModule } from '@angular/router';
 import { FilterComponent } from './filter/filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 const routes: Routes = [
   {path: '', component: ListAvailableResourceComponent,data: { queryParams: ['serviceId', 'date','from','to'] }},
   {path:"details/:id",component: ResourceDetailsComponent}
