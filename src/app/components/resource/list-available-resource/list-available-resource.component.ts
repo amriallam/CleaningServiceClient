@@ -74,7 +74,7 @@ export class ListAvailableResourceComponent {
   noOfResources!: number;
 
   p: number = 1;
-  resPerPage: number = 2;
+  resPerPage: number = 6;
   totalNoOfResources !: number
 
   constructor(
@@ -85,7 +85,7 @@ export class ListAvailableResourceComponent {
     private router: Router,
     private modal: NgbModal
   ) {
-    
+
     this.status = false;
     this.route.queryParams.subscribe((params) => {
       this.serviceId = params['serviceId'];
