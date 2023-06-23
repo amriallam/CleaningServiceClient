@@ -67,10 +67,15 @@ export class ListAvailableResourceComponent {
   counter: number = 0;
   selectedResources: any[] = [];
   selectdedResIds: number[] = [];
+  selectedResNames: string[] = [];
   status: boolean;
 
   totalPrice: number = 0;
   noOfResources!: number;
+
+  p: number = 1;
+  resPerPage: number = 2;
+  totalNoOfResources !: number
 
   constructor(
     private resourceService: ResourceService,
@@ -80,6 +85,7 @@ export class ListAvailableResourceComponent {
     private router: Router,
     private modal: NgbModal
   ) {
+    
     this.status = false;
     this.route.queryParams.subscribe((params) => {
       this.serviceId = params['serviceId'];
@@ -100,6 +106,7 @@ export class ListAvailableResourceComponent {
       .subscribe((res) => {
         this.availableResources = res;
         this.filteredResources = res;
+        this.totalNoOfResources = res.length;
       });
 
     this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
@@ -136,15 +143,22 @@ export class ListAvailableResourceComponent {
   }
 
   book() {
+
     this.selectedResources.forEach((res) => {
       this.selectdedResIds.push(res.id);
+      this.selectedResNames.push(res.name);
     });
+
     this.bookingService.AddBookingDetails(
       this.selectdedResIds,
+      this.selectedResNames,
       this.date,
       this.from,
-      this.to
+      this.to,
+      this.serviceId,
+      this.totalPrice
     );
+    console.log(this.bookingService.bookingDetails);
     this.router.navigateByUrl('booking/bookingList');
   }
 

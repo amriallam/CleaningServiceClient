@@ -8,7 +8,7 @@ import { NgbDatepicker, NgbDropdownModule, NgbModal, NgbModule } from '@ng-boots
 import { Routes , RouterModule } from '@angular/router';
 import { FilterComponent } from './filter/filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
   {path: '', component: ListAvailableResourceComponent,data: { queryParams: ['serviceId', 'date','from','to'] }},
@@ -28,7 +28,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

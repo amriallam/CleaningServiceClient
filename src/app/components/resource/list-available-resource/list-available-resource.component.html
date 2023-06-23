@@ -14,7 +14,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Register</li>
+            <li class="breadcrumb-item active" aria-current="page">Resources</li>
           </ol>
         </nav>
       </div>
@@ -25,17 +25,20 @@
 <section class="section-padding section-bg">
   <div class="container">
     <div class="row">
-
       <div class="col-lg-12">
         <div class="d-flex justify-content-center">
           <app-filter (filtersChanged)="handleFiltersChanged($event)"></app-filter>
         </div>
       </div>
-      <h3 class="text-center text" style="color: #52a3e9;">
-        Please Select {{noOfResources}} of Resources
-      </h3>
+      <div>
+        <h3 class="text-center text" style="color: #52a3e9;">
+          Please Select {{noOfResources}} of Resources
+        </h3>
+        <h5 style="color: #52a3e9; margin-top: -40px;" >Total Price</h5>
+        <h3 style="color: #52a3e9;">{{totalPrice}}</h3>
+      </div>
       <div class="row">
-        <div *ngFor="let res of filteredResources; let i = index" class="col-lg-4 col-md-6 col-sm-12 my-3">
+        <div *ngFor="let res of filteredResources | paginate: { itemsPerPage: resPerPage, currentPage: p }; let i = index" class="col-lg-4 col-md-6 col-sm-12 my-3">
           <div class="services-thumb mb-lg-0 my-card .disabled" [class.disabled]="isSelectionDisabled(res)" [class.selected]="isResourceSelected(res)" (click)="selectResource(res)">
             <div class="row">
               <div class="col-lg-5 col-md-5 col-12">
@@ -80,16 +83,11 @@
         </div>
       </div>
 
-
-
-      <div class="row align-items-center mt-5 bg-white p-3 mx-1">
+      <div class="row align-items-end  justify-content-end mt-5 p-3 mx-1">
         <div class="col-4">
-          <h5 style="color: #52a3e9;">Total Price</h5>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
-        <div class="col-4">
-          <h3 style="color: #52a3e9;">{{totalPrice}} </h3>
-        </div>
-        <div class="col-4 text-end">
+        <div class="col-sm-12 col-lg-4 text-end text-sm-center">
           <button class="custom-btn btn button button--atlas m-2" [disabled]="!status" (click)="book()">Booking Now</button>
         </div>
       </div>

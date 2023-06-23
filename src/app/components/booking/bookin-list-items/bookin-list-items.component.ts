@@ -22,8 +22,8 @@ export class BookinListItemsComponent {
     private location :Location,
     private bookingService : BookingService){
 
-      bookingService.bookingDetails = new BookingDetailsVM(
-        '202,3-06-20','09:00:00','12:00:00', 'tanta', [1,2,3]);
+      // bookingService.bookingDetails = new BookingDetailsVM(
+      //   '202,3-06-20','09:00:00','12:00:00', 'tanta', [1,2,3]);
 
       if(this.bookingService.bookingDetails.selectedResIds != undefined)
         this.resourceIds = this.bookingService.bookingDetails.selectedResIds ;

@@ -17,11 +17,17 @@ export class BookingService {
     this.bookingDetails=new BookingDetailsVM();
   }
 
-  AddBookingDetails(selcetdResourceIds : number[],date: string, from : string, to : string){
-    this.bookingDetails.selectedResIds = selcetdResourceIds;
+  AddBookingDetails(selectedResourceIds : number[],
+                    selectedResourceNames: string[],
+                    date: string, from : string, to : string,
+                    servId: number,totalCost: number ){
+    this.bookingDetails.selectedResIds = selectedResourceIds;
+    this.bookingDetails.selectedResourceNames = selectedResourceNames;
     this.bookingDetails.date = date;
     this.bookingDetails.from = from;
     this.bookingDetails.to = to;
+    this.bookingDetails.totalCast = totalCost;
+    this.bookingDetails.serviceId = servId;
   }
 
   getAllBookingItems(): Observable<ResponseModel<BookingItem>> {
