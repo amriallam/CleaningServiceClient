@@ -3,7 +3,7 @@ import { BookingStaus } from "./BookingStaus";
 
 export class BookingModel{
     constructor(
-        public date: Date,
+        public date: string,
         public startTime: string | undefined,
         public endTime :string | undefined,
         public location : string |undefined,

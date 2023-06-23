@@ -23,7 +23,7 @@ export class BookinListItemsComponent {
     private bookingService : BookingService){
 
       bookingService.bookingDetails = new BookingDetailsVM(
-        '202,3-06-20','09:00:00','12:00:00', 'tanta', [1,2,3]);
+        '2023-07-05','09:00:00','12:00:00', 'tanta', [1,2,3]);
 
       if(this.bookingService.bookingDetails.selectedResIds != undefined)
         this.resourceIds = this.bookingService.bookingDetails.selectedResIds ;
@@ -45,31 +45,25 @@ export class BookinListItemsComponent {
   }
 
   ConfirmBooing() {
-    alert("booking process ");
-    const dateString = this.bookingService.bookingDetails.date;
-    const date = dateString !== undefined ? new Date(dateString as unknown as string) : undefined;
-
-    if(date){
 
       this.Bookingmodel = new BookingModel(
-        date ,
-        this.bookingService.bookingDetails.from,
-        this.bookingService.bookingDetails.to,
-        this.bookingService.bookingDetails.location,
+        "2023-07-05" ,
+        "09:00:00",
+        "12:00:00",
+        "tanta",
         BookingStaus.Pending,
         this.totalPrice,
-        '00eb6241-75d1-4280-8f4b-a5f424234ba7',
-        1,
-        this.bookingService.bookingDetails.selectedResIds
+        '12f47f9c-1794-4174-aa58-16b72bbca9ab',
+        3,
+        [8,9,10]
         );
-      }
-      console.log(this.Bookingmodel);
+      
       if(this.Bookingmodel!= undefined){
 
-        // this.bookingService.AddNewBoooking(this.Bookingmodel).subscribe(res =>{
-        //   console.log(res);
-        //   alert('gooing to payment ');
-        // })
+        this.bookingService.AddNewBoooking(this.Bookingmodel).subscribe(res =>{
+          console.log(res);
+          alert('gooing to payment');
+        })
       }
       else{
         alert('backend handeled ');
