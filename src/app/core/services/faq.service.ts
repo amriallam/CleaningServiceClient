@@ -12,8 +12,8 @@ export class FaqService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllFAQ(): Observable<ResponseModel<FaqCategory[]>> {
-    return this.httpClient.get<ResponseModel<FaqCategory[]>>(apiUrl + "FAQCategory");
+  getAllFAQ(): Observable<ResponseModel<FaqCategory>> {
+    return this.httpClient.get<ResponseModel<FaqCategory>>(apiUrl + "FAQCategory");
   }
 
 }

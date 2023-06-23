@@ -12,7 +12,7 @@ export class RegionService {
 
   constructor(private http:HttpClient) { }
 
-  getSystemRegions():Observable<ResponseModel<Region[]>> {
-      return this.http.get<ResponseModel<Region[]>>(apiUrl+'region');
+  getSystemRegions():Observable<ResponseModel<Region>> {
+      return this.http.get<ResponseModel<Region>>(apiUrl+'region');
     }
 }
