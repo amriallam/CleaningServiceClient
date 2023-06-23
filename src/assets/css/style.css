@@ -245,59 +245,6 @@ strong {
   height: 100%;
 }
 
-.button--atlas > span {
-  display: inline-block;
-}
-
-.button--atlas:hover > span {
-  opacity: 0;
-}
-
-.marquee {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.marquee__inner {
-  width: fit-content;
-  display: flex;
-  position: relative;
-  --offset: 1rem;
-  --move-initial: calc(-25% + var(--offset));
-  --move-final: calc(-50% + var(--offset));
-  transform: translate3d(var(--move-initial), 0, 0);
-  animation: marquee 1s linear infinite;
-  animation-play-state: paused;
-  opacity: 0;
-}
-
-.button--atlas:hover .marquee__inner {
-  animation-play-state: running;
-  opacity: 1;
-  transition-duration: 0.4s;
-}
-
-.marquee span {
-  text-align: center;
-  white-space: nowrap;
-  font-style: italic;
-  padding: 15px;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translate3d(var(--move-initial), 0, 0);
-  }
-
-  100% {
-    transform: translate3d(var(--move-final), 0, 0);
-  }
-}
-
 .button--pan {
   overflow: hidden;
 }
@@ -417,63 +364,24 @@ strong {
   padding-bottom: 50px;
 }
 
-.banner-section .breadcrumb {
+.banner-section-faq {
+  background-image: url('../images/faq.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.banner-section,banner-section-faq .breadcrumb {
   margin-bottom: 0;
 }
 
 .breadcrumb-item+.breadcrumb-item::before,
 .breadcrumb-item.active {
   color: var(--white-color);
-}
-
-
-/*---------------------------------------
-  COUNTDOWN
------------------------------------------*/
-.countdown-section {
-  position: relative;
-}
-
-.countdown-section-title {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.countdown {
-  text-align: center;
-  padding-left: 0;
-}
-
-.countdown-item {
-  list-style: none;
-  flex: 0 0 13%;
-  margin: 15px;
-}
-
-.countdown-text {
-  background: var(--section-bg-color);
-  border-radius: 6px;
-  color: var(--secondary-color);
-  font-size: var(--p-font-size);
-  position: relative;
-  padding: 4px 8px;
-}
-
-.countdown-text::before {
-  content: "";
-  display: block;
-  margin: auto;
-  width: 0;
-  height: 0;
-  border-bottom: 5px solid var(--section-bg-color);
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-  position: absolute;
-  top: -5px;
-  right: 0;
-  left: 0;
 }
 
 

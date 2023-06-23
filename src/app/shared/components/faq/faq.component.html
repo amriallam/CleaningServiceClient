@@ -1,0 +1,87 @@
+<section
+  class="banner-section-faq d-flex justify-content-center align-items-end">
+  <div class="section-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        <h1 class="text-white mb-lg-0">Frequently Asked Questions?</h1>
+      </div>
+      <div
+        class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a routerLink>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container d-flex flex-column my-4 gap-3">
+  <div class="d-flex gap-2">
+    <input #search type="text" [(ngModel)]="searchTerm"
+    placeholder="How can we help you?"
+    class="form-control bg-white shadow-none flex-grow-1" />
+    <button (click)="searchTerm=''" class="btn btn-primary">Clear</button>
+  </div>
+
+  <ul *ngIf="selectedCategory && searchTerm=='';else filteredtaps" class="nav nav-tabs">
+    <li *ngFor="let category of faqCategories" class="nav-item">
+      <a class="nav-link" aria-current="page"
+        [class.active]="category === selectedCategory"
+        (click)="selectCategory(category)">{{category.name}}</a>
+    </li>
+  </ul>
+
+  <ng-template #filteredtaps>
+    <ul class="nav nav-tabs">
+      <ng-container *ngFor="let category of faqCategories">
+        <li *ngIf="hasMatchingQuestion(category)" class="nav-item">
+          <a class="nav-link" aria-current="page"
+            [class.active]="category === selectedCategory"
+            (click)="selectCategory(category)">{{category.name}}</a>
+        </li>
+      </ng-container>
+    </ul>
+  </ng-template>
+
+  <div *ngIf=" searchTerm==''; else filteredQuestion" ngbAccordion
+    [closeOthers]="true">
+    <ng-container>
+      <div *ngFor="let faq of selectedCategory.faqs" ngbAccordionItem>
+        <h2 ngbAccordionHeader class="d-flex align-items-center">
+          <button class="shadow-none" ngbAccordionButton>
+            <span>{{ faq.question }}</span>
+          </button>
+        </h2>
+        <div class="flex-grow-1 mt-2" ngbAccordionCollapse>
+          <div ngbAccordionBody>
+            <p [innerHTML]="faq.answer"></p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-template #filteredQuestion>
+    <div ngbAccordion [closeOthers]="true">
+      <ng-container *ngFor="let faq of selectedCategory.faqs">
+        <div *ngIf="matchesSearchTerm(faq)" ngbAccordionItem>
+          <h2 ngbAccordionHeader class="d-flex align-items-center">
+            <button class="shadow-none" ngbAccordionButton>
+              <span>{{ faq.question }}</span>
+            </button>
+          </h2>
+          <div class="flex-grow-1 mt-2" ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <p [innerHTML]="faq.answer"></p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-template>
+
+</div>

@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Select2Data } from 'ng-select2-component';
+import { Select2, Select2Data, Select2Option } from 'ng-select2-component';
+import { ToastrService } from 'ngx-toastr';
+import { Region } from 'src/app/core/Models/Region';
+import { ServiceScheduleVM } from 'src/app/core/ViewModels/service-schedule-vm';
+import { RegionService } from 'src/app/core/services/region.service';
+import { ServiceService } from 'src/app/core/services/service.service';
 
 @Component({
   selector: 'app-scheduler',
@@ -10,83 +15,26 @@ import { Select2Data } from 'ng-select2-component';
   styleUrls: ['./scheduler.component.css']
 })
 
-export class SchedulerComponent {
+export class SchedulerComponent implements OnInit {
+  loadingFlag: boolean = false
+  SwitchForm: boolean = false;
+  BookingForm: FormGroup = this.formBuilder.group({
+    day: ['', [Validators.required]],
+    startTime: ['', [Validators.required]],
+    endTime: ['', [Validators.required,]],
+  });
 
-  form: FormGroup;
-  get day() { return this.form.controls['day'] }
-  get startTime() { return this.form.controls['startTime'] }
-  get endTime() { return this.form.controls['endTime'] }
+  get day() { return this.BookingForm.controls['day'] }
+  get startTime() { return this.BookingForm.controls['startTime'] }
+  get endTime() { return this.BookingForm.controls['endTime'] }
 
-  LocationData: Select2Data;
-  currentLocation: string = "";
-  LocationWarning: boolean = false;
-
-  ServiceData: Select2Data;
+  ServiceData: Select2Option[] = [];
   currentService: string = "";
   ServiceWarning: boolean = false;
 
-  minDate: NgbDateStruct;
-
-  constructor(private formBuilder: FormBuilder, private router: Router) {
-    let today = new Date().toISOString().split('T')[0].split('-');
-    this.minDate = { year: +today[0], month: +today[1], day: +today[2] };
-    this.form = this.formBuilder.group({
-      day: ['', [Validators.required]],
-      startTime: ['', [Validators.required]],
-      endTime: ['', [Validators.required,]],
-    });
-    this.LocationData = [
-      {
-        label: 'Alexandria',
-        options: [
-          { value: 'Alexandria', label: 'Alexandria' },
-          { value: 'Girga', label: 'Girga' },
-          { value: 'Rosetta', label: 'Rosetta' },
-        ],
-      },
-      {
-        label: 'Gharbia',
-        options: [
-          { value: 'Tanta', label: 'Tanta' },
-          { value: 'El-Mahla', label: 'El-Mahla' },
-        ],
-      },
-      {
-        label: 'Suez',
-        options: [
-          { value: 'Port Said', label: 'Port Said' },
-          { value: 'Ismailia', label: 'Ismailia' },
-          { value: 'El-Arish', label: 'El-Arish' },
-        ],
-      },
-      {
-        label: 'Luxor',
-        options: [
-          { value: 'Luxor', label: 'Luxor' },
-          { value: 'Esna', label: 'Esna' },
-          { value: 'Armant', label: 'Armant' },
-        ],
-      },
-      {
-        label: 'Cairo',
-        options: [
-          { value: 'Giza', label: 'Giza' },
-          { value: 'Shubra El-Kheima', label: 'Shubra El-Kheima' },
-        ],
-      },
-    ];
-    this.ServiceData = [
-      {
-        label: '',
-        options: [
-          { value: '1', label: 'Kitchen Cleaning' },
-          { value: '2', label: 'Car Cleaning' },
-          { value: '3', label: 'Factory Cleaning' },
-          { value: '4', label: 'Office Cleaning' }
-        ],
-      },
-    ]
-  }
+  RegionData: Select2Option[] = [];
+  currentLocation: string = "";
+  LocationWarning: boolean = false;
 
   updateService(value: any) {
     if (value == "") { return; }
@@ -100,15 +48,46 @@ export class SchedulerComponent {
     this.currentLocation = value;
   }
 
-  IsFormValid() {
-    if (this.currentLocation == '' || this.currentService == '' || this.form.invalid) return false;
+  minDate: NgbDateStruct;
+
+  constructor(private toastr:ToastrService,private formBuilder: FormBuilder, private router: Router, private serviceService: ServiceService, private regionService: RegionService) {
+    let today = new Date().toISOString().split('T')[0].split('-');
+    this.minDate = { year: +today[0], month: +today[1], day: +today[2] };
+  }
+
+  ngOnInit(): void {
+    this.regionService.getSystemRegions().subscribe(
+      e =>
+        this.RegionData =this.RegionToSelect2Option(e.data)
+    )
+  }
+
+  IsBookingFormValid() {
+    if (this.currentService == '' || this.BookingForm.invalid) return false;
     return true;
   }
 
-  onSubmit() {
-    if (this.currentLocation == '') this.LocationWarning = true;
+  SubmitRegion(caller:Select2) {
+    this.loadingFlag = true;
+    this.serviceService.getAvailableServiceByRegion(+this.currentLocation).subscribe(
+      e => {
+        if (e.data.length > 0) {
+          this.ServiceData = this.ServicesToSelect2Option(e.data);
+          this.SwitchForm = true;
+        }
+        else {
+          this.RegionData.find(region=>region.value==this.currentLocation)!.disabled=true;
+          this.currentLocation = '';
+          caller.value='';
+          this.toastr.warning("Unforunatly no services for this region")
+        }
+        this.loadingFlag = false;
+      })
+  }
+
+  SubmitBookingFilter() {
     if (this.currentService == '') this.ServiceWarning = true;
-    if (!this.IsFormValid()) return;
+    if (!this.IsBookingFormValid()) return;
     this.router.navigateByUrl(`resource?serviceId=1&date=${this.FormatNgbDate(this.day.value)}&from=${this.startTime.value}:00&to=${this.endTime.value}:00`);
   }
 
@@ -117,6 +96,22 @@ export class SchedulerComponent {
     const formattedMonth = month.toString().padStart(2, '0');
     const formattedDay = day.toString().padStart(2, '0');
     return year + '-' + formattedMonth + '-' + formattedDay;
+  }
+
+  private RegionToSelect2Option(Regions: Region[]) {
+    return Regions.map(region => {
+      return { value: region.id, label: region.name,disabled:false }
+    })
+  }
+
+  private ServicesToSelect2Option(Services: ServiceScheduleVM[]) {
+    return Services.map(Service => {
+      return { value: Service.id, label: Service.name }
+    })
+  }
+  backToRegionForm(){
+    this.SwitchForm=!this.SwitchForm;
+    this.currentLocation='';
   }
 
 }

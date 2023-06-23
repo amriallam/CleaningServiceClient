@@ -3,6 +3,5 @@ export class BookingItem{
         public resourceId: number,
         public price : number,
         public bookingId? :number,
-
     ){}
 }
