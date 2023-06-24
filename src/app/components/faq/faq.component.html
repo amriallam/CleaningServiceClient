@@ -20,16 +20,20 @@
 </section>
 
 <section class="section-padding">
-  <ng-container *ngIf="skeletonLoading==0"></ng-container>
+  <ng-container *ngIf="skeletonLoading==0">
+    <div class="w-50 mx-auto">
+      <ngx-skeleton-loader count="5" appearance="line" animation="pulse"></ngx-skeleton-loader>
+    </div>
+  </ng-container>
   <ng-container *ngIf="skeletonLoading==1">
-    <div class="container d-flex gap-5">
+    <div class="container d-flex align-items-center gap-5">
       <div class="col-lg-7 col-12">
         <h2 class="mb-4">Oops! It seems like we've got some clever users here
           who
           haven't left any FAQs behind.</h2>
-        <span class="fs-5 fw-light">Don't worry, we're experts in the art of
+        <p class="fs-5 fw-light">Don't worry, we're experts in the art of
           answering questions, even the ones you haven't asked yet! So go ahead,
-          fire away with your queries, and we'll be delighted to assist you.</span>
+          fire away with your queries, and we'll be delighted to assist you.</p>
       </div>
       <form
         class="custom-form consulting-form bg-white shadow-lg mb-5 mb-lg-0 col-12 col-lg-5"
