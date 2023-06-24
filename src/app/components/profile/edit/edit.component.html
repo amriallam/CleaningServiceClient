@@ -1,157 +1,125 @@
+<div class="container my-5">
+  <div class="example-action-buttons">
+    <button mat-button (click)="EditActive()">Edit</button>
+  </div>
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel (click)="editActive=true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Name
+      </mat-panel-title>
+      <mat-panel-description>
+        {{user.firstName +" "+user.lastName}}
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-<div class="card">
-    <div class="card-body ">
-        <div class="panel-body bio-graph-info">
-            <h1 class="Info" >User Information</h1>
-            <div class="container">
-                <div class="row section" [ngClass]="{'EditActivate' : isUpdateNameActive}">
-                  <div [ngClass]="{'d-none d-md-block' : isUpdateNameActive}" class="col-7 order-1 col-md-3">
-                    <span class="titel">Name: </span>
-                  </div>
-                  <div class="col-12 order-3  order-md-2  col-md-8">
-                      <p  *ngIf="!isUpdateNameActive">{{user.firstName +" "+user.lastName}}</p>
-                      <div *ngIf="isUpdateNameActive">
-                                      <form [formGroup]="nameForm"  class="row">
-                                          <div class="m-1">
-                                              <span class="titel">First Name:</span>
-                                              <input type="text" formControlName="firstName" value="user.firstName">
-                                              <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
-                                              <div class="error-message" *ngIf="firstName?.errors?.['required']">First Name is required</div>
-                                              </div>
-                                          </div>
-                                          <div class="m-1">
-                                              <span class="titel">Last Name:</span>
-                                              <input type="text" formControlName="lastName" [value]="user.lastName">
-                                              <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
-                                              <div class="error-message" *ngIf="lastName?.errors?.['required']">Last Name is required</div>
-                                          </div>
-                                          </div>
-                                           <div class="Action">
-                                            <button class="save button" [disabled]="nameForm.invalid" (click)="UpdateName()">Save</button> 
-                                            <button class="cancel button" (click)="UpdateDeactivate()">Cancel</button>
-                                           </div>
-                                            
-                                          
-                                        </form>
-                                      
-                                  </div>         
-                  </div>
-                  <div class="col-3 order-2  order-md-3 col-md-1  ">
-                    <div class="col-6" ></div>
-                      <div *ngIf="!isUpdateNameActive" class="edit" (click)="UpdateActive('name')">Edit</div>
-              
-                  </div>
-                </div>
-                <hr>
-                <div class="row section" [ngClass]="{'EditActivate' : isUpdateUserNameActive}">
-                  <div class="col-7 order-1 col-md-3">
-                      <span  [ngClass]="{'d-none d-md-block' : isUpdateUserNameActive}" class="titel">UserName </span>        
-                  </div>
-                  <div class="col-12 order-3  order-md-2  col-md-8">
-                      <p *ngIf="!isUpdateUserNameActive" class="col-6"> {{user.userName}}</p>
-                      <div *ngIf="isUpdateUserNameActive">
-                                      <form [formGroup]="userNameForm" >
-                                        <span  class="titel d-block d-md-none">UserName</span>
-                                          <input type="text" formControlName="userName">
-                                          <div class="error-message" *ngIf="IsUserNameErrors">{{userNameErrors}}</div>
-                                          <div *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)">
-                                            <div class="error-message" *ngIf="userName?.errors?.['required']">userName is required</div>
-                                          </div>
-                                        </form>                        
-                                        <div class="Action">
-                                          <button class="button save" [disabled]="userNameForm.invalid" (click)="UpdateUserName()">Save</button> 
-                                          <button class="cancel button" (click)="UpdateDeactivate()">Cancel</button>
-                                        </div>
-                                  </div>         
-                  </div>
-                  <div class="col-3 order-2  order-md-3 col-md-1 ">
-                      <span *ngIf="!isUpdateUserNameActive" class="col-1 edit" (click)="UpdateActive('userName')">Edit</span>
-                  </div>
-                </div>
-                <hr>
-                <div class="row section" [ngClass]="{'EditActivate' : isUpdateEmailActive}">
-                  <div class="col-7 order-1 col-md-3">
-                      <span [ngClass]="{'d-none d-md-block' : isUpdateEmailActive}" class="titel">Email: </span>
-                  </div>
-                  <div class="col-12 order-3  order-md-2  col-md-8">
-                      <p *ngIf="!isUpdateEmailActive"> {{user.email}}</p>
-                      <div *ngIf="isUpdateEmailActive">
-                          <form [formGroup]="emailForm" (ngSubmit)="UpdateEmail()">
-                            <span  class="titel d-block d-md-none">Email</span>
-                              <input type="email" formControlName="email">
-                              <div class="error-message" *ngIf="IsEmailErrors">{{EmailErrors}}</div>
-                              <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-                                  <div class="error-message" *ngIf="email?.errors?.['required']">Email is required</div>
-                                  <div class="error-message" *ngIf="email?.errors">Invalid email format</div>
-                              </div>
-                              <div class="Action">
-                                <button class="save button"  type="submit" [disabled]="emailForm.invalid" (click)="UpdateEmail()">Save</button> 
-                                <button class="cancel button" (click)="UpdateDeactivate()">Cancel</button>
-                            </div>
-                          </form>             
-                      </div>         
-                  </div>
-                  <div class="col-3 order-2  order-md-3 col-md-1">
-                      <span *ngIf="!isUpdateEmailActive" class="col-1 edit" (click)="UpdateActive('email')">Edit</span>
-                  </div>
-                </div>
-                <hr>
-                <div class="row section"  [ngClass]="{'EditActivate' : isUpdatePhoneActive}">
-                  <div class="col-7 order-1 col-md-3">
-                    <span [ngClass]="{'d-none d-md-block' : isUpdatePhoneActive}" class="titel">Phone: </span>
+    <form [formGroup]="nameForm"  class="row">
+      <div class="m-1">
+          <span class="titel">First Name:</span>
+          <input type="text" formControlName="firstName" >
+          <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+          <div class="error-message" *ngIf="firstName?.errors?.['required']">First Name is required</div>
+          </div>
+      </div>
+      <div class="m-1">
+          <span class="titel">Last Name:</span>
+          <input type="text" formControlName="lastName" [value]="user.lastName">
+          <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+          <div class="error-message" *ngIf="lastName?.errors?.['required']">Last Name is required</div>
+      </div>
+      </div>
 
-                  </div>
-                  <div class="col-12 order-3  order-md-2  col-md-8">
-                      <p *ngIf="!isUpdatePhoneActive" > {{user.phoneNumber}}</p>
-                      <div *ngIf="isUpdatePhoneActive">
-                          <form [formGroup]="phoneForm" >
-                            <span  class="titel d-block d-md-none">Phone:</span>
-                              <input type="tel" formControlName="phone">
-                              <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
-                                <div class="error-message" *ngIf="phone?.errors?.['required']">Phone is required</div>
-                                <div class="error-message" *ngIf="phone?.errors?.['pattern']">Invalid phone format</div>
-                              </div>
-                            </form>                        
-                            <div class="Action">
-                              <button class="save button" [disabled]="phoneForm.invalid" (click)="UpdatePhone()">Save</button> 
-                              <button class="cancel button" (click)="UpdateDeactivate()">Cancel</button>
-                          </div>
-                      </div>         
-                  </div>
-                  <div class="col-3 order-2  order-md-3 col-md-1">
-                      <span *ngIf="!isUpdatePhoneActive" class="col-1 edit" (click)="UpdateActive('phone')">Edit</span>
-                  </div>
-                </div>
-                <hr>
-                <div class="row section" [ngClass]="{'EditActivate' : isUpdateAddressActive}">
-                  <div class="col-7 order-1 col-md-3">
-                    <span [ngClass]="{'d-none d-md-block' : isUpdateAddressActive}" class="titel">Address: </span>
-                  </div>
-                  <div class="col-12 order-3  order-md-2  col-md-8">
-                      <p *ngIf="!isUpdateAddressActive" class="col-6"> {{user.address}}</p>
-                      <div *ngIf="isUpdateAddressActive">
-                          <form [formGroup]="addressForm" >
-                            <span  class="titel d-block d-md-none">Address:</span>
-                              <input type="text" formControlName="address" [value]="user.address">
-                              <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
-                                <div class="error-message" *ngIf="address?.errors?.['required']">Address is required</div>
-                              </div>
-                          </form>
-                              <div class="Action">
-                                  <button class="save button" [disabled]="addressForm.invalid" (click)="UpdateAddress()">Save</button> 
-                                  <button class="cancel button" (click)="UpdateDeactivate()">Cancel</button>
-                              </div>                          
-                      </div>
-                  </div>
-                  <div class="col-3 order-2  order-md-3 col-md-1">
-                      <span *ngIf="!isUpdateAddressActive" class="col-1 edit" (click)="UpdateActive('address')">Edit</span>
-                  </div>
-                </div>
-              </div>
-     
-          
-    </div>
+    </form>
+
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel disabled>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        UserName
+      </mat-panel-title>
+      <mat-panel-description>
+        {{user.userName}}
+        <mat-icon>assignment_ind</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (click)="editActive=true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Email 
+      </mat-panel-title>
+      <mat-panel-description>
+        {{user.email}}
+        <mat-icon> mail_outline</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+      <form [formGroup]="emailForm" (ngSubmit)="UpdateEmail()">
+        <span  class="titel d-block d-md-none">Email</span>
+          <input type="email" formControlName="email">
+          <div class="error-message" *ngIf="IsEmailErrors">{{EmailErrors}}</div>
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+              <div class="error-message" *ngIf="email?.errors?.['required']">Email is required</div>
+              <div class="error-message" *ngIf="email?.errors">Invalid email format</div>
+          </div>
+      </form>        
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (click)="editActive=true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Address
+      </mat-panel-title>
+      <mat-panel-description>
+        {{user.address??"Please Add Your Address"}}
+        <mat-icon>location_on</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="addressForm" >
+      <span  class="titel d-block d-md-none">Address:</span>
+        <input type="text" formControlName="address" [value]="user.address">
+        <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+          <div class="error-message" *ngIf="address?.errors?.['required']">Address is required</div>
+        </div>
+    </form>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (click)="editActive=true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Phone
+      </mat-panel-title>
+      <mat-panel-description>
+        {{user.phoneNumber??"Please Add Your Number"}}
+        <mat-icon> phone</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="phoneForm" >
+      <span  class="titel d-block d-md-none">Phone:</span>
+        <input type="tel" formControlName="phone">
+        <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+          <div class="error-message" *ngIf="phone?.errors?.['required']">Phone is required</div>
+          <div class="error-message" *ngIf="phone?.errors?.['pattern']">Invalid phone format</div>
+        </div>
+      </form>                        
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div *ngIf="editActive" class="example-action-buttons">
+  <button mat-button  (click)="Save()">Save</button>
+  <button mat-button (click)="EditDeactivate()">Cancel</button>
 </div>
-  
-
-  
+</div>

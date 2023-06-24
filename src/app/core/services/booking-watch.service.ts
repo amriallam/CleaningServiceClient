@@ -24,7 +24,7 @@ export class BookingWatchService {
   GetMaxNumberOfResource(serviceId: number): Observable<number> {
     return this.servicesService.getMetadataById(serviceId).pipe(
       map(e => {
-        this.maxNumberOfResources = e.data[0].noOfResources;
+        this.maxNumberOfResources = e.data.noOfResources;
         return this.maxNumberOfResources;
       })
     );

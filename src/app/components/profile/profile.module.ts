@@ -8,21 +8,45 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { InfoComponent } from './info/info.component';
 import { EditComponent } from './edit/edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { BookingComponent } from './booking/booking.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
     ProfileComponent,
-            SideNavComponent,
-            InfoComponent,
-            EditComponent
+    SideNavComponent,
+    InfoComponent,
+    EditComponent,
+    BookingComponent,
+    BookingDetailsComponent
   ],
   imports: [
     ReactiveFormsModule,
     CommonModule,
     ProfileRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  
   ]
 })
 export class ProfileModule { }

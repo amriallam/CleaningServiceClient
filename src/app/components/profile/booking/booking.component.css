@@ -1,0 +1,23 @@
+.Cancelled{
+    background-color: #FBE4E5;
+    color: red;
+    border-radius: 5px;
+    border: none 1px;
+    padding: 10px;
+}
+
+.Pending{
+    background-color: #fbf0db;
+    color:#a58736 ;
+    border-radius: 5px;
+    border: none 1px;
+    padding: 10px;
+}
+
+.Confirmed{
+    background-color:#ecf4ef;
+    color: #17793d;
+    border-radius: 5px;
+    border: none 1px;
+    padding: 10px;
+}

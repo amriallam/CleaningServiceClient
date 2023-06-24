@@ -1,3 +1,11 @@
+:root {
+  --primary: #F77D0A;
+  --secondary: #2B2E4A;
+  --light: #F4F5F8;
+  --dark: #1C1E32;
+}
+
+
 .card{
     margin-top:30px; 
     margin-bottom:30px; 
@@ -102,12 +110,13 @@
   }
   .Info{
     text-transform: uppercase;
-    color: #4f83d1;
+    color: var(--dark);
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     font-family: "Cabin", sans-serif;
+    font-size: 2rem;
   }
   .section{
     padding: 10px;
@@ -123,4 +132,17 @@
     height:.5px;
     border-width:0;
     background-color: rgb(122, 119, 119);
+  }
+
+  .example-action-buttons {
+    padding-bottom: 20px;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
   }

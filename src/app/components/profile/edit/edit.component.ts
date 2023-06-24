@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import {UserService} from '../../../core/services/User.service';
 import { User } from 'src/app/core/Models/UserModel';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatAccordion } from '@angular/material/expansion';
+
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent {
+  @ViewChild(MatAccordion) accordion!: MatAccordion;
   helper=new JwtHelperService();
+  editActive:boolean = false;
   decodedToken:any;
   encodedToken!:string;
   Action:String = "New userloyee"
@@ -23,8 +28,8 @@ export class EditComponent {
   public EmailErrors:string = "";
   public IsEmailErrors: boolean = false;
 
-  userId : string ="e156548c-dded-4e6d-ad39-1dcf98ba5269";
-  user:User=new User("das", "sss", "FirstNamess", "LastNamess", "Emails", "Address", "PhoneNumber",  new Date())
+  userId : string ="571689e4-6ab3-452e-8568-ab7ca7c4081e";
+  user!:User;
 
   constructor(private service:UserService){ }
   emailForm = new FormGroup({
@@ -65,66 +70,23 @@ export class EditComponent {
     return this.nameForm.get('lastName');
   }
   
-  onSubmit() {
-    console.log(this.emailForm.value);
-  }
+
   ngOnInit(): void {
     const encodedToken = localStorage.getItem("userBookingAppToken");
     if (encodedToken !== null) {
       this.encodedToken = encodedToken;
     }
    this.decodedToken=this.helper.decodeToken(this.encodedToken)
-   this.userId = this.decodedToken.Id
+   //this.userId = this.decodedToken.Id
     this.service.GetUserById(this.userId).subscribe(data=>{
       this.user=data?.data;
+      this.fillFormToUpdate()
     })
-  }
-  
-  
-  UpdateActive(who:string){
-    this.isUpdateNameActive= false;
-    this.isUpdateUserNameActive = false;
-    this.isUpdateEmailActive= false;
-    this.isUpdatePhoneActive = false;
-    this.isUpdateAddressActive = false;
-
-    switch(who){
-      case "name": { 
-        this.isUpdateNameActive= true; 
-        break; 
-     } 
-     case "userName": { 
-      this.isUpdateUserNameActive = true;
-      break; 
-     } 
-     case "email": { 
-      this.isUpdateEmailActive= true;
-      break; 
-     } 
-     case "phone": { 
-      this.isUpdatePhoneActive= true;
-      break; 
-     } 
-     case "address": { 
-      this.isUpdateAddressActive = true;
-      break; 
-     } 
-     
-    }
     
-
   }
+  
+  
 
-  UpdateDeactivate(){
-    this.isUpdateNameActive= false;
-    this.isUpdateUserNameActive = false;
-    this.isUpdateEmailActive= false;
-    this.isUpdatePhoneActive = false;
-    this.isUpdateAddressActive = false;
-    this.IsUserNameErrors = false;
-    this.IsEmailErrors = false;
-
-  }
  
   UpdateName(){
     if(this.nameForm.valid){
@@ -135,7 +97,6 @@ export class EditComponent {
       this.service.EditUser(user).subscribe(
         res => {
           console.log('User updated successfully:', res);
-          this.UpdateDeactivate()
           this.user.firstName = this.firstName?.value ?? undefined ;
           this.user.lastName = this.lastName?.value ?? undefined;
         },
@@ -156,7 +117,6 @@ export class EditComponent {
       this.service.EditUser(user).subscribe(
         res => {
           console.log('User updated successfully:', res);
-          this.UpdateDeactivate()
           this.user.email = this.email?.value ?? undefined ;
           this.IsEmailErrors = false;
         },
@@ -178,7 +138,6 @@ export class EditComponent {
       this.service.EditUser(user).subscribe(
         res => {
           console.log('User updated successfully:', res);
-          this.UpdateDeactivate()
           this.user.userName = this.userName?.value ?? undefined ;
           this.IsUserNameErrors = false;
         },
@@ -194,8 +153,7 @@ export class EditComponent {
     }
   }
   UpdatePhone(){
-    console.log(1)
-    console.log(this.phoneForm.valid)
+
     if(this.phoneForm.valid){
       const user = new User()
       user.id = this.userId;
@@ -203,7 +161,6 @@ export class EditComponent {
       this.service.EditUser(user).subscribe(
         res => {
           console.log('User updated successfully:', res);
-          this.UpdateDeactivate()
           this.user.phoneNumber = this.phone?.value ?? undefined ;
         },
         err => {
@@ -224,7 +181,6 @@ export class EditComponent {
       this.service.EditUser(user).subscribe(
         res => {
           console.log('User updated successfully:', res);
-          this.UpdateDeactivate()
           this.user.address = this.address?.value ?? undefined ;
         },
         err => {
@@ -237,6 +193,70 @@ export class EditComponent {
   }
 
  
+  EditActive():void{
+  this.accordion.openAll();
+  this.editActive = true;
+}
 
+EditDeactivate():void{
+  this.accordion.closeAll();
+  this.editActive = false;
+}
+fillFormToUpdate(){
+  console.log(this.user.email)
 
+  this.nameForm.setValue({
+    firstName : this.user.firstName??"This",
+    lastName : this.user.lastName??"This"
+  })
+  this.emailForm.setValue({
+    email:this.user.email??"Email@Example.com"
+  })
+  this.phoneForm.setValue({
+    phone:this.user.phoneNumber??""
+  })
+  this.addressForm.setValue({
+    address:this.user.address??""
+  })
+  
+}
+  Save():void{
+    console.log("Herr")
+    console.log(this.addressForm.valid )
+    console.log(this.phoneForm.valid )
+    console.log(this.emailForm.valid )
+    console.log(this.nameForm.valid)
+    if(this.emailForm.valid 
+      && this.nameForm.valid){
+      const user = new User()
+      user.id = this.userId;
+      user.firstName = this.firstName?.value ?? undefined ;
+      user.lastName = this.lastName?.value ?? undefined;
+      user.email = this.email?.value ?? undefined ;
+      if(this.addressForm.valid 
+        && this.phoneForm.valid 
+        ){
+          user.address = this.address?.value ?? undefined ;
+          user.phoneNumber = this.phone?.value ?? undefined ;
+        }
+      this.service.EditUser(user).subscribe(
+        res => {
+          console.log('User updated successfully:', res);
+          this.user.address = this.address?.value ?? undefined ;
+          this.user.firstName = this.firstName?.value ?? undefined ;
+          this.user.lastName = this.lastName?.value ?? undefined ;
+          this.user.email = this.email?.value ?? undefined ;
+          this.user.phoneNumber = this.phone?.value ?? undefined ;
+          this.fillFormToUpdate();
+          this.EditDeactivate()
+        },
+        err => {
+          console.log('Error updating user:', err);
+        }
+      )
+
+     
+    }
+    
+}
 }

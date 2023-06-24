@@ -1,0 +1,59 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <div class="services-info px-4 pt-4">
+                <h4 class="mb-2">Booking Info</h4>
+                <h6>Sevice Details</h6>
+                <p>Name: {{data.serviceName}}</p>
+                <p>Description: {{data.serviceDescription}} </p>
+
+                <h6 class="mt-4">Booking Details</h6>
+                <p>Date: {{data.date | date:'dd-MM-yyyy'}}</p>
+                
+                <p>Start Time: {{data.startTime }}</p>
+                <p>End Time: {{data.endTime  }}</p>
+                <p>Location: {{data.location  }}</p>
+                <p>Payment Method : {{data.paymentMethodName?? "Credit"  }}</p>
+                <p>Payment Status : {{data.paymentStatus?? "Done"  }}</p>
+                <p>Total Cost: {{data.totalCost | currency }}</p>
+                
+
+
+                <h6>Cleaning Staff</h6>
+                <div *ngFor="let item of data.bookingItems ">
+                    <p>Name: {{item.resourceName }}</p>
+                    <p>Cost: {{item.price  }}</p>
+                </div>
+                
+            </div>
+        </div>
+
+        
+        <div class=" d-none d-md-block col-lg-4">
+            
+            <div class="services-image-wrap my-5" >
+                <div *ngFor="let item of data.serviceImages ">
+                    <img [src]="item.uri" class="services-image img-fluid" alt="">
+                </div>
+                <div class="services-icon-wrap">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="text-white mb-0">
+                            <i class="bi-cash me-2"></i>
+                            {{data.totalCost | currency}}
+                        </p>
+
+                        <p class="text-white mb-0">
+                            <i class="bi-clock-fill me-2"></i>
+                            {{data.endTime - data.endTime  }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
