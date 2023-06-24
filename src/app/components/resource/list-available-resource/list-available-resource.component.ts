@@ -96,6 +96,7 @@ export class ListAvailableResourceComponent {
 
     this.watchService.LimitReached.subscribe((LimitReachedStatus) => {
       this.status = LimitReachedStatus;
+      console.log(this.status);
     });
 
   }
@@ -107,6 +108,17 @@ export class ListAvailableResourceComponent {
       this.availableResources = res;
       this.filteredResources = res;
       this.totalNoOfResources = res.length;
+
+      this.selectedResources.push(this.availableResources[1]);
+      this.selectedResources.push(this.availableResources[2]);
+
+      this.availableResources.forEach((resource) => {
+        if (this.selectedResources.includes(resource)) {
+          resource.selected = true;
+        }
+        this.status = true;
+      });
+
     });
 
   this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
@@ -126,7 +138,8 @@ export class ListAvailableResourceComponent {
     }
   }
   isResourceSelected(res: any): boolean {
-    return this.selectedResources.includes(res);
+    // return this.selectedResources.includes(res);
+    return res.selected;
   }
 
   selectResource(res: any) {
@@ -140,7 +153,14 @@ export class ListAvailableResourceComponent {
       this.watchService.IncreateCurrentNumberOfResource();
       this.totalPrice += res.price;
     }
+    res.selected = !res.selected;
+    if(this.selectedResources.length == this.noOfResources)
+      this.status = true
+    else{
+     this.status = false;
+    }
   }
+
 
   book() {
     this.selectedResources.forEach((res) => {
