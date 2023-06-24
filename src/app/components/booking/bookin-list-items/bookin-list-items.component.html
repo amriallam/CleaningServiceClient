@@ -79,19 +79,20 @@
               <label for="inputAddress">Address:</label>
               <input type="text" class="form-control" id="inputAddress" placeholder="Enter your address">
             </div>
-            <div class="row">
-              <div class="col-lg-6 col-md-12">
-                <button class="btn button button--atlas m-2 mt-4" type="submit" (click)="ConfirmBooing('Paypal')">Booking with Paypal</button>
+            <div class="container">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <button class="btn btn-primary" type="submit" (click)="ConfirmBooing('Paypal')">Booking with Paypal</button>
+                </div>
+                <div>
+                  <button class="btn btn-primary" type="submit" (click)="ConfirmBooing('card')">Booking With Card</button>
+                </div>
               </div>
-              <div class="col-lg-6 col-md-12">
-                <button class="btn button button--atlas m-2 mt-4" type="submit" (click)="ConfirmBooing('card')">Booking With Card</button>
-              </div>
-            </div>            
+            </div>
           </form>
         </div>
         <div class="d-flex justify-content-end mt-2">
-          <!-- <button class="btn btn-borderfa-border" (click)="back()"> Back</button> -->
-          <button class="back-button mb-3" onclick="back()">Back</button>
+          <button class="back-button mb-3" (click)="back()">Back</button>
         </div>
       </div>
     </div>
