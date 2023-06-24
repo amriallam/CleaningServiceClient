@@ -2,12 +2,6 @@
   background: var(--white-color);
 }
 
-.contact-form {
-  background: var(--section-bg-color);
-  border-radius: var(--border-radius-small);
-  padding: 40px;
-}
-
 .contact-info {
   background: var(--white-color);
   border-radius: var(--border-radius-medium);
