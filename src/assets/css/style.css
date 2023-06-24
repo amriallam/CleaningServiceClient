@@ -604,7 +604,7 @@ strong {
 .custom-form .form-control,
 .input-group-file {
   color: var(--p-color);
-  margin-bottom: 24px;
+  margin-bottom: 10px;
   padding-top: 13px;
   padding-bottom: 13px;
   outline: none;
@@ -930,3 +930,16 @@ strong {
   }
 }
 
+.toast-container .ngx-toastr {
+  position: relative;
+  overflow: hidden;
+  margin : 1.3rem 0.5rem 1.3rem 1.3rem !important;
+  padding: 15px 15px 15px 50px;
+  border-radius: 3px 3px 3px 3px;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  box-shadow: 0 0 12px #999999;
+  color: #FFFFFF;
+  width: auto !important;
+}
