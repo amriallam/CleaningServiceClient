@@ -71,25 +71,9 @@
   border-color: #7cb8eb
 }
 .my-card.disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   pointer-events: none;
 }
 
-::ng-dep{
 
-  .ngx-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
-  .ngx-pagination li{
-    width: 35px;
-    height: 35px;
-    border-radius: 50% !important;
-    background-color: #f8f8f8;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-  }
-}

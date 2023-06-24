@@ -96,36 +96,37 @@ export class ListAvailableResourceComponent {
 
     this.watchService.LimitReached.subscribe((LimitReachedStatus) => {
       this.status = LimitReachedStatus;
+      console.log(this.status);
     });
-
-    // if(bookingService.bookingDetails!= null){
-    //   this.serviceId = this.bookingService.bookingDetails.serviceId || 0;
-    //   this.date = this.bookingService.bookingDetails.date || "";
-    //   this.from = this.bookingService.bookingDetails.from || "";
-    //   this.to = this.bookingService.bookingDetails.to || "";
-    //   this.selectdedResIds = this.bookingService.bookingDetails.selectedResIds||[]
-
-
-
-    // }
 
   }
 
   ngOnInit() {
     this.resourceService
-      .GetAvailableResources(this.serviceId, this.date, this.from, this.to)
-      .subscribe((res) => {
-        this.availableResources = res;
-        this.filteredResources = res;
-        this.totalNoOfResources = res.length;
+    .GetAvailableResources(this.serviceId, this.date, this.from, this.to)
+    .subscribe((res) => {
+      this.availableResources = res;
+      this.filteredResources = res;
+      this.totalNoOfResources = res.length;
+
+      this.selectedResources.push(this.availableResources[1]);
+      this.selectedResources.push(this.availableResources[2]);
+
+      this.availableResources.forEach((resource) => {
+        if (this.selectedResources.includes(resource)) {
+          resource.selected = true;
+        }
+        this.status = true;
       });
 
-    this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
-      (maxNumberOfResources) => {
-        this.watchService.maxNumberOfResources = maxNumberOfResources;
-        this.noOfResources = maxNumberOfResources;
-      }
-    );
+    });
+
+  this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
+    (maxNumberOfResources) => {
+      this.watchService.maxNumberOfResources = maxNumberOfResources;
+      this.noOfResources = maxNumberOfResources;
+    }
+  );
 
   }
 
@@ -137,7 +138,8 @@ export class ListAvailableResourceComponent {
     }
   }
   isResourceSelected(res: any): boolean {
-    return this.selectedResources.includes(res);
+    // return this.selectedResources.includes(res);
+    return res.selected;
   }
 
   selectResource(res: any) {
@@ -151,10 +153,16 @@ export class ListAvailableResourceComponent {
       this.watchService.IncreateCurrentNumberOfResource();
       this.totalPrice += res.price;
     }
+    res.selected = !res.selected;
+    if(this.selectedResources.length == this.noOfResources)
+      this.status = true
+    else{
+     this.status = false;
+    }
   }
 
-  book() {
 
+  book() {
     this.selectedResources.forEach((res) => {
       this.selectdedResIds.push(res.id);
       this.selectedResNames.push(res.name);
@@ -170,7 +178,13 @@ export class ListAvailableResourceComponent {
       this.totalPrice
     );
 
-    this.router.navigateByUrl('booking/bookingList');
+    this.router.navigate(['booking/bookingList'], {
+      queryParams: {
+        selectedResources: JSON.stringify(this.selectedResources),
+        totalPrice: this.totalPrice
+      }
+    });
+
   }
 
   openModal(Resource: Resource) {
