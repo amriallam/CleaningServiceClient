@@ -157,7 +157,7 @@ export class ListAvailableResourceComponent {
     if(this.selectedResources.length == this.noOfResources)
       this.status = true
     else{
-     this.status = false;
+    this.status = false;
     }
   }
 
@@ -178,12 +178,7 @@ export class ListAvailableResourceComponent {
       this.totalPrice
     );
 
-    this.router.navigate(['booking/bookingList'], {
-      queryParams: {
-        selectedResources: JSON.stringify(this.selectedResources),
-        totalPrice: this.totalPrice
-      }
-    });
+    this.router.navigate(['booking/bookingList']);
 
   }
 
