@@ -9,9 +9,10 @@ import { RouterModule } from '@angular/router';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HtmlDecoderPipe } from './pipes/htmlparse.pipe';
+import { UnderMaintenanceComponent } from './components/under-maintenance/under-maintenance.component';
 
 @NgModule({
-  declarations: [ LoginComponent, ForgetPasswordComponent, RegistrationComponent, NotFoundComponent],
+  declarations: [ LoginComponent, ForgetPasswordComponent, RegistrationComponent, NotFoundComponent, UnderMaintenanceComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

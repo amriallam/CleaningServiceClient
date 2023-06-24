@@ -13,6 +13,7 @@ import { ConfirmEmailComponent } from './core/account/confirm-email/confirm-emai
 import { BookingModule } from './components/booking/booking.module';
 import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
 import { FaqComponent } from './shared/components/faq/faq.component';
+import { UnderMaintenanceComponent } from './shared/components/under-maintenance/under-maintenance.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   //core components
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },
+  {path:'maintenance',component: UnderMaintenanceComponent},
 
   // not found component
   { path: '**', component: NotFoundComponent },

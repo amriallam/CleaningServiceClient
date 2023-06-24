@@ -9,13 +9,21 @@ import { FaqService } from 'src/app/core/services/faq.service';
   styleUrls: ['./faq.component.css']
 })
 export class FaqComponent implements OnInit {
+  skeletonLoading:number=0;
   faqCategories: FaqCategory[] = [];
   @ViewChild("search") search !: ElementRef;
   selectedCategory: FaqCategory = { name: '', faqs: [] };
   searchTerm: string = "";
   constructor(private faqService: FaqService) { }
   ngOnInit(): void {
-    // this.faqService.getAllFAQ().subscribe(res => this.faqCategories = res.data);
+    this.faqService.getAllFAQ().subscribe(res => {
+      if(res.data.length > 0) {
+        this.faqCategories = res.data;
+        this.skeletonLoading=2
+      }
+      else
+        this.skeletonLoading=1
+    });
   }
   selectCategory(category: FaqCategory): void {
     this.selectedCategory = category;

@@ -24,7 +24,9 @@
     <input #search type="text" [(ngModel)]="searchTerm"
     placeholder="How can we help you?"
     class="form-control bg-white shadow-none flex-grow-1" />
-    <button (click)="searchTerm=''" class="btn btn-primary">Clear</button>
+    <span (click)="searchTerm=''" class="input-group-text">
+      <i class="bi bi-x"></i>
+    </span>
   </div>
 
   <ul *ngIf="selectedCategory && searchTerm=='';else filteredtaps" class="nav nav-tabs">
