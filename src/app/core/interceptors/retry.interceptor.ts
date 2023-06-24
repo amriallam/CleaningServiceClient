@@ -45,21 +45,13 @@ export class RetryInterceptor implements HttpInterceptor {
     }
     if (error.status === 400) {
       this.toastr.error('Please try again later', error.error[0].description);
-
-      // console.log('An error occurred:', error.error);
     } else if (error.status === 0) {
       this.toastr.error(
         'Please try again later',
         'Service is under maintenance'
       );
-      // console.log('An error occurred:', error.error);
     } else {
       console.log('An error occurred:', error.error);
-
-
-      // ! commented out to avoid error
-      // this.toastr.error(error.message, `Error Code ${error.status}`);
-      // console.error(`Backend returned code ${error.status}, body was:`, error.error);
     }
     return throwError(
       () => new Error('Something bad happened. Please try again later.')
