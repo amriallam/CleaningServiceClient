@@ -25,15 +25,11 @@ export class BookingWatchService {
     this.currentNoOfResources++;
     if(this.currentNoOfResources==this.maxNumberOfResources)
       this.LimitReached.next(true);
-      console.log("from increment");
-      console.log(this.maxNumberOfResources)
   }
 
   DecreaseCurrentNumberOfResource(){
     this.currentNoOfResources--;
     this.LimitReached.next(false);
-    console.log("from decrease")
-    console.log(this.maxNumberOfResources)
   }
 
 }

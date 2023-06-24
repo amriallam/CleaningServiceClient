@@ -109,9 +109,16 @@ export class ListAvailableResourceComponent {
       this.filteredResources = res;
       this.totalNoOfResources = res.length;
 
-      this.selectedResources.push(this.availableResources[1]);
-      this.selectedResources.push(this.availableResources[2]);
-
+      if(this.bookingService.bookingBackVM   != null ){
+        this.bookingService.bookingBackVM.selectedIDs?.forEach(resId => {
+          this.availableResources.forEach(res => {
+            if(res.id == resId){
+              this.selectedResources.push(res);
+            }
+          })
+          this.totalPrice = this.bookingService.bookingBackVM.totalCost as number;
+        });
+      }
       this.availableResources.forEach((resource) => {
         if (this.selectedResources.includes(resource)) {
           resource.selected = true;

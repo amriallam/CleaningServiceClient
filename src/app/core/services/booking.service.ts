@@ -14,10 +14,10 @@ import { BookingBackVM } from '../ViewModels/BookinBackVM';
   providedIn: 'root'
 })
 export class BookingService {
-  
+
   bookingDetails: BookingDetailsVM;
   bookingBackVM: BookingBackVM;
-  
+
 
   constructor(private httpClient: HttpClient ) {
     this.bookingDetails= new BookingDetailsVM();

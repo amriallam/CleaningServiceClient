@@ -29,10 +29,10 @@ export class BookinListItemsComponent {
         // console.log("here" +bookingService.bookingDetails);
         this.bookingData = bookingService.bookingDetails;
         this.resourceIds = this.bookingService.bookingDetails.selectedResIds;
-        
+
         // console.log(this.resourceIds);
       }
-      
+
   }
   ngOnInit(){
     if(this.bookingData.serviceId != undefined)
@@ -40,12 +40,12 @@ export class BookinListItemsComponent {
     this.serviceService.getAllById(+this.bookingData.serviceId).subscribe(res =>
         this.service= res.data[0]
       )
-    } 
+    }
   }
-  
+
   back(){
     this.bookingService.AddBookingBack(
-      this.bookingService.bookingDetails.selectedResIds as number[],
+      this.resourceIds,
       this.bookingService.bookingDetails.totalCost as number
     );
     this.location.back()
@@ -62,7 +62,7 @@ export class BookinListItemsComponent {
       this.bookingService.bookingDetails.serviceId as number,
       this.bookingService.bookingDetails.selectedResIds as number[]
       );
-      
+
       if(this.Bookingmodel){
         this.bookingService.AddNewBoooking(this.Bookingmodel, payMethod).subscribe(res =>{
           console.log(res.data);
