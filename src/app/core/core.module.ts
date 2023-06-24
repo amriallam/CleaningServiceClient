@@ -34,7 +34,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     NgbDatepicker,
     FormsModule,
     Select2Module,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+  
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
