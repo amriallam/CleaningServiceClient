@@ -5,7 +5,7 @@ export class BookingDetailsVM {
     public from?: string,
     public to?: string,
     public location?: string,
-    public totalCast?: number,
+    public totalCost?: number,
     public selectedResIds?: number[],
     public selectedResourceNames?: string[]
   ){}

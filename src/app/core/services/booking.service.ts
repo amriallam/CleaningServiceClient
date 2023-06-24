@@ -28,7 +28,7 @@ export class BookingService {
     this.bookingDetails.date = date;
     this.bookingDetails.from = from;
     this.bookingDetails.to = to;
-    this.bookingDetails.totalCast = totalCost;
+    this.bookingDetails.totalCost = totalCost;
     this.bookingDetails.serviceId = servId;
   }
 
@@ -56,7 +56,7 @@ export class BookingService {
   //   return this.httpClient.patch<BookingItem>(`${apiUrl}BookingItem?bookingId=${bookingId}`,bookingItem);
   // }
 
-  AddNewBoooking(BookingModel: BookingModel):Observable<ResponseModelObject<BookingResModel>>{
-    return this.httpClient.post<ResponseModelObject<BookingResModel>>(`${apiUrl}ClientBooking/CreateNewBooking`,BookingModel );
+  AddNewBoooking(BookingModel: BookingModel , paymentMethod: string):Observable<ResponseModelObject<BookingResModel>>{
+    return this.httpClient.post<ResponseModelObject<BookingResModel>>(`${apiUrl}ClientBooking/CreateNewBooking?paymentType=${paymentMethod}`,BookingModel );
   }
 }
