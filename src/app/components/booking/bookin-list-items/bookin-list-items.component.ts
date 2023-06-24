@@ -40,20 +40,14 @@ export class BookinListItemsComponent {
     this.serviceService.getAllById(+this.bookingData.serviceId).subscribe(res =>
         this.service= res.data[0]
       )
-  } 
-    // this.resourceIds.forEach(element => {
-    //   this.resourceService.GetResouceById(+element).subscribe((res)=>{
-    //         this.resourceList.push(res.data)
-    //   });
-    // })
-
+    } 
   }
   
   back(){
-    // this.bookingService.AddBookingDetails(
-    //   this.bookingService.bookingDetails.selectedResIds,
-    //   this.bookingService.AddBookingDetails.
-    // );
+    this.bookingService.AddBookingBack(
+      this.bookingService.bookingDetails.selectedResIds as number[],
+      this.bookingService.bookingDetails.totalCost as number
+    );
     this.location.back()
   }
   // adding address , userId from form
@@ -72,7 +66,6 @@ export class BookinListItemsComponent {
       if(this.Bookingmodel){
         this.bookingService.AddNewBoooking(this.Bookingmodel, payMethod).subscribe(res =>{
           console.log(res.data);
-          alert('gooing to payment');
           window.location.href =res.data.result;
         })
       }

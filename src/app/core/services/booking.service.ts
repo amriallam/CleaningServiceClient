@@ -8,6 +8,7 @@ import { apiUrl } from 'src/environment';
 import { BookingModel } from '../Models/BookinModel';
 import { BookingResModel } from '../Models/BookingResModel';
 import { ResponseModelObject } from '../Models/ResponseModelObject';
+import { BookingBackVM } from '../ViewModels/BookinBackVM';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,12 @@ import { ResponseModelObject } from '../Models/ResponseModelObject';
 export class BookingService {
   
   bookingDetails: BookingDetailsVM;
+  bookingBackVM: BookingBackVM;
+  
 
-  constructor(private httpClient: HttpClient) {
-    this.bookingDetails=new BookingDetailsVM();
+  constructor(private httpClient: HttpClient ) {
+    this.bookingDetails= new BookingDetailsVM();
+    this.bookingBackVM = new BookingBackVM();
   }
 
   AddBookingDetails(selectedResourceIds : number[],
@@ -32,7 +36,10 @@ export class BookingService {
     this.bookingDetails.totalCost = totalCost;
     this.bookingDetails.serviceId = servId;
   }
-
+  AddBookingBack(selectedIds :number[], totalCost: number){
+    this.bookingBackVM.selectedIDs = selectedIds;
+    this.bookingBackVM.totalCost= totalCost;
+  }
   getAllBookingItems(): Observable<ResponseModel<BookingItem>> {
     return this.httpClient.get<ResponseModel<BookingItem>>(apiUrl + `BookingItem`);
   }

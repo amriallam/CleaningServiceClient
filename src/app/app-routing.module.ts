@@ -10,7 +10,7 @@ import { RegistrationComponent } from './core/account/registration/registration.
 import { ForgetPasswordComponent } from './core/account/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './core/account/reset-password/reset-password.component';
 import { ConfirmEmailComponent } from './core/account/confirm-email/confirm-email.component';
-import { BookingModule } from './components/booking/booking.module';
+// import { BookingModule } from './components/booking/booking.module';
 import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
 import { FaqComponent } from './shared/components/faq/faq.component';
 import { UnderMaintenanceComponent } from './shared/components/under-maintenance/under-maintenance.component';
@@ -27,7 +27,7 @@ const routes: Routes = [
 
   { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: 'resource', loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) }, //1 , 1.1
-  { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => BookingModule) }, //2
+  { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => m.BookingModule) }, //2
 
   { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
 
