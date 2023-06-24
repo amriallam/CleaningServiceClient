@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchedulerComponent } from './components/home/scheduler/scheduler.component';
 import { Select2Module } from 'ng-select2-component';
 import { FaqComponent } from '../shared/components/faq/faq.component';
-
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { FaqComponent } from '../shared/components/faq/faq.component';
     ReactiveFormsModule,
     NgbDatepicker,
     FormsModule,
-    Select2Module
+    Select2Module,
+    NgxSkeletonLoaderModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

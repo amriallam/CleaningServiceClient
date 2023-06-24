@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
@@ -15,8 +15,9 @@ import { ServiceService } from 'src/app/core/services/service.service';
   styleUrls: ['./scheduler.component.css']
 })
 
-export class SchedulerComponent implements OnInit {
-  loadingFlag: boolean = false
+export class SchedulerComponent implements AfterViewInit {
+  loadingFlag:boolean = false;
+  skeletonLoadingFlag:number=0;
   SwitchForm: boolean = false;
   BookingForm: FormGroup = this.formBuilder.group({
     day: ['', [Validators.required]],
@@ -27,6 +28,7 @@ export class SchedulerComponent implements OnInit {
   get day() { return this.BookingForm.controls['day'] }
   get startTime() { return this.BookingForm.controls['startTime'] }
   get endTime() { return this.BookingForm.controls['endTime'] }
+
 
   ServiceData: Select2Option[] = [];
   currentService: string = "";
@@ -42,10 +44,11 @@ export class SchedulerComponent implements OnInit {
     this.currentService = value;
   }
 
-  updateLocation(value: any) {
+  updateLocation(value: any,LocationButton:HTMLButtonElement) {
     if (value == "") { return; }
     this.LocationWarning = false;
     this.currentLocation = value;
+    LocationButton.disabled = false;
   }
 
   minDate: NgbDateStruct;
@@ -55,11 +58,16 @@ export class SchedulerComponent implements OnInit {
     this.minDate = { year: +today[0], month: +today[1], day: +today[2] };
   }
 
-  ngOnInit(): void {
-    // this.regionService.getSystemRegions().subscribe(
-    //   e =>
-    //     this.RegionData =this.RegionToSelect2Option(e.data)
-    // )
+  ngAfterViewInit(): void {
+    this.regionService.getSystemRegions().subscribe(
+      e =>{
+        if(e.data.length > 0){
+        this.RegionData =this.RegionToSelect2Option(e.data)
+        this.skeletonLoadingFlag = 2;
+        }
+        else  this.skeletonLoadingFlag = 1;
+      }
+    )
   }
 
   IsBookingFormValid() {
@@ -67,23 +75,29 @@ export class SchedulerComponent implements OnInit {
     return true;
   }
 
-  SubmitRegion(caller:Select2) {
+  SubmitRegion(caller: Select2,LocationButton:HTMLButtonElement) {
     this.loadingFlag = true;
     this.serviceService.getAvailableServiceByRegion(+this.currentLocation).subscribe(
       e => {
         if (e.data.length > 0) {
-          // this.ServiceData = this.ServicesToSelect2Option(e.data);
+          this.ServiceData = this.ServicesToSelect2Option(e.data);
           this.SwitchForm = true;
-        }
-        else {
-          this.RegionData.find(region=>region.value==this.currentLocation)!.disabled=true;
+        } else {
+          this.RegionData.find(region => region.value == this.currentLocation)!.disabled = true;
           this.currentLocation = '';
-          caller.value='';
-          this.toastr.warning("Unforunatly no services for this region")
+          caller.value = '';
+          this.toastr.warning("Unfortunately, no services available for this region.");
+          LocationButton.disabled=true;
         }
         this.loadingFlag = false;
-      })
+      },
+      error => {
+        this.loadingFlag = false; // Handle error case as well
+        LocationButton.disabled=true;
+      }
+    );
   }
+
 
   SubmitBookingFilter() {
     if (this.currentService == '') this.ServiceWarning = true;

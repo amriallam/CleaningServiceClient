@@ -1,13 +1,24 @@
-<form *ngIf="!SwitchForm; else registerForm"
+<form *ngIf="skeletonLoadingFlag==0;" class="appointment d-flex flex-column align-items-center flex-lg-row gap-lg-3 px-5 py-4 justify-content-center bg-white">
+  <ngx-skeleton-loader count="1" [theme]="{ width: '200px', margin:'0px' }"></ngx-skeleton-loader>
+</form>
+
+<ng-container *ngIf="skeletonLoadingFlag==1">
+  <form class="appointment d-flex flex-column align-items-center flex-lg-row gap-lg-3 px-5 py-4 justify-content-center bg-white">
+    <span class="text-center">Booking service is currently down.<br> We are working to fix it!</span>
+  </form>
+</ng-container>
+
+<ng-container *ngIf="skeletonLoadingFlag==2;">
+  <form *ngIf="!SwitchForm; else registerForm"
   class="appointment d-flex flex-column align-items-center flex-lg-row gap-lg-3 px-5 py-4 justify-content-center bg-white"
-  (ngSubmit)="SubmitRegion(select2Region)">
+  (ngSubmit)="SubmitRegion(select2Region,locationButton)">
   <div class="d-flex flex-row gap-3 justify-content-between align-items-centerd">
     <div class="pt-lg-4">
       <select2 #select2Region [data]="RegionData" styleMode="material"
-        (update)="updateLocation($event.value)" placeholder="Select Location"></select2>
+        (update)="updateLocation($event.value,locationButton)" placeholder="Select Location"></select2>
     </div>
   </div>
-  <button [disabled]="currentLocation=='' || loadingFlag"
+  <button #locationButton disabled
     class="btn btn-primary mt-lg-3 py-lg-2">
     <div *ngIf="loadingFlag" class="spinner-border spinner-border-sm text-light"
       role="status"></div>
@@ -53,7 +64,6 @@
           type="time" formControlName="endTime" min="09:00" class="form-control">
       </div>
     </div>
-
     <button [disabled]="!IsBookingFormValid() || loadingFlag"
       class="btn btn-primary mt-lg-3 py-lg-2">
       <div *ngIf="loadingFlag"
@@ -66,3 +76,4 @@
   </form>
   <p (click)="backToRegionForm()" class="back-to-region"><i class="bi bi-arrow-left me-1"></i> Select another region</p>
 </ng-template>
+</ng-container>

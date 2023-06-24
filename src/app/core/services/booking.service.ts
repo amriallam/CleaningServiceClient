@@ -13,6 +13,7 @@ import { ResponseModelObject } from '../Models/ResponseModelObject';
   providedIn: 'root'
 })
 export class BookingService {
+  
   bookingDetails: BookingDetailsVM;
 
   constructor(private httpClient: HttpClient) {

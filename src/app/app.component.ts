@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HotelApp';
-  constructor() {}
+  private maintenanceRoutes: string[] = ['/maintenance'];
+  constructor(private router: Router) {}
+  disableHeaderFooter(){
+    return this.maintenanceRoutes.includes(this.router.url);
+  }
 }
