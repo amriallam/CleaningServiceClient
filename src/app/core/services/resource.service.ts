@@ -22,9 +22,10 @@ export class ResourceService {
     return this.http.get<ResponseModelObject<Resource>>(apiUrl + "Resource/" + id)
   }
 
-  GetAvailableResources(serviceId: number, date: string, from: string, to: string){
+  GetAvailableResources(serviceId: number, date: string, from: string, to: string, regionId: number): Observable<ResponseModel<Resource>> {
     const sId = Number(serviceId)
-    return this.http.get<Resource[]>(apiUrl + `Schedule/GetAvailableResources?_day=${date}&_serviceId=${sId}&_startTime=${from}&_endTime=${to}`);
+    const regId = Number(regionId);
+    return this.http.get<ResponseModel<Resource>>(apiUrl + `Schedule/GetAvailableResources?_day=${date}&_serviceId=${sId}&_startTime=${from}&_endTime=${to}&RegionId=${regId}`);
   }
 
 }

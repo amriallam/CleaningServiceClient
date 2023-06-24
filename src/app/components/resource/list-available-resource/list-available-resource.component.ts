@@ -63,6 +63,7 @@ export class ListAvailableResourceComponent {
   date!: string;
   from!: string;
   to!: string;
+  regionId !: number;
 
   counter: number = 0;
   selectedResources: any[] = [];
@@ -92,6 +93,7 @@ export class ListAvailableResourceComponent {
       this.date = params['date'];
       this.from = params['from'];
       this.to = params['to'];
+      this.regionId = params['regionId'];
     });
 
     this.watchService.LimitReached.subscribe((LimitReachedStatus) => {
@@ -103,11 +105,13 @@ export class ListAvailableResourceComponent {
 
   ngOnInit() {
     this.resourceService
-    .GetAvailableResources(this.serviceId, this.date, this.from, this.to)
+    .GetAvailableResources(this.serviceId, this.date, this.from, this.to, this.regionId)
     .subscribe((res) => {
-      this.availableResources = res;
-      this.filteredResources = res;
-      this.totalNoOfResources = res.length;
+      console.log("Resource")
+      console.log(res);
+      this.availableResources = res.data;
+      this.filteredResources = res.data;
+      this.totalNoOfResources = res.data.length;
 
       if(this.bookingService.bookingBackVM   != null ){
         this.bookingService.bookingBackVM.selectedIDs?.forEach(resId => {

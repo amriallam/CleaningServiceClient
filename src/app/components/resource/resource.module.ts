@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
-  {path: '', component: ListAvailableResourceComponent,data: { queryParams: ['serviceId', 'date','from','to'] }},
+  {path: '', component: ListAvailableResourceComponent,data: { queryParams: ['serviceId', 'date','from','to', 'regionId'] }},
   {path:"details/:id",component: ResourceDetailsComponent}
 ]
 
