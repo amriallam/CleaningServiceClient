@@ -7,11 +7,9 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { RegistrationComponent } from './components/registration/registration.component';
 import { RouterModule } from '@angular/router';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-
-
+import { HtmlDecoderPipe } from './pipes/htmlparse.pipe';
 @NgModule({
-  declarations: [ LoginComponent, ForgetPasswordComponent, RegistrationComponent, NotFoundComponent],
+  declarations: [ LoginComponent, ForgetPasswordComponent, RegistrationComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -19,6 +17,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     NgbDatepickerModule,
     FormsModule
   ],
+  providers:[HtmlDecoderPipe],
   exports: []
 })
 export class SharedModule { }

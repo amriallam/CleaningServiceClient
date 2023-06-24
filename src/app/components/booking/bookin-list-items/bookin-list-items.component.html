@@ -1,54 +1,100 @@
-<!-- <section class="section-padding section-bg">
-    <div class="container"> -->
-        <!-- <div class="row">
-            <div class="col-lg-12 col-12 text-center">
-                <h3 class="mb-4">Booking Details</h3>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 d-flex justify-content-between align-items-center"  *ngFor="let resource of resourceList">
-                <div class="card ">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class=" col-12">
-                                <div class="services-image-wrap">
-                                         <a href="services-detail.html">
-                                             <img src="../../../../assets/images/services/man-polishing-car-inside-car-service.jpg" class="services-image img-fluid" alt="">
-                                             <img src="../../../../assets/images/services/man-polishing-car-inside.jpg" class="services-image services-image-hover img-fluid" alt="">
-                                             <div class="services-icon-wrap">
-                                                 <div class="d-flex justify-content-between align-items-center">
-                                                     <p class="text-white mb-0">
-                                                         <i class="bi-cash me-2"></i>
-                                                         {{resource.price }}
-                                                     </p>
-                                                 </div>
-                                             </div>
-                                         </a>
-                                     </div>
-                                 </div>
-                                 <div class="m-3 col-12 d-flex align-items-center">
-                                     <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                                         <h4 class="services-title mb-1 mb-lg-2">
-                                             <h5 class="services-title-link" >{{resource.name}} </h5>
-                                         </h4>
-                                     </div>
-                                 </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <div class="row m-3 bg-white p-3">
-            <div class="col-4 ">
-                <h5 class="text-primary">Total Price</h5>
-            </div>
-            <div class="col-4 ">
-                <h3 class="text-primary">{{totalPrice}} </h3>
-            </div>
+<section class="section-bg">
+  <section class="banner-section d-flex justify-content-center align-items-end">
+    <div class="section-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 col-12">
+          <h1 class="text-white mb-lg-0">Booking Details</h1>
         </div>
-        <!-- <div class="d-flex justify-content-between">
-            <button class="custom-btn btn button button--atlas m-2" (click)="back()">Back</button>
-            <button class="custom-btn btn button button--atlas m-2" (click)="ConfirmBooing()">Booking Now</button>
-        </div> -->
-
-    <!-- </div>
-</section> -->
+        <div class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Booking</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td>Service</td>
+              <td>{{service?.name}}</td>
+            </tr>
+            <tr>
+              <td>Day</td>
+              <td>{{bookingData.date}}</td>
+            </tr>
+            <tr>
+              <td>From</td>
+              <td>{{bookingData.from}}</td>
+            </tr>
+            <tr>
+              <td>To</td>
+              <td>{{bookingData.to}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h6 class="text-primary">Booking Resources</h6>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th>Resource Name</th>
+              <th>Resource Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of bookingData.selectedResourceNames, let x = index">
+              <td>{{x+1}}</td>
+              <td>{{item}}</td>
+            </tr>
+            <tr>
+              <td>
+                <h5 class="text-primary">Total Price</h5>
+              </td>
+              <td>
+                <h5 class="text-primary">{{bookingData.totalCost}}</h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <div class="custom-form bg-white shadow-sm mx-auto p-4">
+          <form>
+            <div class="form-group">
+              <label for="inputCity">City:</label>
+              <input type="text" class="form-control" id="inputCity" placeholder="Enter your city">
+            </div>
+            <div class="form-group">
+              <label for="inputState">State:</label>
+              <input type="text" class="form-control" id="inputState" placeholder="Enter your state">
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Address:</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="Enter your address">
+            </div>
+            <div class="container">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <button class="btn btn-primary" type="submit" (click)="ConfirmBooing('Paypal')">Booking with Paypal</button>
+                </div>
+                <div>
+                  <button class="btn btn-primary" type="submit" (click)="ConfirmBooing('card')">Booking With Card</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="d-flex justify-content-end mt-2">
+          <button class="back-button mb-3" (click)="back()">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

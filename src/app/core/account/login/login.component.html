@@ -26,18 +26,37 @@
 </section>
 
 <section class="contact-section spad">
-  <div class="container">
-    
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col-12 col-lg-5 order-2 order-lg-1">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <img
+          src="../../../../assets/images/login.svg"
+          alt=""
+          class="w-75 mx-auto"
+        />
+        <h5 class="text-center text-primary">
+          Don't have an account? <a href="/register">Register</a>
+        </h5>
+      </div>
+    </div>
 
+    <div class="col-12 col-lg-7 order-1 order-lg-2">
+      <div class="custom-form bg-white">
       
-      <div class="custom-form bg-white shadow-lg my-5 w-75 mx-auto">
         <form
           class="custom-form consulting-form"
           [formGroup]="loginFormGroup"
           (ngSubmit)="onSubmit()"
         >
           <div class="row">
+            <div class="form-title mb-3">
+              <h3 class="text-primary">Login</h3>
+              <p>All fields marked with an asterisk (*) are required</p>
+            </div>
+
             <div class="col-lg-12">
+              <label for="email">Email *</label>
               <input
                 id="email"
                 name="email"
@@ -45,7 +64,8 @@
                 placeholder="Enter your email"
                 formControlName="email"
                 class="form-control"
-              />
+                [class]="emailFEValidation? 'is-invalid' : ''"
+                />
             </div>
             <div
               class="col-md-12"
@@ -55,15 +75,15 @@
                 *ngFor="
                   let missingFieldErrorItem of missingFeildsErrosObject['Email']
                 "
-                class="alert alert-danger"
+                class="text-danger"
               >
                 <div>
                   {{ missingFieldErrorItem }}
                 </div>
               </div>
             </div>
-            <div class="col-md-12" *ngIf="this.emailFEValidation|| false">
-              <div class="alert alert-danger" *ngIf="this.emailFEValidation" >
+            <div class="col-md-12 mb-2" *ngIf="this.emailFEValidation|| false">
+              <div class="text-danger" *ngIf="this.emailFEValidation" >
                 <div >
                   <div
                     *ngIf="
@@ -83,12 +103,14 @@
 
            
             <div class="col-lg-12">
+              <label for="email">Password *</label>
+
               <input
                 type="password"
                 placeholder="Enter your Password"
                 formControlName="password"
                 class="form-control"
-
+                [class]="passwordFEValidation? 'is-invalid' : ''"
               />
             </div>
             <div
@@ -101,7 +123,7 @@
                     'Password'
                   ]
                 "
-                class="alert alert-danger"
+                class="text-danger"
               >
                 <div>
                   {{ missingFieldErrorItem }}
@@ -109,8 +131,8 @@
               </div>
             </div>
 
-            <div class="col-md-12" *ngIf="this.passwordFEValidation">
-              <div class="alert alert-danger"
+            <div class="col-md-12 mb-2" *ngIf="this.passwordFEValidation">
+              <div class="text-danger"
 
               >
                 <div *ngIf="this.passwordFEValidation">
@@ -139,7 +161,7 @@
             </div>
 
 
-            <div class="col-lg-12">
+            <div class="col-lg-12 my-3">
               <button type="submit" class="w-100 mb-3 form-control">Login</button>
             </div>
 
@@ -154,8 +176,8 @@
         </form>
       
         </div>
-
+      </div>
       
-   
+   </div>
   </div>
 </section>

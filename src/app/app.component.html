@@ -1,7 +1,7 @@
 <div class="d-flex flex-column h-100 justify-content-between">
-  <div class="d-flex flex-column">
-    <app-navbar></app-navbar>
+  <app-navbar *ngIf="!disableHeaderFooter()"></app-navbar>
+  <div class="flex-grow-1">
+    <router-outlet></router-outlet>
   </div>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <app-footer *ngIf="!disableHeaderFooter()"></app-footer>
 </div>

@@ -12,15 +12,6 @@ export class BookingWatchService {
 
   constructor(private servicesService:ServiceService) { }
 
-  // GetMaxNumberOfResource(serviceId:number){
-  //   this.servicesService.getMetadataById(serviceId).subscribe(e=>
-  //   {
-  //     this.maxNumberOfResources=e.data[0].noOfResources
-  //
-  //   })
-
-  // }
-
   GetMaxNumberOfResource(serviceId: number): Observable<number> {
     return this.servicesService.getMetadataById(serviceId).pipe(
       map(e => {
@@ -34,13 +25,11 @@ export class BookingWatchService {
     this.currentNoOfResources++;
     if(this.currentNoOfResources==this.maxNumberOfResources)
       this.LimitReached.next(true);
-      console.log(this.maxNumberOfResources)
   }
 
   DecreaseCurrentNumberOfResource(){
     this.currentNoOfResources--;
     this.LimitReached.next(false);
-    console.log(this.maxNumberOfResources)
   }
 
 }

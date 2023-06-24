@@ -3,8 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/core/services/login.service';
-
-
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +13,7 @@ import { LoginService } from 'src/app/core/services/login.service';
 export class LoginComponent {
   missingFeildsErrosObject: any;
   loginFormGroup: FormGroup;
+  userBookingAppId: any;
   fixedErrorToast() {
     return this.toastr.error('Registration Failed please try again');
   }
@@ -63,6 +63,10 @@ export class LoginComponent {
     return this.emailFEValidation, this.passwordFEValidation;
   }
 
+  jwtDecode(res: any) {
+    return jwt_decode(res.token) ? jwt_decode(res.token) : res;
+  }
+
   onSubmit() {
     if (this.loginFormGroup.invalid) {
       // alert('Please fill all the required fields');ValidationFE()
@@ -78,17 +82,21 @@ export class LoginComponent {
           this.loginFormGroup.value.password
         )
         .subscribe((res) => {
-          console.log(res);
-          if(res.token){
+         
+
+          if (res.token) {
             
-              localStorage.setItem('userBookingAppToken', res.token);
-              // show toast from ngx-toastr
-              this.toastr.success('Login Successful', 'Welcome');
-              setTimeout(() => {
-                this.router.navigate(['/']);
-              }, 3000);
-            
-          } else{
+            this.userBookingAppId = this.jwtDecode(res)?.Id
+              ? this.jwtDecode(res)?.Id
+              : this.jwtDecode(res)?.Id;
+            localStorage.setItem('userBookingAppId', this.userBookingAppId);
+            localStorage.setItem('userBookingAppToken', res.token);
+            // show toast from ngx-toastr
+            this.toastr.success('Login Successful', 'Welcome');
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 3000);
+          } else {
             console.log(res);
             // return res.json().then((data: any) => {
             //   console.log(data);
@@ -103,7 +111,7 @@ export class LoginComponent {
             //     this.toastr.error(data[0].description, 'Login Failed');
             //   }
             // });
-          } 
+          }
           // else {
           //   alert('else block')
           //   return;

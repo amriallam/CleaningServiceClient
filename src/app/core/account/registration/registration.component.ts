@@ -53,14 +53,34 @@ export class RegistrationComponent implements OnInit {
         ],
       }),
 
-      password: new FormControl('', []),
+      password: new FormControl('', {
+        updateOn: 'submit',
+        validators: [
+          Validators.required,
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};\':"\\\\|,.<>/?]).{8,}$'
+          ),
+        ],
+      }),
+      confirmpassword: new FormControl('', {
+        updateOn: 'submit',
+        validators: [
+          Validators.required,
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};\':"\\\\|,.<>/?]).{8,}$'
+          ),
+        ],
+      }),
     });
   }
-
+  // afnanElhussini@123
   firstNameFEValidation = false;
   lastNameFEValidation = false;
   emailFEValidation = false;
   userNameFEValidation = false;
+  passwordFEValidation = false;
+  confirmpasswordFEValidation = false;
+  matchPassword = false;
 
   ValidationFE() {
     if (this.userRegisterForm.controls['firstName'].invalid) {
@@ -83,16 +103,42 @@ export class RegistrationComponent implements OnInit {
     } else {
       this.userNameFEValidation = false;
     }
+    if (this.userRegisterForm.controls['password'].invalid) {
+      this.passwordFEValidation = true;
+    } else {
+      this.passwordFEValidation = false;
+    }
+    if (this.userRegisterForm.controls['confirmpassword'].invalid) {
+      this.confirmpasswordFEValidation = true;
+    } else {
+      this.confirmpasswordFEValidation = false;
+    }
+  }
+
+  checkPasswords() {
+    let pass = this.userRegisterForm.controls['password'].value;
+    let confirmPass = this.userRegisterForm.controls['confirmpassword'].value;
+    if (pass != confirmPass) {
+      this.matchPassword = true;
+      // console.log(' not matched' + pass + ' ' + confirmPass);
+    } else {
+      this.matchPassword = false;
+      // console.log('matched' +pass + ' ' + confirmPass);
+    }
   }
 
   onSubmit() {
     if (this.userRegisterForm.invalid) {
+      this.checkPasswords();
       this.ValidationFE();
     } else {
       this.firstNameFEValidation = false;
       this.lastNameFEValidation = false;
       this.emailFEValidation = false;
       this.userNameFEValidation = false;
+      this.passwordFEValidation = false;
+      this.confirmpasswordFEValidation = false;
+      this.matchPassword = false;
       this.registerService
         .register(
           this.userRegisterForm.value['email'],
@@ -102,12 +148,11 @@ export class RegistrationComponent implements OnInit {
           this.userRegisterForm.value['password']
         )
         .subscribe((res) => {
-          this.toastr.success('Registration Successful', 'Success');
-          this.toastr.info('Please confirm your email', 'Info');
-          setTimeout(() => {
-            this.router.navigate(['/confirm-email']);
-          }, 2000);
+          if (res.status == 200) {
+            this.router.navigate(['/email-sent']);
+          }
         });
+      // this.router.navigate(['/email-sent']);
     }
   }
 

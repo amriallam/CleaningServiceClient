@@ -13,17 +13,18 @@ import { CoreModule } from './core/core.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountModule } from './core/account/account.module';
 import { ResourceModule } from './components/resource/resource.module';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-
+    AppComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+    ComponentsModule,
     SharedModule,
     CoreModule,
     HttpClientModule,
@@ -32,15 +33,13 @@ import { ResourceModule } from './components/resource/resource.module';
       tapToDismiss: true,
       preventDuplicates: true,
       closeButton: true,
-      progressBar: true,
       disableTimeOut: true,
     }),
     RouterModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AccountModule,
-    ResourceModule,
-    
+    ResourceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

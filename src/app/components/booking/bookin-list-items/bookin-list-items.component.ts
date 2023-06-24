@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { BookingModel } from 'src/app/core/Models/BookinModel';
 import { BookingStaus } from 'src/app/core/Models/BookingStaus';
 import { Resource } from 'src/app/core/Models/Resource';
+import { Service } from 'src/app/core/Models/Service';
 import { BookingDetailsVM } from 'src/app/core/ViewModels/booking-details-vm';
 import { BookingService } from 'src/app/core/services/booking.service';
 import { ResourceService } from 'src/app/core/services/resource.service';
-
+import { ServiceService } from 'src/app/core/services/service.service';
 @Component({
   selector: 'app-bookin-list-items',
   templateUrl: './bookin-list-items.component.html',
@@ -18,61 +19,59 @@ export class BookinListItemsComponent {
   resourceList :Resource[]=[];
   totalPrice : number =0;
   Bookingmodel?: BookingModel;
+  bookingData !: BookingDetailsVM ;
+  service ?: Service ;
   constructor(private resourceService: ResourceService,
     private location :Location,
-    private bookingService : BookingService){
+    private bookingService : BookingService,
+    private serviceService : ServiceService){
+      if(this.bookingService.bookingDetails.selectedResIds != undefined){
+        // console.log("here" +bookingService.bookingDetails);
+        this.bookingData = bookingService.bookingDetails;
+        this.resourceIds = this.bookingService.bookingDetails.selectedResIds;
 
-      bookingService.bookingDetails = new BookingDetailsVM(
-        '202,3-06-20','09:00:00','12:00:00', 'tanta', [1,2,3]);
-
-      if(this.bookingService.bookingDetails.selectedResIds != undefined)
-        this.resourceIds = this.bookingService.bookingDetails.selectedResIds ;
-      console.log(bookingService.bookingDetails);
-    }
-  ngOnInit(){
-
-    this.resourceIds.forEach(element => {
-      this.resourceService.GetResouceById(+element).subscribe((res)=>{
-        console.log(res.data)
-        this.resourceList.push(res.data)
-        this.totalPrice += res.data.price;
-      });
-    })
+        // console.log(this.resourceIds);
+      }
 
   }
+  ngOnInit(){
+    if(this.bookingData.serviceId != undefined)
+  {
+    this.serviceService.getAllById(+this.bookingData.serviceId).subscribe(res =>
+        this.service= res.data[0]
+      )
+    }
+  }
+
   back(){
+    this.bookingService.AddBookingBack(
+      this.resourceIds,
+      this.bookingService.bookingDetails.totalCost as number
+    );
     this.location.back()
   }
+  // adding address , userId from form
+  ConfirmBooing(payMethod :string){
+    this.Bookingmodel = new BookingModel(
+      this.bookingService.bookingDetails.date as string ,
+      this.bookingService.bookingDetails.from as string,
+      this.bookingService.bookingDetails.to as string,
+      "tanta",
+      this.bookingService.bookingDetails.totalCost as number,
+      '41d1d38c-9fc3-451f-a33c-3e83663c368a',
+      this.bookingService.bookingDetails.serviceId as number,
+      this.bookingService.bookingDetails.selectedResIds as number[]
+      );
 
-  ConfirmBooing() {
-    alert("booking process ");
-    const dateString = this.bookingService.bookingDetails.date;
-    const date = dateString !== undefined ? new Date(dateString as unknown as string) : undefined;
-
-    if(date){
-
-      this.Bookingmodel = new BookingModel(
-        date ,
-        this.bookingService.bookingDetails.from,
-        this.bookingService.bookingDetails.to,
-        this.bookingService.bookingDetails.location,
-        BookingStaus.Pending,
-        this.totalPrice,
-        '00eb6241-75d1-4280-8f4b-a5f424234ba7',
-        1,
-        this.bookingService.bookingDetails.selectedResIds
-        );
-      }
-      console.log(this.Bookingmodel);
-      if(this.Bookingmodel!= undefined){
-
-        // this.bookingService.AddNewBoooking(this.Bookingmodel).subscribe(res =>{
-        //   console.log(res);
-        //   alert('gooing to payment ');
-        // })
+      if(this.Bookingmodel){
+        this.bookingService.AddNewBoooking(this.Bookingmodel, payMethod).subscribe(res =>{
+          console.log(res.data);
+          window.location.href =res.data.result;
+        })
       }
       else{
-        alert('backend handeled ');
+        alert('backend handeled');
       }
   }
+
 }

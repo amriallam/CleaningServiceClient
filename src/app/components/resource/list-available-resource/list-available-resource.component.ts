@@ -58,18 +58,25 @@ import { ResourceDetailsComponent } from '../resource-details/resource-details.c
 
 export class ListAvailableResourceComponent {
   availableResources: Resource[] = [];
+  filteredResources: Resource[] = [];
   serviceId!: number;
   date!: string;
   from!: string;
   to!: string;
+  regionId !: number;
 
   counter: number = 0;
   selectedResources: any[] = [];
   selectdedResIds: number[] = [];
+  selectedResNames: string[] = [];
   status: boolean;
 
   totalPrice: number = 0;
   noOfResources!: number;
+
+  p: number = 1;
+  resPerPage: number = 6;
+  totalNoOfResources !: number
 
   constructor(
     private resourceService: ResourceService,
@@ -79,42 +86,71 @@ export class ListAvailableResourceComponent {
     private router: Router,
     private modal: NgbModal
   ) {
+
     this.status = false;
     this.route.queryParams.subscribe((params) => {
       this.serviceId = params['serviceId'];
       this.date = params['date'];
       this.from = params['from'];
       this.to = params['to'];
+      this.regionId = params['regionId'];
     });
 
     this.watchService.LimitReached.subscribe((LimitReachedStatus) => {
       this.status = LimitReachedStatus;
+      console.log(this.status);
     });
 
   }
 
-  isSelectionDisabled(res: any): boolean {
-    return this.selectedResources.includes(res);
-  }
-
   ngOnInit() {
     this.resourceService
-      .GetAvailableResources(this.serviceId, this.date, this.from, this.to)
-      .subscribe((res) => {
-        this.availableResources = res;
+    .GetAvailableResources(this.serviceId, this.date, this.from, this.to, this.regionId)
+    .subscribe((res) => {
+      console.log("Resource")
+      console.log(res);
+      this.availableResources = res.data;
+      this.filteredResources = res.data;
+      this.totalNoOfResources = res.data.length;
+
+      if(this.bookingService.bookingBackVM   != null ){
+        this.bookingService.bookingBackVM.selectedIDs?.forEach(resId => {
+          this.availableResources.forEach(res => {
+            if(res.id == resId){
+              this.selectedResources.push(res);
+            }
+          })
+          this.totalPrice = this.bookingService.bookingBackVM.totalCost as number;
+        });
+      }
+      this.availableResources.forEach((resource) => {
+        if (this.selectedResources.includes(resource)) {
+          resource.selected = true;
+        }
+        this.status = true;
       });
 
-    this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
-      (maxNumberOfResources) => {
-        this.watchService.maxNumberOfResources = maxNumberOfResources;
-        this.noOfResources = maxNumberOfResources;
-      }
-    );
+    });
+
+  this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
+    (maxNumberOfResources) => {
+      this.watchService.maxNumberOfResources = maxNumberOfResources;
+      this.noOfResources = maxNumberOfResources;
+    }
+  );
+
   }
 
-
+  isSelectionDisabled(res: any): boolean {
+    if (this.isResourceSelected(res)) {
+      return false;
+    } else {
+      return this.selectedResources.length >= this.noOfResources;
+    }
+  }
   isResourceSelected(res: any): boolean {
-    return this.selectedResources.includes(res);
+    // return this.selectedResources.includes(res);
+    return res.selected;
   }
 
   selectResource(res: any) {
@@ -128,19 +164,33 @@ export class ListAvailableResourceComponent {
       this.watchService.IncreateCurrentNumberOfResource();
       this.totalPrice += res.price;
     }
+    res.selected = !res.selected;
+    if(this.selectedResources.length == this.noOfResources)
+      this.status = true
+    else{
+    this.status = false;
+    }
   }
+
 
   book() {
     this.selectedResources.forEach((res) => {
       this.selectdedResIds.push(res.id);
+      this.selectedResNames.push(res.name);
     });
+
     this.bookingService.AddBookingDetails(
       this.selectdedResIds,
+      this.selectedResNames,
       this.date,
       this.from,
-      this.to
+      this.to,
+      this.serviceId,
+      this.totalPrice
     );
-    this.router.navigateByUrl('booking/bookingList');
+
+    this.router.navigate(['booking/bookingList']);
+
   }
 
   openModal(Resource: Resource) {
@@ -149,4 +199,16 @@ export class ListAvailableResourceComponent {
     });
     modelRef.componentInstance.resId = Resource.id;
   }
+
+  handleFiltersChanged(filters: any) {
+    const { resourceName, price } = filters;
+    console.log(filters)
+    this.filteredResources = this.availableResources.filter((resource: Resource) => {
+      const matchesResourceName = !resourceName || resource.name.toLowerCase().includes(resourceName.toLowerCase());
+      const matchesPrice = !price || resource.price === price;
+
+      return matchesResourceName && matchesPrice;
+    });
+  }
+
 }

@@ -1,0 +1,142 @@
+<section
+  class="banner-section-faq d-flex justify-content-center align-items-end">
+  <div class="section-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        <h1 class="text-white mb-lg-0">Frequently Asked Questions?</h1>
+      </div>
+      <div
+        class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <ng-container *ngIf="skeletonLoading==0">
+    <div class="w-50 mx-auto">
+      <ngx-skeleton-loader count="5" appearance="line" animation="pulse"></ngx-skeleton-loader>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="skeletonLoading==1">
+    <div class="container d-flex align-items-center gap-5">
+      <div class="col-lg-7 col-12">
+        <h2 class="mb-4">Oops! It seems like we've got some clever users here
+          who
+          haven't left any FAQs behind.</h2>
+        <p class="fs-5 fw-light">Don't worry, we're experts in the art of
+          answering questions, even the ones you haven't asked yet! So go ahead,
+          fire away with your queries, and we'll be delighted to assist you.</p>
+      </div>
+      <form
+        class="custom-form consulting-form bg-white shadow-lg mb-5 mb-lg-0 col-12 col-lg-5"
+        action="#" method="post" role="form">
+        <div class="consulting-form-header d-flex align-items-center">
+          <h4 class="mb-4">Submit an Inquiry</h4>
+        </div>
+
+        <div class="consulting-form-body">
+          <div class="col-12">
+            <input class="form-control" placeholder="Enter your mail"
+              type="email">
+          </div>
+
+          <select class="form-select form-control" name="job-salary"
+            id="job-salary" aria-label="Default select example">
+            <option selected>Service Type</option>
+            <option value="1">House cleaning</option>
+            <option value="2">Car washing</option>
+            <option value="3">Office cleaning</option>
+            <option value="4">Factory cleaning</option>
+            <option value="5">Payment</option>
+            <option value="6">Other</option>
+          </select>
+          <textarea placeholder="What is your inquiry?" class="form-control"
+            cols="30" rows="4"></textarea>
+
+          <div class="col-lg-6 col-md-10 col-8 mx-auto">
+            <button type="submit" class="form-control">Submit Inquiry</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="skeletonLoading==2">
+    <div class="container d-flex flex-column gap-3">
+      <div class="d-flex gap-2">
+        <input #search type="text" [(ngModel)]="searchTerm"
+          placeholder="How can we help you?"
+          class="form-control bg-white shadow-none flex-grow-1" />
+        <span (click)="searchTerm=''" class="input-group-text">
+          <i class="bi bi-x"></i>
+        </span>
+      </div>
+
+      <ul *ngIf="selectedCategory && searchTerm=='';else filteredtaps"
+        class="nav nav-tabs">
+        <li *ngFor="let category of faqCategories" class="nav-item">
+          <a class="nav-link" aria-current="page"
+            [class.active]="category === selectedCategory"
+            (click)="selectCategory(category)">{{category.name}}</a>
+        </li>
+      </ul>
+
+      <ng-template #filteredtaps>
+        <ul class="nav nav-tabs">
+          <ng-container *ngFor="let category of faqCategories">
+            <li *ngIf="hasMatchingQuestion(category)" class="nav-item">
+              <a class="nav-link" aria-current="page"
+                [class.active]="category === selectedCategory"
+                (click)="selectCategory(category)">{{category.name}}</a>
+            </li>
+          </ng-container>
+        </ul>
+      </ng-template>
+
+      <div *ngIf=" searchTerm==''; else filteredQuestion" ngbAccordion
+        [closeOthers]="true">
+        <ng-container>
+          <div *ngFor="let faq of selectedCategory.faqs" ngbAccordionItem>
+            <h2 ngbAccordionHeader class="d-flex align-items-center">
+              <button class="shadow-none" ngbAccordionButton>
+                <span>{{ faq.question }}</span>
+              </button>
+            </h2>
+            <div class="flex-grow-1 mt-2" ngbAccordionCollapse>
+              <div ngbAccordionBody>
+                <p [innerHTML]="faq.answer"></p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <ng-template #filteredQuestion>
+        <div ngbAccordion [closeOthers]="true">
+          <ng-container *ngFor="let faq of selectedCategory.faqs">
+            <div *ngIf="matchesSearchTerm(faq)" ngbAccordionItem>
+              <h2 ngbAccordionHeader class="d-flex align-items-center">
+                <button class="shadow-none" ngbAccordionButton>
+                  <span>{{ faq.question }}</span>
+                </button>
+              </h2>
+              <div class="flex-grow-1 mt-2" ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <p [innerHTML]="faq.answer"></p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </ng-template>
+
+    </div>
+  </ng-container>
+</section>

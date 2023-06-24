@@ -1,0 +1,16 @@
+
+.appointment{
+  position: relative;
+  padding: 10px 30px;
+  border-radius: 10px;
+  bottom: 4rem;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.15) !important;
+}
+.form-control{
+  box-shadow: none !important;
+}
+.back-to-region{
+  position: relative;
+  bottom:40px;
+  cursor: pointer;
+}

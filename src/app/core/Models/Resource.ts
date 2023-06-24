@@ -3,5 +3,8 @@ export class Resource {
     public resourceTypeId: number,
     public price: number,
     public name: string,
-    public id?: number) { }
+    public id?: number,
+    public selected?: boolean) {
+      selected = false;
+    }
 }
