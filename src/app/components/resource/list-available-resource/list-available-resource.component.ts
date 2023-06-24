@@ -55,6 +55,7 @@ import { ResourceDetailsComponent } from '../resource-details/resource-details.c
     ]),
   ],
 })
+
 export class ListAvailableResourceComponent {
   availableResources: Resource[] = [];
   filteredResources: Resource[] = [];
@@ -66,15 +67,24 @@ export class ListAvailableResourceComponent {
   counter: number = 0;
   selectedResources: any[] = [];
   selectdedResIds: number[] = [];
-  status: boolean  ;
+  selectedResNames: string[] = [];
+  status: boolean;
 
+  totalPrice: number = 0;
+  noOfResources!: number;
 
-  constructor(private resourceService: ResourceService,
+  p: number = 1;
+  resPerPage: number = 6;
+  totalNoOfResources !: number
+
+  constructor(
+    private resourceService: ResourceService,
     private route: ActivatedRoute,
     readonly watchService: BookingWatchService,
     private bookingService: BookingService,
     private router: Router,
-    private modal: NgbModal,) {
+    private modal: NgbModal
+  ) {
 
     this.status = false;
     this.route.queryParams.subscribe((params) => {
@@ -84,17 +94,40 @@ export class ListAvailableResourceComponent {
       this.to = params['to'];
     });
 
-    watchService.GetMaxNumberOfResource(this.serviceId)
-    this.watchService.LimitReached.subscribe(LimitReachedStatus => {
+    this.watchService.LimitReached.subscribe((LimitReachedStatus) => {
       this.status = LimitReachedStatus;
       console.log(this.status);
     });
+
   }
 
   ngOnInit() {
-    this.resourceService.GetAvailableResources(this.serviceId, this.date, this.from, this.to).subscribe(res => {
+    this.resourceService
+    .GetAvailableResources(this.serviceId, this.date, this.from, this.to)
+    .subscribe((res) => {
       this.availableResources = res;
+      this.filteredResources = res;
+      this.totalNoOfResources = res.length;
+
+      this.selectedResources.push(this.availableResources[1]);
+      this.selectedResources.push(this.availableResources[2]);
+
+      this.availableResources.forEach((resource) => {
+        if (this.selectedResources.includes(resource)) {
+          resource.selected = true;
+        }
+        this.status = true;
+      });
+
     });
+
+  this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
+    (maxNumberOfResources) => {
+      this.watchService.maxNumberOfResources = maxNumberOfResources;
+      this.noOfResources = maxNumberOfResources;
+    }
+  );
+
   }
 
   isSelectionDisabled(res: any): boolean {
@@ -124,7 +157,7 @@ export class ListAvailableResourceComponent {
     if(this.selectedResources.length == this.noOfResources)
       this.status = true
     else{
-     this.status = false;
+    this.status = false;
     }
   }
 
@@ -145,14 +178,8 @@ export class ListAvailableResourceComponent {
       this.totalPrice
     );
 
-    this.router.navigate(['booking/bookingList'], {
-      queryParams: {
-        selectedResources: JSON.stringify(this.selectedResources),
-        totalPrice: this.totalPrice
-      }
-    });
-    this.bookingService.AddBookingDetails(this.selectdedResIds, this.date, this.from, this.to)
-    this.router.navigateByUrl('booking/bookingList');
+    this.router.navigate(['booking/bookingList']);
+
   }
 
   openModal(Resource: Resource) {
@@ -162,5 +189,15 @@ export class ListAvailableResourceComponent {
     modelRef.componentInstance.resId = Resource.id;
   }
 
-  
+  handleFiltersChanged(filters: any) {
+    const { resourceName, price } = filters;
+    console.log(filters)
+    this.filteredResources = this.availableResources.filter((resource: Resource) => {
+      const matchesResourceName = !resourceName || resource.name.toLowerCase().includes(resourceName.toLowerCase());
+      const matchesPrice = !price || resource.price === price;
+
+      return matchesResourceName && matchesPrice;
+    });
+  }
+
 }

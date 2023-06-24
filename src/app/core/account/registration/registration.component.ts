@@ -57,17 +57,18 @@ export class RegistrationComponent implements OnInit {
         updateOn: 'submit',
         validators: [
           Validators.required,
-          Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};':\"\\\\|,.<>/?]).{8,}$")
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};\':"\\\\|,.<>/?]).{8,}$'
+          ),
         ],
       }),
       confirmpassword: new FormControl('', {
         updateOn: 'submit',
         validators: [
           Validators.required,
-          Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};':\"\\\\|,.<>/?]).{8,}$")
-
-          
-
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};\':"\\\\|,.<>/?]).{8,}$'
+          ),
         ],
       }),
     });
@@ -124,7 +125,6 @@ export class RegistrationComponent implements OnInit {
       this.matchPassword = false;
       // console.log('matched' +pass + ' ' + confirmPass);
     }
-
   }
 
   onSubmit() {
@@ -148,9 +148,11 @@ export class RegistrationComponent implements OnInit {
           this.userRegisterForm.value['password']
         )
         .subscribe((res) => {
-          this.router.navigate(['/email-sent']);
+          if (res.status == 200) {
+            this.router.navigate(['/email-sent']);
+          }
         });
-        this.router.navigate(['/email-sent']);
+      // this.router.navigate(['/email-sent']);
     }
   }
 
