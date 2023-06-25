@@ -8,6 +8,7 @@ import { Resource } from 'src/app/core/Models/Resource';
 import { Service } from 'src/app/core/Models/Service';
 import { BookingDetailsVM } from 'src/app/core/ViewModels/booking-details-vm';
 import { BookingService } from 'src/app/core/services/booking.service';
+import { RegionService } from 'src/app/core/services/region.service';
 import { ResourceService } from 'src/app/core/services/resource.service';
 import { ServiceService } from 'src/app/core/services/service.service';
 @Component({
@@ -31,13 +32,14 @@ export class BookinListItemsComponent {
     private bookingService : BookingService,
     private serviceService : ServiceService,
     private formBuilder : FormBuilder,
+    private regionService :RegionService,
     private router : Router){
       if(this.bookingService.bookingDetails.selectedResIds != undefined){
         this.bookingData = bookingService.bookingDetails;
         this.resourceIds = this.bookingService.bookingDetails.selectedResIds;
       }
       this.bookingForm= this.formBuilder.group({
-        region: [{ value: 'Sample Region', disabled: true }],
+        region: [{ value: '', disabled: true }],
         address: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]*')]],
         paymentMethod: ['', Validators.required]
 
@@ -46,13 +48,19 @@ export class BookinListItemsComponent {
   ngOnInit(){
     if(this.bookingData.serviceId != undefined)
     {
-    this.serviceService.getAllById(+this.bookingData.serviceId).subscribe(res =>
+    this.serviceService.getById(+this.bookingData.serviceId).subscribe(res =>
         this.service= res.data[0]
       )
     }
-    this.bookingForm.patchValue({
-      region: 'tanta'
-    });
+    if(this.bookingService.bookingDetails.regionId != undefined){
+      this.regionService.getSystemRegionsById(this.bookingService.bookingDetails.regionId).subscribe(res => 
+      {
+        console.log(res.data.name)
+        this.bookingForm.patchValue({
+          region: res.data.name
+        });
+      })
+    }
   }
 
   back(){
@@ -86,7 +94,7 @@ export class BookinListItemsComponent {
         console.log(this.fullAddress)
         const paymentMethod = this.bookingForm.get('paymentMethod')?.value;
         if(this.bookingmodel){
-          console.log(this.bookingData);
+          console.log(this.bookingmodel);
           console.log(paymentMethod)
           this.bookingmodel.userID = "2f4d4152-871c-49c2-9355-0303bec672f6";  
           this.bookingService.AddNewBoooking(this.bookingmodel, paymentMethod).subscribe(res =>{
