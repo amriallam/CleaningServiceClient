@@ -12,7 +12,7 @@ import { BookinListItemsComponent } from './bookin-list-items/bookin-list-items.
     CommonModule,
     BookingRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class BookingModule { }
