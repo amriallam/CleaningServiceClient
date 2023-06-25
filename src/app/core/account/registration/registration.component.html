@@ -244,7 +244,7 @@
                 <div class="row">
                   <!-- firstName input -->
                   <div class="col-md-6 order-1 order-md-1">
-                    <label for="firstName">First Name *</label>
+                    <label for="firstName">First Name <span class="text-danger">*</span></label>
                     <input
                       type="text"
                       id="firstName"
@@ -259,7 +259,7 @@
 
                   <!-- last name input -->
                   <div class="col-md-6 order-3 order-md-2">
-                    <label for="lastName">Last Name *</label>
+                    <label for="lastName">Last Name <span class="text-danger">*</span></label>
                     <input
                       type="text"
                       id="lastName"
@@ -359,7 +359,7 @@
 
               <!-- username input -->
               <div class="col-md-12">
-                <label for="username">User Name *</label>
+                <label for="username">User Name <span class="text-danger">*</span></label>
                 <input
                   type="text"
                   id="username"
@@ -420,7 +420,7 @@
 
               <!-- Email input -->
               <div class="col-md-12">
-                <label for="email">Email *</label>
+                <label for="email">Email <span class="text-danger">*</span></label>
                 <input
                   id="email"
                   name="email"
@@ -472,7 +472,7 @@
 
               <!-- password input -->
               <div class="col-md-6">
-                <label for="password">Password *</label>
+                <label for="password">Password <span class="text-danger">*</span></label>
                 <input
                   id="password"
                   name="password"
@@ -487,7 +487,7 @@
 
               <!-- confirm password input -->
               <div class="col-md-6">
-                <label for="password">Confirm Password *</label>
+                <label for="password">Confirm Password <span class="text-danger">*</span></label>
                 <input
                   id="confirmpassword"
                   name="confirmpassword"
@@ -531,35 +531,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6" *ngIf="this.passwordFEValidation">
-                <div
-                  class="text-danger"
-                  *ngIf="this.passwordFEValidation"
-                >
-                  <div *ngIf="this.passwordFEValidation">
-                    <div
-                      *ngIf="
-                        userRegisterForm.controls['confirmpassword'].hasError(
-                          'required'
-                        )
-                      "
-                    >
-                      confirm password is required
-                    </div>
-                    <div
-                      *ngIf="
-                        userRegisterForm.controls['confirmpassword'].hasError(
-                          'pattern'
-                        )
-                      "
-                    >
-                      confirm password must contain (uppercase, lowercase, number,
-                      special character, min 8 characters)
-                    </div>
-                  </div>
-                </div>
+              
+              <div class="col-md-6" *ngIf="this.matchPassword">
+                <div class="text-danger">Passwords do not match</div>
               </div>
-
 
               <div
                 class="col-md-12"
@@ -582,9 +557,7 @@
               </div>
 
 
-              <div class="col-md-12" *ngIf="this.matchPassword">
-                <div class="text-danger">Passwords do not match</div>
-              </div>
+              
 
               <div class="col-lg-12 text-center mt-5">
                 <button type="submit" class="form-control">Register</button>
