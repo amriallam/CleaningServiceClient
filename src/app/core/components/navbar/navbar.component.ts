@@ -6,6 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
+  
+  ngOnInit(): void {
+  
+    console.log( localStorage.getItem('userBookingAppId') );
+    if (localStorage.getItem('userBookingAppId')){
+      console.log('userBookingAppId is set');
+      console.log('USER SIGNED IN')
+    }
+  }
+
+
   checkIfLoggedIn() {
     return localStorage.getItem('userBookingAppToken');
   }
@@ -13,4 +24,5 @@ export class NavbarComponent {
     localStorage.removeItem('userBookingAppToken');
     localStorage.removeItem('userBookingAppId');
   }
+
 }
