@@ -25,7 +25,7 @@ export class BookinListItemsComponent {
   bookingForm :FormGroup;
   service ?: Service ;
   fullAddress ! : string ;
-  userId ? : any ; 
+  userId ? : any ;
   constructor(private resourceService: ResourceService,
     private location :Location,
     private bookingService : BookingService,
@@ -40,7 +40,7 @@ export class BookinListItemsComponent {
         region: [{ value: 'Sample Region', disabled: true }],
         address: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]*')]],
         paymentMethod: ['', Validators.required]
-        
+
       });
   }
   ngOnInit(){
@@ -68,11 +68,11 @@ export class BookinListItemsComponent {
       return;
     }
 
-    this.fullAddress = this.bookingForm.get('region')?.value +", "+this.bookingForm.get('address')?.value; 
+    this.fullAddress = this.bookingForm.get('region')?.value +", "+this.bookingForm.get('address')?.value;
     this.userId = localStorage.getItem('userBookingAppId');
-    if(this.userId == null){
-          this.router.navigate(['/login'])
-      }else{
+    // if(this.userId == null){
+    //       this.router.navigate(['/login'])
+    //   }else{
         this.bookingmodel = new BookingModel(
           this.bookingService.bookingDetails.date as string ,
           this.bookingService.bookingDetails.from as string,
@@ -88,6 +88,7 @@ export class BookinListItemsComponent {
         if(this.bookingmodel){
           console.log(this.bookingData);
           console.log(paymentMethod)
+          this.bookingmodel.userID = "2f4d4152-871c-49c2-9355-0303bec672f6";  
           this.bookingService.AddNewBoooking(this.bookingmodel, paymentMethod).subscribe(res =>{
             console.log(res.data);
             window.location.href =res.data.result;
@@ -96,7 +97,7 @@ export class BookinListItemsComponent {
         else{
           alert('backend handeled');
         }
-      }
+      // }
     }
 
 }

@@ -155,7 +155,7 @@ export class ListAvailableResourceComponent {
       return this.selectedResources.length >= this.noOfResources;
     }
   }
-  
+
   isResourceSelected(res: any): boolean {
     return res.selected;
   }
@@ -192,11 +192,13 @@ export class ListAvailableResourceComponent {
       this.date,
       this.from,
       this.to,
-      this.regionId,
       this.serviceId,
-      this.totalPrice
+      this.totalPrice,
+      this.regionId
     );
 
+    console.log("from book");
+    console.log(this.bookingService)
     this.router.navigate(['booking/bookingList']);
 
   }
