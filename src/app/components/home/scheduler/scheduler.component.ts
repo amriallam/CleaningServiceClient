@@ -102,7 +102,7 @@ export class SchedulerComponent implements AfterViewInit {
   SubmitBookingFilter() {
     if (this.currentService == '') this.ServiceWarning = true;
     if (!this.IsBookingFormValid()) return;
-    this.router.navigateByUrl(`resource?serviceId=1&date=${this.FormatNgbDate(this.day.value)}&from=${this.startTime.value}:00&to=${this.endTime.value}:00`);
+    this.router.navigateByUrl(`resource?serviceId=1&date=${this.FormatNgbDate(this.day.value)}&from=${this.startTime.value}:00&to=${this.endTime.value}:00&&regionId=${this.currentLocation}`);
   }
 
   private FormatNgbDate(date: any) {
