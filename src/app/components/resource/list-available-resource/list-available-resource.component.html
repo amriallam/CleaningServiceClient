@@ -37,7 +37,15 @@
       </div>
     </div>
 
-    <div class="row">
+    <ng-template #noResourcesMessage>
+      <div class="row">
+        <div class="col-12 mt-5">
+          <h3 class="text-center text" style="color: #52a3e9;">No resources match this search</h3>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="row" *ngIf="!noResourcesExist; else noResourcesMessage">
       <div *ngFor="let res of filteredResources | paginate: { itemsPerPage: resPerPage, currentPage: p }" class="col-lg-4 col-md-6 col-sm-12 my-3">
         <div class="services-thumb mb-lg-0 my-card disabled" [class.disabled]="isSelectionDisabled(res)" [class.selected]="isResourceSelected(res)" (click)="selectResource(res)">
           <div class="row">
@@ -65,11 +73,13 @@
 
                 <div class="">
                   <div class="reviews-icons">
-                    <i class="bi-star-fill"></i>
-                    <i class="bi-star-fill"></i>
-                    <i class="bi-star-fill"></i>
-                    <i class="bi-star-fill"></i>
-                    <i class="bi-star-fill"></i>
+                    <div class="reviews-icons">
+                      <i class="bi-star-fill"></i>
+                      <i class="bi-star-fill"></i>
+                      <i class="bi-star-fill"></i>
+                      <i class="bi-star-fill"></i>
+                      <i class="bi-star-fill"></i>
+                    </div>
                   </div>
 
                   <div>
@@ -91,10 +101,8 @@
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
       <div class="col-12 col-sm-12 col-lg-4 text-end">
-        <button class="custom-btn btn button button--atlas mt-3 mt-lg-0" [disabled]="!status" (click)="book()">Book Now</button>
+        <button class="custom-btn btn button button--atlas mt-3 mt-lg-0" [disabled]="!status || selectedResources.length !== noOfResources" (click)="book()">Book Now</button>
       </div>
     </div>
   </div>
-
-
 </section>

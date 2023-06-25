@@ -78,6 +78,8 @@ export class ListAvailableResourceComponent {
   resPerPage: number = 6;
   totalNoOfResources !: number
 
+  noResourcesExist: boolean = false;
+
   constructor(
     private resourceService: ResourceService,
     private route: ActivatedRoute,
@@ -113,6 +115,11 @@ export class ListAvailableResourceComponent {
       this.filteredResources = res.data;
       this.totalNoOfResources = res.data.length;
 
+      this.noResourcesExist = this.filteredResources.length === 0;
+
+      if(this.noOfResources == 0){
+        this.status = false
+      }
       if(this.bookingService.bookingBackVM   != null ){
         this.bookingService.bookingBackVM.selectedIDs?.forEach(resId => {
           this.availableResources.forEach(res => {
@@ -209,6 +216,10 @@ export class ListAvailableResourceComponent {
 
       return matchesResourceName && matchesPrice;
     });
+    this.noResourcesExist = this.filteredResources.length === 0;
+    if(this.noOfResources == 0){
+      this.status = false
+    }
   }
 
 }
