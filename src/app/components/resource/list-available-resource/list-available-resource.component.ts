@@ -155,8 +155,8 @@ export class ListAvailableResourceComponent {
       return this.selectedResources.length >= this.noOfResources;
     }
   }
+  
   isResourceSelected(res: any): boolean {
-    // return this.selectedResources.includes(res);
     return res.selected;
   }
 
@@ -192,6 +192,7 @@ export class ListAvailableResourceComponent {
       this.date,
       this.from,
       this.to,
+      this.regionId,
       this.serviceId,
       this.totalPrice
     );

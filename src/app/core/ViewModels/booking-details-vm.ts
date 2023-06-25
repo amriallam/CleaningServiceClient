@@ -6,6 +6,7 @@ export class BookingDetailsVM {
     public to?: string,
     public location?: string,
     public totalCost?: number,
+    public regionId?:number,
     public selectedResIds?: number[],
     public selectedResourceNames?: string[]
   ){}
