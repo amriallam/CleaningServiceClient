@@ -41,15 +41,15 @@
               <i class="bi-telephone-fill custom-icon me-3"></i>
 
               <a href="tel: 110-220-9800">
-                110-220-9800
+                01063462156
               </a>
             </h6>
 
             <h6 class="d-flex">
               <i class="bi-envelope-fill custom-icon me-3"></i>
 
-              <a href="mailto:info@company.com">
-                info@company.com
+              <a href="mailto:ayaulshenawy@gmail.com">
+                ayaulshenawy@gmail.com
               </a>
             </h6>
           </div>
@@ -67,30 +67,40 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
                   <input type="text" name="volunteer-name" id="volunteer-name"
-                    class="form-control" placeholder="John Walker" required>
+                    class="form-control" placeholder="User Name" required [value]="userName">
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-12">
                   <input type="email" name="volunteer-email"
                     id="volunteer-email" pattern="[^ @]*@[^ @]*"
-                    class="form-control" placeholder="yours@gmail.com" required>
+                    class="form-control" placeholder="Email" required [value]="email">
                 </div>
               </div>
 
-              <select class="form-select form-control" name="job-salary"
+              <!-- <select class="form-select form-control" name="job-salary"
                 id="job-salary" aria-label="Default select example">
                 <option selected>Service Type</option>
+
                 <option value="1">House cleaning</option>
                 <option value="2">Car washing</option>
                 <option value="2">Office cleaning</option>
                 <option value="2">Factory cleaning</option>
+              </select> -->
+
+              <select class="form-select form-control" name="job-salary" id="job-salary" aria-label="Default select example">
+                <option selected>Service Type</option>
+
+                <ng-container *ngFor="let ser of services">
+                  <option [value]="ser.id">{{ ser.name }}</option>
+                </ng-container>
               </select>
 
+
               <textarea name="volunteer-message" rows="3" class="form-control"
-                id="volunteer-message" placeholder="Comment (Optional)"></textarea>
+                id="volunteer-message" placeholder="Comment" [(ngModel)]="comment" required></textarea>
 
               <div class="col-lg-6 col-md-10 col-8 mx-auto">
-                <button type="submit" class="form-control">Submit Request</button>
+                <button  class="form-control" (click)="sendEmail()">Submit Request</button>
               </div>
             </div>
           </form>
