@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RatingRateEvent } from 'primeng/rating';
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
@@ -14,16 +15,30 @@ export class BookingDetailsComponent implements OnInit{
   value:number = 1;
   private BookingId!:number;
   public data!:any;
-  userId : string ="2f4d4152-871c-49c2-9355-0303bec672f6";
+  userId!: string ;
+  decodedToken:any;
+  encodedToken!:string;
+  helper=new JwtHelperService();
   largeScreen = false;
 
    constructor(private clientBookingService : ClientBookingService,
+    private router: Router,
+
     private route:ActivatedRoute
     
     ){}
    
 
   ngOnInit(): void {
+
+    const encodedToken = localStorage.getItem("userBookingAppToken");
+    if (encodedToken !== null) {
+      this.encodedToken = encodedToken;
+      this.decodedToken=this.helper.decodeToken(this.encodedToken)
+      this.userId = this.decodedToken.Id
+    }else{
+      this.router.navigate(['/login'])
+    }
 
     this.route.params.subscribe(params => {
       this.BookingId = params['id'];
