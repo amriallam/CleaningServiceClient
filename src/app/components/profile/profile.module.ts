@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';   
+import { FormsModule } from '@angular/forms';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -13,14 +13,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
-import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatNativeDateModule} from '@angular/material/core';
-import {  MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
 import { RatingModule } from 'primeng/rating';
 
 
@@ -50,10 +49,6 @@ import { RatingModule } from 'primeng/rating';
     MatDatepickerModule,
     MatNativeDateModule,
     RatingModule
-    
-  
   ]
-  ,
-  providers: [MdbModalService]
 })
 export class ProfileModule { }

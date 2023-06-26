@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { PopUpContent } from '../../Models/PopUpContent';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-PayOptionPopUp',
   templateUrl: './PayOptionPopUp.component.html',
@@ -9,7 +8,7 @@ import { PopUpContent } from '../../Models/PopUpContent';
 export class PayOptionPopUpComponent implements OnInit {
 
   option:string ="Credit Card";
-  constructor(public modalRef: MdbModalRef<PayOptionPopUpComponent>
+  constructor(public modalRef: NgbActiveModal
     ) {}
 
   ngOnInit() {

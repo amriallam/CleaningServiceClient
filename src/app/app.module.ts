@@ -41,7 +41,6 @@ import { ComponentsModule } from './components/components.module';
     AccountModule,
     ResourceModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

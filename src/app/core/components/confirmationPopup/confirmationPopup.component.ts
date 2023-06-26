@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { PopUpContent } from '../../Models/PopUpContent';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-confirmationPopup',
@@ -12,8 +12,8 @@ import { PopUpContent } from '../../Models/PopUpContent';
 export class ConfirmationPopupComponent implements OnInit {
 
   config:PopUpContent = new PopUpContent("Are you sure you want to do This action." , "Ok" ,"Cancle")
-  
-  constructor(public modalRef: MdbModalRef<ConfirmationPopupComponent>
+
+  constructor(public modalRef: NgbActiveModal
     ) {}
 
   ngOnInit() {
