@@ -53,7 +53,7 @@ export class BookinListItemsComponent {
       )
     }
     if(this.bookingService.bookingDetails.regionId != undefined){
-      this.regionService.getSystemRegionsById(this.bookingService.bookingDetails.regionId).subscribe(res => 
+      this.regionService.getSystemRegionsById(this.bookingService.bookingDetails.regionId).subscribe(res =>
       {
         console.log(res.data.name)
         this.bookingForm.patchValue({
@@ -78,9 +78,9 @@ export class BookinListItemsComponent {
 
     this.fullAddress = this.bookingForm.get('region')?.value +", "+this.bookingForm.get('address')?.value;
     this.userId = localStorage.getItem('userBookingAppId');
-    // if(this.userId == null){
-    //       this.router.navigate(['/login'])
-    //   }else{
+    if(this.userId == null){
+          this.router.navigate(['/login'])
+      }else{
         this.bookingmodel = new BookingModel(
           this.bookingService.bookingDetails.date as string ,
           this.bookingService.bookingDetails.from as string,
@@ -96,7 +96,7 @@ export class BookinListItemsComponent {
         if(this.bookingmodel){
           console.log(this.bookingmodel);
           console.log(paymentMethod)
-          this.bookingmodel.userID = "2f4d4152-871c-49c2-9355-0303bec672f6";  
+          // this.bookingmodel.userID = "2f4d4152-871c-49c2-9355-0303bec672f6";
           this.bookingService.AddNewBoooking(this.bookingmodel, paymentMethod).subscribe(res =>{
             console.log(res.data);
             window.location.href =res.data.result;
@@ -105,7 +105,7 @@ export class BookinListItemsComponent {
         else{
           alert('backend handeled');
         }
-      // }
+      }
     }
 
 }

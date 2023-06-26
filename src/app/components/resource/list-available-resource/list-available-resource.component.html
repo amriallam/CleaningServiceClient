@@ -82,14 +82,16 @@
                       <i class="bi-star-fill"></i>
                       <i class="bi-star-fill"></i>
                     </div> -->
-                    <!-- <i
-                    class="bi bi-star text-warning"
-                    [ngClass]="{
-                      'bi-star': star > this.resourceDetails?.averageRating,
-                      'bi-star-fill': star <= this.resourceDetails?.averageRating
-                    }"
-                  >
-                  </i> -->
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]" class="reviews-icons">
+                      <i
+                        class="bi bi-star text-primary"
+                        [ngClass]="{
+                          'bi-star': star > res.rating,
+                          'bi-star-fill': star <= res.rating
+                        }"
+                      >
+                      </i>
+                    </span>
                   </div>
 
                   <div>
