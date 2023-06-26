@@ -211,6 +211,7 @@ export class ListAvailableResourceComponent {
       centered: true,
     });
     modelRef.componentInstance.resId = Resource.id;
+    modelRef.componentInstance.imageuri = Resource.imageUrls[0]
   }
 
   handleFiltersChanged(filters: any) {
