@@ -64,6 +64,7 @@ export class ListAvailableResourceComponent {
   from!: string;
   to!: string;
   regionId !: number;
+  uri!: string;
 
   counter: number = 0;
   selectedResources: any[] = [];
@@ -77,6 +78,8 @@ export class ListAvailableResourceComponent {
   p: number = 1;
   resPerPage: number = 6;
   totalNoOfResources !: number
+
+  noResourcesExist: boolean = false;
 
   constructor(
     private resourceService: ResourceService,
@@ -113,6 +116,13 @@ export class ListAvailableResourceComponent {
       this.filteredResources = res.data;
       this.totalNoOfResources = res.data.length;
 
+      console.log("from oninit")
+      console.log(res.data);
+      this.noResourcesExist = this.filteredResources.length === 0;
+
+      if(this.noOfResources == 0){
+        this.status = false
+      }
       if(this.bookingService.bookingBackVM   != null ){
         this.bookingService.bookingBackVM.selectedIDs?.forEach(resId => {
           this.availableResources.forEach(res => {
@@ -148,8 +158,8 @@ export class ListAvailableResourceComponent {
       return this.selectedResources.length >= this.noOfResources;
     }
   }
+
   isResourceSelected(res: any): boolean {
-    // return this.selectedResources.includes(res);
     return res.selected;
   }
 
@@ -186,9 +196,12 @@ export class ListAvailableResourceComponent {
       this.from,
       this.to,
       this.serviceId,
-      this.totalPrice
+      this.totalPrice,
+      this.regionId
     );
 
+    console.log("from book");
+    console.log(this.bookingService)
     this.router.navigate(['booking/bookingList']);
 
   }
@@ -198,6 +211,7 @@ export class ListAvailableResourceComponent {
       centered: true,
     });
     modelRef.componentInstance.resId = Resource.id;
+    modelRef.componentInstance.imageuri = Resource.imageUrls[0]
   }
 
   handleFiltersChanged(filters: any) {
@@ -209,6 +223,10 @@ export class ListAvailableResourceComponent {
 
       return matchesResourceName && matchesPrice;
     });
+    this.noResourcesExist = this.filteredResources.length === 0;
+    if(this.noOfResources == 0){
+      this.status = false
+    }
   }
 
 }

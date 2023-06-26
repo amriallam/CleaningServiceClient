@@ -28,10 +28,10 @@ export class ConfirmEmailComponent {
       this.confirmEmailService.ConfirmEmail(this.userId, this.token).subscribe(
         (data) => {
           console.log(data);
-          this.toastr.success('Email Confirmed Successfully');
+          // this.toastr.success('Email Confirmed Successfully');
         });
-        this.toastr.success('Email Confirmed Successfully');
-
+        // this.toastr.success('Email Confirmed Successfully');
+      
     });
   }
 }

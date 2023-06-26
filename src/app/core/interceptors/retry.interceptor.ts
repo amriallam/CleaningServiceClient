@@ -25,7 +25,7 @@ export class RetryInterceptor implements HttpInterceptor {
         if (error.status === 400) {
           this.toastr.error(
             'Please try again later',
-            error.error[0].description
+            error.error.data[0].description
           );
 
           // console.log('An error occurred:', error.error);

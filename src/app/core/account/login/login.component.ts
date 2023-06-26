@@ -64,7 +64,7 @@ export class LoginComponent {
   }
 
   jwtDecode(res: any) {
-    return jwt_decode(res.token) ? jwt_decode(res.token) : res;
+    return jwt_decode(res.data.token) ? jwt_decode(res.data.token) : res;
   }
 
   onSubmit() {
@@ -84,13 +84,13 @@ export class LoginComponent {
         .subscribe((res) => {
          
 
-          if (res.token) {
-            
-            this.userBookingAppId = this.jwtDecode(res)?.Id
-              ? this.jwtDecode(res)?.Id
-              : this.jwtDecode(res)?.Id;
+          console.log(jwt_decode(res.data.token))
+          if (res.data.token) {
+            console.log('resssss'); 
+            console.log(res.data.token);
+            this.userBookingAppId = this.jwtDecode(res).Id;
             localStorage.setItem('userBookingAppId', this.userBookingAppId);
-            localStorage.setItem('userBookingAppToken', res.token);
+            localStorage.setItem('userBookingAppToken', res.data.token);
             // show toast from ngx-toastr
             this.toastr.success('Login Successful', 'Welcome');
             setTimeout(() => {

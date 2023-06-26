@@ -37,14 +37,24 @@
       </div>
     </div>
 
-    <div class="row">
+    <ng-template #noResourcesMessage>
+      <div class="row">
+        <div class="col-12 mt-5">
+          <h3 class="text-center text" style="color: #52a3e9;">No resources Found</h3>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="row" *ngIf="!noResourcesExist; else noResourcesMessage">
       <div *ngFor="let res of filteredResources | paginate: { itemsPerPage: resPerPage, currentPage: p }" class="col-lg-4 col-md-6 col-sm-12 my-3">
         <div class="services-thumb mb-lg-0 my-card disabled" [class.disabled]="isSelectionDisabled(res)" [class.selected]="isResourceSelected(res)" (click)="selectResource(res)">
           <div class="row">
             <div class="col-lg-5 col-md-5 col-12">
               <div class="services-image-wrap">
                 <a>
-                  <img src="../../../../assets/images/services/man-polishing-car-inside-car-service.jpg" class="services-image img-fluid" alt="">
+                  <!-- <img src="../../../../assets/images/services/man-polishing-car-inside-car-service.jpg" class="services-image img-fluid" alt=""> -->
+                  <img [src]="res.imageUrls[0]" class="services-image img-fluid" alt="">
+
                   <div class="services-icon-wrap">
                     <div class="d-flex justify-content-between align-items-center">
                       <p class="text-white mb-0">
@@ -65,15 +75,27 @@
 
                 <div class="">
                   <div class="reviews-icons">
-                    <i class="bi-star-fill"></i>
-                    <i class="bi-star-fill"></i>
-                    <i class="bi-star-fill"></i>
-                    <i class="bi-star-fill"></i>
-                    <i class="bi-star-fill"></i>
+                    <!-- <div class="reviews-icons">
+                      <i class="bi-star-fill"></i>
+                      <i class="bi-star-fill"></i>
+                      <i class="bi-star-fill"></i>
+                      <i class="bi-star-fill"></i>
+                      <i class="bi-star-fill"></i>
+                    </div> -->
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]" class="reviews-icons">
+                      <i
+                        class="bi bi-star text-primary"
+                        [ngClass]="{
+                          'bi-star': star > res.rating,
+                          'bi-star-fill': star <= res.rating
+                        }"
+                      >
+                      </i>
+                    </span>
                   </div>
 
                   <div>
-                    <a (click)="openModal(res)" class="mt-5 ms-auto">Learn More</a>
+                    <a (click)="openModal(res)" class="mt-4 ms-auto">Learn More</a>
                   </div>
                 </div>
               </div>
@@ -91,10 +113,8 @@
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
       <div class="col-12 col-sm-12 col-lg-4 text-end">
-        <button class="custom-btn btn button button--atlas mt-3 mt-lg-0" [disabled]="!status" (click)="book()">Book Now</button>
+        <button class="custom-btn btn button button--atlas mt-3 mt-lg-0" [disabled]="!status || selectedResources.length !== noOfResources" (click)="book()">Book Now</button>
       </div>
     </div>
   </div>
-
-
 </section>

@@ -13,7 +13,9 @@ import { NgIf } from '@angular/common';
 })
 export class ResourceDetailsComponent implements AfterViewInit {
   id = window.location.pathname.split('/')[2];
+  imageuri!: string;
   resId : any;
+
   constructor(private resourseDetailsService: ResourseDetailsService,
     private modalService: NgbModal,
     ) {}
@@ -26,7 +28,9 @@ export class ResourceDetailsComponent implements AfterViewInit {
 
   getResourceDetails(id: string) {
     this.resourseDetailsService.getResourceDetails(id).subscribe((data) => {
-      console.log(data.data);
+      // console.log("Resource")
+      // console.log(data.data.images[0].uri)
+      // console.log(data.data);
       this.resourceDetails = data.data;
     });
 
@@ -37,7 +41,7 @@ export class ResourceDetailsComponent implements AfterViewInit {
     "../../assets/images/slideshow/afro-woman-holding-bucket-with-cleaning-items.jpg",
     "../../assets/images/slideshow/unrecognizable-cleaner-walking-into-hotel-room-with-tools-detergents.jpg"
   ];
-  
+
   ngOnInit(): void {
     // console.log(this.id);
     this.getResourceDetails(this.resId);
@@ -46,7 +50,7 @@ export class ResourceDetailsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     // backstretchV2(this.imageUrls);
-    startSlideshow(this.imageUrls);
+    // startSlideshow(this.imageUrls);
     animateHeadline('.cd-headline');
   }
 }

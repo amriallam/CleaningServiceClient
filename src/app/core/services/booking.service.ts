@@ -26,7 +26,7 @@ export class BookingService {
   AddBookingDetails(selectedResourceIds : number[],
                     selectedResourceNames: string[],
                     date: string, from : string, to : string,
-                    servId: number,totalCost: number ){
+                    servId: number,totalCost: number, regionId: number ){
     this.bookingDetails.selectedResIds = selectedResourceIds;
     this.bookingDetails.selectedResourceNames = selectedResourceNames;
     this.bookingDetails.date = date;
@@ -34,6 +34,7 @@ export class BookingService {
     this.bookingDetails.to = to;
     this.bookingDetails.totalCost = totalCost;
     this.bookingDetails.serviceId = servId;
+    this.bookingDetails.regionId = regionId;
   }
   AddBookingBack(selectedIds :number[], totalCost: number){
     this.bookingBackVM.selectedIDs = selectedIds;
