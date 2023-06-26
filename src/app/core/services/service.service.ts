@@ -23,8 +23,8 @@ export class ServiceService {
   getById(id: number): Observable<ResponseModel<Service>> {
     return this.httpClient.get<ResponseModel<Service>>(`${apiUrl}Service?Id=${id}`)
   }
-  getMetadataById(id: number): Observable<ResponseModel<ServiceMetadata>> {
-    return this.httpClient.get<ResponseModel<ServiceMetadata>>(`${apiUrl}ServiceMetadata?ServiceId=${id}`)
+  getMetadataById(id: number): Observable<ResponseModel<ServiceMetadata[]>> {
+    return this.httpClient.get<ResponseModel<ServiceMetadata[]>>(`${apiUrl}ServiceMetadata?ServiceId=${id}`)
   }
   getAvailableServiceByRegion(regionId:number):Observable<ResponseModel<ServiceScheduleVM[]>> {
     return this.httpClient.get<ResponseModel<ServiceScheduleVM[]>>(`${apiUrl}Service/region/${regionId}`)

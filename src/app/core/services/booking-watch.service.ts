@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ServiceService } from './service.service';
 import { BehaviorSubject, Observable, Subject, map, max } from 'rxjs';
+import { ResponseModel } from '../Models/ResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class BookingWatchService {
   GetMaxNumberOfResource(serviceId: number): Observable<number> {
     return this.servicesService.getMetadataById(serviceId).pipe(
       map(e => {
-        this.maxNumberOfResources = e.data.noOfResources;
+        this.maxNumberOfResources = e.data[0].noOfResources;
         return this.maxNumberOfResources;
       })
     );

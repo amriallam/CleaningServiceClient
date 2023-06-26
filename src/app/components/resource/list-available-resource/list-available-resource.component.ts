@@ -13,6 +13,7 @@ import { BookingWatchService } from 'src/app/core/services/booking-watch.service
 import { BookingService } from 'src/app/core/services/booking.service';
 import { ResourceService } from 'src/app/core/services/resource.service';
 import { ResourceDetailsComponent } from '../resource-details/resource-details.component';
+import { ServiceService } from 'src/app/core/services/service.service';
 
 @Component({
   selector: 'app-list-available-resource',
@@ -87,7 +88,8 @@ export class ListAvailableResourceComponent {
     readonly watchService: BookingWatchService,
     private bookingService: BookingService,
     private router: Router,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private serviceService: ServiceService
   ) {
 
     this.status = false;
@@ -110,14 +112,11 @@ export class ListAvailableResourceComponent {
     this.resourceService
     .GetAvailableResources(this.serviceId, this.date, this.from, this.to, this.regionId)
     .subscribe((res) => {
-      console.log("Resource")
-      console.log(res);
+
       this.availableResources = res.data;
       this.filteredResources = res.data;
       this.totalNoOfResources = res.data.length;
 
-      console.log("from oninit")
-      console.log(res.data);
       this.noResourcesExist = this.filteredResources.length === 0;
 
       if(this.noOfResources == 0){
@@ -142,12 +141,19 @@ export class ListAvailableResourceComponent {
 
     });
 
-  this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
-    (maxNumberOfResources) => {
-      this.watchService.maxNumberOfResources = maxNumberOfResources;
-      this.noOfResources = maxNumberOfResources;
-    }
-  );
+    this.serviceService.getMetadataById(this.serviceId).subscribe(res=>{
+      this.noOfResources = res.data[0].noOfResources;
+      console.log(res)
+    })
+
+  // this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
+  //   (maxNumberOfResources) => {
+  //     this.watchService.maxNumberOfResources = maxNumberOfResources;
+  //     console.log("max")
+  //     console.log(maxNumberOfResources);
+  //     this.noOfResources = maxNumberOfResources;
+  //   }
+  // );
 
   }
 
