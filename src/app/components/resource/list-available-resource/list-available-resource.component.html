@@ -40,7 +40,7 @@
     <ng-template #noResourcesMessage>
       <div class="row">
         <div class="col-12 mt-5">
-          <h3 class="text-center text" style="color: #52a3e9;">No resources match this search</h3>
+          <h3 class="text-center text" style="color: #52a3e9;">No resources Found</h3>
         </div>
       </div>
     </ng-template>
@@ -52,7 +52,9 @@
             <div class="col-lg-5 col-md-5 col-12">
               <div class="services-image-wrap">
                 <a>
-                  <img src="../../../../assets/images/services/man-polishing-car-inside-car-service.jpg" class="services-image img-fluid" alt="">
+                  <!-- <img src="../../../../assets/images/services/man-polishing-car-inside-car-service.jpg" class="services-image img-fluid" alt=""> -->
+                  <img [src]="res.imageUrls[0]" class="services-image img-fluid" alt="">
+
                   <div class="services-icon-wrap">
                     <div class="d-flex justify-content-between align-items-center">
                       <p class="text-white mb-0">
@@ -91,7 +93,7 @@
                   </div>
 
                   <div>
-                    <a (click)="openModal(res)" class="mt-5 ms-auto">Learn More</a>
+                    <a (click)="openModal(res)" class="mt-4 ms-auto">Learn More</a>
                   </div>
                 </div>
               </div>

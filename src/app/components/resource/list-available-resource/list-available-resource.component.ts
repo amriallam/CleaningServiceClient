@@ -64,6 +64,7 @@ export class ListAvailableResourceComponent {
   from!: string;
   to!: string;
   regionId !: number;
+  uri!: string;
 
   counter: number = 0;
   selectedResources: any[] = [];
@@ -115,6 +116,8 @@ export class ListAvailableResourceComponent {
       this.filteredResources = res.data;
       this.totalNoOfResources = res.data.length;
 
+      console.log("from oninit")
+      console.log(res.data);
       this.noResourcesExist = this.filteredResources.length === 0;
 
       if(this.noOfResources == 0){
