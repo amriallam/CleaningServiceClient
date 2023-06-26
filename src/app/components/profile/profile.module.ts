@@ -20,6 +20,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatNativeDateModule} from '@angular/material/core';
+import {  MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { RatingModule } from 'primeng/rating';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +49,11 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    RatingModule
+    
   
   ]
+  ,
+  providers: [MdbModalService]
 })
 export class ProfileModule { }

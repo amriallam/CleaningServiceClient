@@ -10,9 +10,11 @@ const routes: Routes = [
   { path: '', component: ProfileComponent, children:[
     { path: 'info', component: EditComponent },
     { path: 'recent-activity', component: BookingComponent },
-    { path: 'booking-details/:id', component: BookingDetailsComponent },
+    
     { path: '', redirectTo :'info', pathMatch:"full" }
-  ] },
+  ]
+ },
+ { path: 'booking-details/:id', component: BookingDetailsComponent }
 
 
 ]

@@ -38,7 +38,7 @@ export class BookinListItemsComponent {
     if(this.bookingData.serviceId != undefined)
   {
     this.serviceService.getAllById(+this.bookingData.serviceId).subscribe(res =>
-        this.service= res.data[0]
+        this.service= res.data
       )
     }
   }

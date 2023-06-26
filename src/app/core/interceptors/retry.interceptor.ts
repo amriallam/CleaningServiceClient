@@ -30,7 +30,7 @@ export class RetryInterceptor implements HttpInterceptor {
 
           // console.log('An error occurred:', error.error);
         } else {
-          this.router.navigateByUrl('/maintenance'); // Redirect to maintenance page
+         // this.router.navigateByUrl('/maintenance'); // Redirect to maintenance page
         }
         return throwError(error);
       })

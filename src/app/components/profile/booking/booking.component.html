@@ -27,13 +27,30 @@
         <!-- Status Column -->
         <ng-container matColumnDef="Status">
           <th mat-header-cell *matHeaderCellDef mat-sort-header > Status </th>
-          <td mat-cell *matCellDef="let row" > <span class="{{getBookingStatusName(row.status)}}">{{getBookingStatusName(row.status)}}</span> </td>
+          <td mat-cell *matCellDef="let row" > <span class="{{row.status}}">{{row.status}}</span> </td>
+        </ng-container>
+        <ng-container matColumnDef="Pay" class="pay-btn">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header  > Payment </th>
+          <td mat-cell *matCellDef="let row"  >
+            <ng-container  >
+              <button [disabled]="!ActivateActionPay(row) " mat-stroked-button   class=" btn pay-btn" (click)="pay(row)">Pay</button>
+            </ng-container>
+           </td>
         </ng-container>
 
-        <ng-container matColumnDef="Action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header > Action </th>
+        <ng-container matColumnDef="Cancel">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header  > Action </th>
+          <td mat-cell *matCellDef="let row"  >
+            <ng-container>
+              <button *ngIf="ActivateActionPay(row) " mat-stroked-button [disabled]="!ActivateActionCancel(row) "    class="btn cancel-btn" (click)="cancel(row)">Cancel</button>
+              <button  *ngIf="!ActivateActionPay(row) " mat-stroked-button [disabled]="!ActivateActionRefund(row)"  class=" btn refund-btn" (click)="refund(row)">Refund</button>  
+            </ng-container>
+           </td>
+        </ng-container>
+        <ng-container matColumnDef="Details">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Details </th>
           <td mat-cell *matCellDef="let row">
-            <button type="button" class="btn btn-info" (click)="bookingDetail(row.id)">View</button>
+            <button type="button" class="btn view-btn" mat-stroked-button (click)="bookingDetail(row.id)">View</button>
           </td>
         </ng-container>
 

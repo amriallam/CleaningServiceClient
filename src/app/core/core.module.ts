@@ -5,15 +5,19 @@ import { RetryInterceptor } from './interceptors/retry.interceptor';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
+import { PayOptionPopUpComponent } from './components/PayOptionPopUp/PayOptionPopUp.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
+    PayOptionPopUpComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

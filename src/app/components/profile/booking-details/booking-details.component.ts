@@ -4,15 +4,19 @@ import { BookingClient } from 'src/app/core/Models/BookingClient';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { RatingRateEvent } from 'primeng/rating';
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.component.html',
   styleUrls: ['./booking-details.component.css']
 })
 export class BookingDetailsComponent implements OnInit{
-  private userId:string = '41d1d38c-9fc3-451f-a33c-3e83663c368a';
+  value:number = 1;
   private BookingId!:number;
-  public data!:any
+  public data!:any;
+  userId : string ="2f4d4152-871c-49c2-9355-0303bec672f6";
+  largeScreen = false;
+
    constructor(private clientBookingService : ClientBookingService,
     private route:ActivatedRoute
     
@@ -23,12 +27,19 @@ export class BookingDetailsComponent implements OnInit{
 
     this.route.params.subscribe(params => {
       this.BookingId = params['id'];
-      this.clientBookingService.getClientBookingById('41d1d38c-9fc3-451f-a33c-3e83663c368a',this.BookingId).subscribe(data=>{
+      this.clientBookingService.getClientBookingById(this.userId,this.BookingId).subscribe(data=>{
         this.data=data.data
-        console.log(data.data)
+        if(data.data.bookingItems.length >1 ){
+          this.largeScreen =true;
+        }
+
        })
     });
    
+  }
+
+  rate(event :  RatingRateEvent){
+    console.log(event)
   }
 
 

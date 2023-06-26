@@ -6,7 +6,7 @@
     padding: 10px;
 }
 
-.Pending{
+.Pending , .InProcess{
     background-color: #fbf0db;
     color:#a58736 ;
     border-radius: 5px;
@@ -20,4 +20,34 @@
     border-radius: 5px;
     border: none 1px;
     padding: 10px;
+}
+.Completed{
+    background-color:#fcfcfc;
+    color: #252726;
+    border-radius: 5px;
+    border: none 1px;
+    padding: 10px;
+}
+.btn{
+    line-height: normal;
+    transition: all 0.3s;
+    margin: 5px;
+    padding: 8px 15px;
+}
+.cancel-btn:hover{
+    background: red;
+    color:white !important;
+}
+.pay-btn:hover{
+    background-color:#ecf4ef;
+    color: #17793d;
+}
+.refund-btn:hover{
+    background: red;
+    color:white !important;
+
+}
+.view-btn{
+    background: var(--custom-btn-bg-hover-color);
+    color:white !important;
 }

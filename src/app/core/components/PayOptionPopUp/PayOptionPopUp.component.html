@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h5 class="modal-title " >Confirmation</h5>
+  
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+      <div class="row">         
+         <div class="mb-3">
+          <label for="name" class="form-label">Please select a payment method for your order?</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="option" >
+            <option>Credit Card</option>
+            <option>PayPal</option>
+          </select>
+      </div>
+      </div> 
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="Ok()" >Ok</button>
+  <button type="button" class="btn btn-secondary"  (click)="exit()" >
+    Cancel
+  </button>
+</div>

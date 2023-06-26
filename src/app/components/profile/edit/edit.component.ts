@@ -28,7 +28,7 @@ export class EditComponent {
   public EmailErrors:string = "";
   public IsEmailErrors: boolean = false;
 
-  userId : string ="571689e4-6ab3-452e-8568-ab7ca7c4081e";
+  userId : string ="2f4d4152-871c-49c2-9355-0303bec672f6";
   user!:User;
 
   constructor(private service:UserService){ }
@@ -72,16 +72,20 @@ export class EditComponent {
   
 
   ngOnInit(): void {
+    console.log(1)
     const encodedToken = localStorage.getItem("userBookingAppToken");
     if (encodedToken !== null) {
       this.encodedToken = encodedToken;
     }
-   this.decodedToken=this.helper.decodeToken(this.encodedToken)
+   //this.decodedToken=this.helper.decodeToken(this.encodedToken)
    //this.userId = this.decodedToken.Id
     this.service.GetUserById(this.userId).subscribe(data=>{
       this.user=data?.data;
+      console.log(data)
       this.fillFormToUpdate()
     })
+
+
     
   }
   
@@ -221,11 +225,7 @@ fillFormToUpdate(){
   
 }
   Save():void{
-    console.log("Herr")
-    console.log(this.addressForm.valid )
-    console.log(this.phoneForm.valid )
-    console.log(this.emailForm.valid )
-    console.log(this.nameForm.valid)
+  
     if(this.emailForm.valid 
       && this.nameForm.valid){
       const user = new User()
@@ -234,11 +234,13 @@ fillFormToUpdate(){
       user.lastName = this.lastName?.value ?? undefined;
       user.email = this.email?.value ?? undefined ;
       if(this.addressForm.valid 
-        && this.phoneForm.valid 
         ){
           user.address = this.address?.value ?? undefined ;
-          user.phoneNumber = this.phone?.value ?? undefined ;
         }
+        if( this.phoneForm.valid 
+          ){
+            user.phoneNumber = this.phone?.value ?? undefined ;
+          }
       this.service.EditUser(user).subscribe(
         res => {
           console.log('User updated successfully:', res);
@@ -259,4 +261,6 @@ fillFormToUpdate(){
     }
     
 }
+
+
 }

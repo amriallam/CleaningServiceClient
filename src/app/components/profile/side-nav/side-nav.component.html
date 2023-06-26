@@ -1,14 +1,8 @@
         <div class="profile-nav">
-            <div class="panel">
-                <div class="user-heading round">
-                    <a href="#">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt>
-                    </a>
-                    <h1>{{UserData.firstName +" "+ UserData.lastName}}</h1>
-                    <p>{{UserData.email }}</p>
-                </div>
+            <div class="panel card p-1">
+
                 <ul class="nav nav-pills flex-column">
-                    <li class="active" ><a [routerLink]="['info']"> <i class="fa fa-user"></i> Profile</a></li>
+                    <li><a [routerLink]="['info']" > <i class="fa fa-calendar"></i> Profile </a></li>
                     <li><a [routerLink]="['recent-activity']" > <i class="fa fa-calendar"></i> Recent Activity </a></li>
                 </ul>
             </div>

@@ -5,23 +5,33 @@ import { Service } from "./Service";
 export class BookingClient{
     constructor(
         public date: Date,
-        public startTime: string | undefined,
+        public bookingItems : BookingItem[],
         public endTime :string | undefined,
+        public startTime: string | undefined,
         public location : string |undefined,
-        public bookingStatus : BookingStaus,
+        public paymentMethodName : string,
+        public paymentStatus : string,
+        public status : string,
         public totalCost:number,
         public userId: string |undefined ,
-        public serviceId: number,
-        public service: Service,
-
-        public resourceIDs: number[] |undefined,
+        public serviceId: number,        
         public serviceName: string| undefined,
-        public id? :number 
+        public id :number 
     ){}
 }
 
 
+interface BookingItem{
+    price:number,
+    resourceId :number,
+    resourceName:string,
+    resourceImages:image[]
+}
 
+interface image{
+    id:number,
+    uri:number
 
+}
 
 

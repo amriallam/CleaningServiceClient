@@ -7,7 +7,6 @@ import { BookingItem } from '../Models/BookingItem';
 import { apiUrl } from 'src/environment';
 import { BookingModel } from '../Models/BookinModel';
 import { BookingResModel } from '../Models/BookingResModel';
-import { ResponseModelObject } from '../Models/ResponseModelObject';
 import { BookingBackVM } from '../ViewModels/BookinBackVM';
 
 @Injectable({
@@ -44,6 +43,8 @@ export class BookingService {
     return this.httpClient.get<ResponseModel<BookingItem>>(apiUrl + `BookingItem`);
   }
 
+  
+
   // getBookingItemsByResourceId(ResourceId: number): Observable<ResponseModel<BookingItem>> {
   //   return this.httpClient.get<ResponseModel<BookingItem>>(`${apiUrl}BookingItem?ResourceId=${ResourceId}`);
   // }
@@ -64,7 +65,7 @@ export class BookingService {
   //   return this.httpClient.patch<BookingItem>(`${apiUrl}BookingItem?bookingId=${bookingId}`,bookingItem);
   // }
 
-  AddNewBoooking(BookingModel: BookingModel , paymentMethod: string):Observable<ResponseModelObject<BookingResModel>>{
-    return this.httpClient.post<ResponseModelObject<BookingResModel>>(`${apiUrl}ClientBooking/CreateNewBooking?paymentType=${paymentMethod}`,BookingModel );
+  AddNewBoooking(BookingModel: BookingModel , paymentMethod: string):Observable<ResponseModel<BookingResModel>>{
+    return this.httpClient.post<ResponseModel<BookingResModel>>(`${apiUrl}ClientBooking/CreateNewBooking?paymentType=${paymentMethod}`,BookingModel );
   }
 }

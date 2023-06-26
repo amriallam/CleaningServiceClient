@@ -24,14 +24,14 @@ export class ProfileComponent implements OnInit {
     if (encodedToken !== null) {
       this.encodedToken = encodedToken;
     }
-   this.decodedToken=this.helper.decodeToken(this.encodedToken)
-   this.userId = this.decodedToken.Id
+  //  this.decodedToken=this.helper.decodeToken(this.encodedToken)
+  //  this.userId = this.decodedToken.Id
    
 
-    this.service.GetUserById(this.userId).subscribe(data=>{
-      this.user=data?.data;
-      console.log(this.user)
-    })
+  //   this.service.GetUserById(this.userId).subscribe(data=>{
+  //     this.user=data?.data;
+  //     console.log(this.user)
+  //   })
   }
 
 }

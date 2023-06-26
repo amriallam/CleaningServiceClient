@@ -5,6 +5,14 @@
   --dark: #1C1E32;
 }
 
+input{
+  color: var(--p-color);
+  margin-bottom: 10px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  outline: none;
+  width: 250px;
+}
 
 .card{
     margin-top:30px; 
@@ -145,4 +153,20 @@
   
   .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
     margin-left: 8px;
+  }
+
+  .btn{
+    line-height: normal;
+    transition: all 0.3s;
+    margin-top: 20px;
+    margin-right: 15px;
+    padding: 8px 15px;
+  }
+  .btn-save{
+    background: #4f83d1;
+    color:white !important;
+  }
+  .btn-cancel{
+    background: red;
+    color:white !important;
   }

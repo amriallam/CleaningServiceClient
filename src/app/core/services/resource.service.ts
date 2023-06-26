@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { ResponseModel } from '../Models/ResponseModel';
 import { apiUrl } from '../../../environment';
 import { Resource } from '../Models/Resource';
-import { ResponseModelObject } from '../Models/ResponseModelObject';
 import { Time } from '@angular/common';
 
 @Injectable({
@@ -18,14 +17,14 @@ export class ResourceService {
     return this.http.get<ResponseModel<Resource>>(apiUrl + "Resource")
   }
 
-  GetResouceById(id: number): Observable<ResponseModelObject<Resource>> {
-    return this.http.get<ResponseModelObject<Resource>>(apiUrl + "Resource/" + id)
+  GetResouceById(id: number): Observable<ResponseModel<Resource>> {
+    return this.http.get<ResponseModel<Resource>>(apiUrl + "Resource/" + id)
   }
 
-  GetAvailableResources(serviceId: number, date: string, from: string, to: string, regionId: number): Observable<ResponseModel<Resource>> {
+  GetAvailableResources(serviceId: number, date: string, from: string, to: string, regionId: number): Observable<ResponseModel<Resource[]>> {
     const sId = Number(serviceId)
     const regId = Number(regionId);
-    return this.http.get<ResponseModel<Resource>>(apiUrl + `Schedule/GetAvailableResources?_day=${date}&_serviceId=${sId}&_startTime=${from}&_endTime=${to}&RegionId=${regId}`);
+    return this.http.get<ResponseModel<Resource[]>>(apiUrl + `Schedule/GetAvailableResources?_day=${date}&_serviceId=${sId}&_startTime=${from}&_endTime=${to}&RegionId=${regId}`);
   }
 
 }
