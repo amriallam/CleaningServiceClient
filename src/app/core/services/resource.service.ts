@@ -28,4 +28,8 @@ export class ResourceService {
     return this.http.get<ResponseModel<Resource>>(apiUrl + `Schedule/GetAvailableResources?_day=${date}&_serviceId=${sId}&_startTime=${from}&_endTime=${to}&RegionId=${regId}`);
   }
 
+  GetTopResources(NoOfResources: number=100):Observable<ResponseModel<Resource>>{
+    return this.http.get<ResponseModel<Resource>>(apiUrl + `Resource?PageSize=${NoOfResources}`);
+  }
+
 }

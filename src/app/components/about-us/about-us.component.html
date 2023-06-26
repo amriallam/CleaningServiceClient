@@ -52,64 +52,19 @@
   </section>
   <section class="team-section section-padding section-bg">
     <div class="container">
-      <div class="row">
-
-        <div class="col-lg-12 col-12">
+      <div class="row justify-content-center gap-4">
+        <div class="col-12">
           <h2 class="mb-4">Meet People</h2>
         </div>
-
-        <div class="col-lg-3 col-md-6 col-12 mb-lg-0 mb-md-5">
-          <img
-            src="../../../../assets/images/teams/young-cleaning-man-wearing-casual-clothes.jpg"
-            class="team-image img-fluid">
-        </div>
-
-        <div
-          class="col-lg-3 col-md-6 col-12 d-flex justify-content-lg-center mt-4 mt-lg-0 mt-md-0 mb-5 mb-lg-0">
-          <div class="team-info mx-auto mx-lg-0">
-            <h4 class="mb-2">Josh</h4>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing tempor
-              incididunt dolore magna</p>
-
-            <div class="border-top mt-3 pt-3">
-              <p class="d-flex mb-0">
-                <i class="bi-whatsapp me-2"></i>
-
-                <a href="tel: 110-220-9800">
-                  110-220-9800
-                </a>
-              </p>
-            </div>
+        <div *ngFor="let Resource of Resources" class="card" style="width: fit-content;">
+          <div class="card-img-container">
+            <img src="{{Resource.imageUrls[0]}}" class="card-img">
           </div>
+          <span class="d-flex px-3 justify-content-between card-body">
+            <span class="card-text">{{Resource.name}}</span>
+            <span>{{Resource.price}}$</span>
+            </span>
         </div>
-
-        <div class="col-lg-3 col-md-6 col-12">
-          <img
-            src="../../../../assets/images/teams/happy-young-woman-wiping-kitchen-counter-wearing-yellow-gloves.jpg"
-            class="team-image img-fluid">
-        </div>
-
-        <div
-          class="col-lg-3 col-md-6 col-12 d-flex justify-content-lg-center mt-4 mt-lg-0 mt-md-0">
-          <div class="team-info mx-auto mx-lg-0">
-            <h4 class="mb-2">Marie</h4>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing tempor
-              incididunt dolore magna</p>
-
-            <div class="border-top mt-3 pt-3">
-              <p class="d-flex mb-0">
-                <i class="bi-whatsapp me-2"></i>
-
-                <a href="tel: 110-220-9800">
-                  110-220-9800
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
