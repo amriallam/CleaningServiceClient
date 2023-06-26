@@ -30,7 +30,7 @@
   </button>
 </form>
 <ng-template #registerForm>
-  <form
+  <!-- <form
     class="appointment d-flex flex-column align-items-center flex-lg-row gap-lg-3 px-5 py-4 justify-content-center bg-white"
     [formGroup]="BookingForm" (ngSubmit)="SubmitBookingFilter()">
     <div
@@ -73,7 +73,46 @@
       <ng-template #CheckResources><span class="text-light"> Checking Resources
         </span></ng-template>
     </button>
-  </form>
+  </form> -->
+  <form
+  class="appointment d-flex flex-column align-items-center flex-lg-row gap-lg-3 px-5 py-4 justify-content-center bg-white"
+  [formGroup]="BookingForm" (ngSubmit)="SubmitBookingFilter()">
+  <div
+    class="d-flex flex-row gap-3 justify-content-between align-items-centerd">
+    <div class="pt-lg-2">
+      <select2 [data]="ServiceData"
+        [ngClass]="{'border-bottom border-1 border-danger':ServiceWarning}"
+        styleMode="material" (update)="updateService($event.value)"
+        placeholder="Select Service"></select2>
+    </div>
+  </div>
+  <div class="col-12 col-lg d-flex flex-column flex-lg-row gap-3">
+    <div>
+      <label for="day">Day:</label>
+      <input
+        [ngClass]="{'border-danger border-1':day.errors?.['required'] && (day.touched || day.dirty)}"
+        placeholder="yyyy-mm-dd" formControlName="day" [minDate]="minDate"
+        class="form-control" (click)="d.toggle()" type="text" ngbDatepicker
+        #d="ngbDatepicker" />
+    </div>
+    <div class="pt-lg-2">
+      <select2 [data]="shifts"
+        [ngClass]="{'border-bottom border-1 border-danger':ServiceWarning}"
+        styleMode="material" (update)="updateShift($event.value)"
+        placeholder="Select Shift"></select2>
+    </div>
+  </div>
+  <button [disabled]="!IsBookingFormValid() || loadingFlag"
+    class="btn btn-primary mt-lg-3 py-lg-2">
+    <div *ngIf="loadingFlag"
+      class="spinner-border spinner-border-sm text-light" role="status"></div>
+    <span *ngIf="!loadingFlag; else CheckResources" class="text-light">
+      Schedule an Appointment</span>
+    <ng-template #CheckResources><span class="text-light"> Checking Resources
+      </span></ng-template>
+  </button>
+</form>
   <p (click)="backToRegionForm()" class="back-to-region"><i class="bi bi-arrow-left me-1"></i> Select another region</p>
 </ng-template>
 </ng-container>
+

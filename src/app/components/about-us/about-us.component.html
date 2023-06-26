@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-7 col-12">
-          <h1 class="text-white mb-lg-0">About Us</h1>
+          <h1 class="text-white mb-lg-0">About</h1>
         </div>
         <div
           class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
@@ -20,7 +20,7 @@
   </section>
   <section class="section-padding">
     <div class="container">
-      <div class="d-flex gap-5">
+      <div class="d-flex gap-5 align-items-center">
 
         <div class="col-lg-6 col-12">
           <img
@@ -41,9 +41,6 @@
               they ensured hygienic and spotless kitchen environments. </p>
             <p class="mb-2">Building on their success, they ventured into office
               cleaning, delivering clean and organized workspaces to businesses.</p>
-            <a class="custom-btn" routerLink="/contact">
-              <span>Get in touch</span>
-            </a>
           </div>
         </div>
 
@@ -52,101 +49,19 @@
   </section>
   <section class="team-section section-padding section-bg">
     <div class="container">
-      <div class="row">
-
-        <div class="col-lg-12 col-12">
+      <div class="row justify-content-center gap-4">
+        <div class="col-12">
           <h2 class="mb-4">Meet People</h2>
         </div>
-
-        <div class="col-lg-3 col-md-6 col-12 mb-lg-0 mb-md-5">
-          <img
-            src="../../../../assets/images/teams/young-cleaning-man-wearing-casual-clothes.jpg"
-            class="team-image img-fluid">
-        </div>
-
-        <div
-          class="col-lg-3 col-md-6 col-12 d-flex justify-content-lg-center mt-4 mt-lg-0 mt-md-0 mb-5 mb-lg-0">
-          <div class="team-info mx-auto mx-lg-0">
-            <h4 class="mb-2">Josh</h4>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing tempor
-              incididunt dolore magna</p>
-
-            <div class="border-top mt-3 pt-3">
-              <p class="d-flex mb-0">
-                <i class="bi-whatsapp me-2"></i>
-
-                <a href="tel: 110-220-9800">
-                  110-220-9800
-                </a>
-              </p>
-            </div>
+        <div *ngFor="let Resource of Resources" class="card" style="width: fit-content;">
+          <div class="card-img-container">
+            <img src="{{Resource.imageUrls[0]}}" class="card-img">
           </div>
+          <span class="d-flex px-3 justify-content-between card-body">
+            <span class="card-text">{{Resource.name}}</span>
+            <span>{{Resource.price}}$</span>
+            </span>
         </div>
-
-        <div class="col-lg-3 col-md-6 col-12">
-          <img
-            src="../../../../assets/images/teams/happy-young-woman-wiping-kitchen-counter-wearing-yellow-gloves.jpg"
-            class="team-image img-fluid">
-        </div>
-
-        <div
-          class="col-lg-3 col-md-6 col-12 d-flex justify-content-lg-center mt-4 mt-lg-0 mt-md-0">
-          <div class="team-info mx-auto mx-lg-0">
-            <h4 class="mb-2">Marie</h4>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing tempor
-              incididunt dolore magna</p>
-
-            <div class="border-top mt-3 pt-3">
-              <p class="d-flex mb-0">
-                <i class="bi-whatsapp me-2"></i>
-
-                <a href="tel: 110-220-9800">
-                  110-220-9800
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <section class="partners-section">
-    <div class="container">
-      <div class="row justify-content-center align-items-center">
-
-        <div class="col-lg-12 col-12">
-          <h4 class="partners-section-title bg-white shadow-lg">Trusted by
-            companies</h4>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <img src="../../../../assets/images/partners/toprak-leasing.svg"
-            class="partners-image img-fluid">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <img src="../../../../assets/images/partners/glorix.svg"
-            class="partners-image img-fluid">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <img src="../../../../assets/images/partners/woocommerce.svg"
-            class="partners-image img-fluid">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <img src="../../../../assets/images/partners/rolf-leasing.svg"
-            class="partners-image img-fluid">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <img src="../../../../assets/images/partners/unilabs.svg"
-            class="partners-image img-fluid">
-        </div>
-
       </div>
     </div>
   </section>
