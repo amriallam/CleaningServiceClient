@@ -2,7 +2,7 @@
 
 
 <div class="main">
-<mat-accordion class="example-headers-align" multi>
+<mat-accordion class="example-headers-align" multi >
   <mat-expansion-panel (click)="editActive=true">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -95,7 +95,7 @@
 
   </mat-expansion-panel>
 
-  <mat-expansion-panel (click)="editActive=true">
+  <mat-expansion-panel (click)="editActive=true" >
     <mat-expansion-panel-header>
       <mat-panel-title>
         Phone
@@ -120,8 +120,10 @@
 
 
 
+<div class="ay5ara">
+  <button  mat-button (click)="EditActive()"><i class="bi bi-pencil-square"></i></button>
 
-<button class="" mat-button (click)="EditActive()"><i class="bi bi-pencil-square"></i></button>
+</div>
 
 </div>
 <div *ngIf="editActive" class="example-action-buttons">
