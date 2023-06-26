@@ -4,6 +4,7 @@ import {UserService} from '../../../core/services/User.service';
 import { User } from 'src/app/core/Models/UserModel';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatAccordion } from '@angular/material/expansion';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,7 +32,9 @@ export class EditComponent {
   userId : string ="2f4d4152-871c-49c2-9355-0303bec672f6";
   user!:User;
 
-  constructor(private service:UserService){ }
+  constructor(private service:UserService,
+    private route: Router
+    ){ }
   emailForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
   });
@@ -72,16 +75,17 @@ export class EditComponent {
 
 
   ngOnInit(): void {
-    console.log(1)
     const encodedToken = localStorage.getItem("userBookingAppToken");
     if (encodedToken !== null) {
       this.encodedToken = encodedToken;
+      this.decodedToken=this.helper.decodeToken(this.encodedToken)
+      this.userId = this.decodedToken.Id
+    }else{
+      this.route.navigate(['/login'])
     }
-   //this.decodedToken=this.helper.decodeToken(this.encodedToken)
-   //this.userId = this.decodedToken.Id
-    this.service.GetUserById(this.userId).subscribe(data=>{
+
+    this.service.GetUserById(this.decodedToken.Id).subscribe(data=>{
       this.user=data?.data;
-      console.log(data)
       this.fillFormToUpdate()
     })
 

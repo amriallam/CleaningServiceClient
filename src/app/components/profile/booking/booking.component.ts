@@ -11,6 +11,7 @@ import { ConfirmationPopupComponent } from 'src/app/core/components/confirmation
 import { PopUpContent } from 'src/app/core/Models/PopUpContent';
 import { PayOptionPopUpComponent } from 'src/app/core/components/PayOptionPopUp/PayOptionPopUp.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 
@@ -24,8 +25,10 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class BookingComponent implements OnInit, AfterViewInit {
 
   public dataSource!: MatTableDataSource<BookingClient>;
-  userId: string = "2f4d4152-871c-49c2-9355-0303bec672f6";
-
+  userId!: string ;
+  decodedToken:any;
+  encodedToken!:string;
+  helper=new JwtHelperService();
 
   displayedColumns: string[] = ['Date', 'Location', 'Service', 'Amount', 'Status', 'Pay', 'Cancel', 'Details'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -41,11 +44,27 @@ export class BookingComponent implements OnInit, AfterViewInit {
 
 
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue)
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
   ngOnInit(): void {
+    const encodedToken = localStorage.getItem("userBookingAppToken");
+    if (encodedToken !== null) {
+      this.encodedToken = encodedToken;
+      this.decodedToken=this.helper.decodeToken(this.encodedToken)
+      this.userId = this.decodedToken.Id
+    }else{
+      this.route.navigate(['/login'])
+    }
     this.clientBookingService.getAllClientBooking(this.userId).subscribe(data => {
       this.data = data.data
-      this.data[0].status = "Pending"
       this.dataSource = new MatTableDataSource(this.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -104,6 +123,7 @@ export class BookingComponent implements OnInit, AfterViewInit {
     this.openView().closed.subscribe((data: any) => {
       if (data.result) {
         this.paymentService.CancelBooking(data.id).subscribe(data => { console.log(data) })
+        this.ngOnInit()
       }
     })
   }
@@ -130,6 +150,16 @@ export class BookingComponent implements OnInit, AfterViewInit {
 
   openView2() {
     return this.modalService.open(PayOptionPopUpComponent, { centered:true});
+  }
+
+  filterStatus(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }
 

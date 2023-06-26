@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { InfoComponent } from './info/info.component';
 import { EditComponent } from './edit/edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookingComponent } from './booking/booking.component';
@@ -27,7 +26,6 @@ import { RatingModule } from 'primeng/rating';
   declarations: [
     ProfileComponent,
     SideNavComponent,
-    InfoComponent,
     EditComponent,
     BookingComponent,
     BookingDetailsComponent

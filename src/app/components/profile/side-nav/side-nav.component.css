@@ -59,7 +59,7 @@
     border-left: 5px solid #fff;
 }
 
-.profile-nav ul > li > a:hover, .profile-nav ul > li > a:focus, .profile-nav ul li.active  a {
+.active-link {
     background: #f8f7f5 !important;
     border-left: 5px solid #4f83d1;
     color: #89817f !important;
