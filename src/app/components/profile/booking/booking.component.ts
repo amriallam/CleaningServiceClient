@@ -104,6 +104,7 @@ export class BookingComponent implements OnInit, AfterViewInit {
     this.openView().closed.subscribe((data: any) => {
       if (data.result) {
         this.paymentService.CancelBooking(data.id).subscribe(data => { console.log(data) })
+        this.ngOnInit()
       }
     })
   }

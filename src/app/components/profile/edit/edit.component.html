@@ -1,7 +1,7 @@
-<div class="container my-5">
-  <div class="example-action-buttons">
-    <button mat-button (click)="EditActive()">Edit</button>
-  </div>
+
+
+
+<div class="main">
 <mat-accordion class="example-headers-align" multi>
   <mat-expansion-panel (click)="editActive=true">
     <mat-expansion-panel-header>
@@ -118,8 +118,14 @@
   </mat-expansion-panel>
 </mat-accordion>
 
+
+
+
+<button class="" mat-button (click)="EditActive()"><i class="bi bi-pencil-square"></i></button>
+
+</div>
 <div *ngIf="editActive" class="example-action-buttons">
   <button mat-button class="btn btn-save" (click)="Save()">Save</button>
   <button mat-button class="btn btn-cancel" (click)="EditDeactivate()">Cancel</button>
 </div>
-</div>
+
