@@ -15,6 +15,7 @@ export class FaqComponent implements OnInit {
   selectedCategory: FaqCategory = { name: '', faqs: [] };
   searchTerm: string = "";
   constructor(private faqService: FaqService) { }
+
   ngOnInit(): void {
     this.faqService.getAllFAQ().subscribe(res => {
       if(res.data.length > 0) {
@@ -25,6 +26,7 @@ export class FaqComponent implements OnInit {
         this.skeletonLoading=1
     });
   }
+
   selectCategory(category: FaqCategory): void {
     this.selectedCategory = category;
   }
@@ -35,6 +37,7 @@ export class FaqComponent implements OnInit {
     const searchParam = faq.question.toLowerCase();
     return searchParam.includes(this.searchTerm); // Check if faq questions/answers includes the search term
   }
+
   hasMatchingQuestion(category: FaqCategory): boolean {
     if (this.searchTerm === '') {
       return true; // Show the category if search term is empty

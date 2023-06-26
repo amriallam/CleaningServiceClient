@@ -57,10 +57,26 @@
           <div class="card-img-container">
             <img src="{{Resource.imageUrls[0]}}" class="card-img">
           </div>
-          <span class="d-flex px-3 justify-content-between card-body">
-            <span class="card-text">{{Resource.name}}</span>
-            <span>{{Resource.price}}$</span>
-            </span>
+          <span class="d-flex px-3 card-body">
+            <div class="me-3">
+              <span class="card-text text-start">{{Resource.name}}</span>
+            </div>
+            <div>
+              <span *ngFor="let star of [1, 2, 3, 4, 5]" class="reviews-icons">
+                <i
+                  class="bi bi-star text-primary"
+                  [ngClass]="{
+                    'bi-star': star > Resource.rating,
+                    'bi-star-fill': star <= Resource.rating
+                  }"
+                >
+                </i>
+              </span>
+            </div>
+            <!-- <div>
+              <span class="text-end ">{{Resource.price}}$</span>
+            </div> -->
+          </span>
         </div>
       </div>
     </div>

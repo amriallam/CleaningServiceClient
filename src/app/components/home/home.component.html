@@ -75,195 +75,56 @@
 
   <section
     class="services-section section-padding section-bg"
-    id="services-section"
-  >
+    id="services-section">
+
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-12">
-          <h2 class="mb-4">Our best offers</h2>
+          <h2 class="mb-4">Our Services</h2>
         </div>
 
-        <div class="col-lg-6 col-12">
-          <div class="services-thumb">
-            <div class="row">
-              <div class="col-lg-5 col-md-5 col-12">
-                <div class="services-image-wrap">
-                  <a routerLink="/service/office-cleaning">
-                    <img
-                      src="../../../../assets/images/services/people-taking-care-office-cleaning.jpg"
-                      class="services-image img-fluid"
-                      alt
-                    />
-                    <img
-                      src="../../../../assets/images/services/person-taking-care-office.jpg"
-                      class="services-image services-image-hover img-fluid"
-                      alt
-                    />
-                  </a>
+        <div class="col-lg-6 col-12" *ngFor="let ser of services">
+          <div>
+            <div class="services-thumb">
+              <div class="row">
+                <div class="col-lg-5 col-md-5 col-12">
+                  <div class="services-image-wrap">
+                    <a routerLink="/service/office-cleaning">
+                      <img
+                        [src]="ser.imageUrls[0]"
+                        class="services-image img-fluid"
+                        alt
+                      />
+                      <!-- <img
+                        src="../../../../assets/images/services/person-taking-care-office.jpg"
+                        class="services-image services-image-hover img-fluid"
+                        alt
+                      /> -->
+                    </a>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                  <h4 class="services-title mb-1 mb-lg-2">
+                <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
+                  <div class="services-info mt-4 mt-lg-0 mt-md-0">
+                    <h4 class="services-title mb-1 mb-lg-2">
+                      <a
+                        class="services-title-link"
+                        routerLink="/service/office-cleaning"
+                        >{{ser.name}}</a
+                      >
+                    </h4>
+
+                    <p>
+                      {{ser.description}}
+                    </p>
                     <a
-                      class="services-title-link"
+                      class="custom-btn ms-auto"
+                      routerLinkActive="active"
                       routerLink="/service/office-cleaning"
-                      >Office Cleaning</a
                     >
-                  </h4>
-
-                  <p>
-                    Regular cleaning and maintenance of office spaces, including dusting, vacuuming, and disinfection, to create a clean and productive workspace for employees.
-                  </p>
-                  <a
-                    class="custom-btn ms-auto"
-                    routerLinkActive="active"
-                    routerLink="/service/office-cleaning"
-                  >
-                    <span >Learn More</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-12">
-          <div class="services-thumb">
-            <div class="row">
-              <div class="col-lg-5 col-md-5 col-12">
-                <div class="services-image-wrap">
-                  <a routerLink="/service/kitchen-cleaning">
-                    <img
-                      src="../../../../assets/images/services/young-smiling-woman-wearing-rubber-gloves-cleaning-stove.jpg"
-                      class="services-image img-fluid"
-                      alt
-                    />
-                    <img
-                      src="../../../../assets/images/services/woman-holding-rag-detergent-cleaning-cooker.jpg"
-                      class="services-image services-image-hover img-fluid"
-                      alt
-                    />
-                  </a>
-                </div>
-              </div>
-
-              <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                  <h4 class="services-title mb-1 mb-lg-2">
-                    <a
-                      class="services-title-link"
-                      routerLink="/service/kitchen-cleaning"
-                      >Kitchen Cleaning</a
-                    >
-                  </h4>
-
-                  <p>
-                    Thorough cleaning of kitchen surfaces, appliances, and floors to maintain hygiene and cleanliness in food preparation areas.
-                  </p>
-
-                  <a
-                    class="custom-btn ms-auto"
-                    routerLinkActive="active"
-                    routerLink="/service/kitchen-cleaning"
-                  >
-                    <span >Learn More</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-12">
-          <div class="services-thumb mb-lg-0">
-            <div class="row">
-              <div class="col-lg-5 col-md-5 col-12">
-                <div class="services-image-wrap">
-                  <a routerLink="/service/car-washing">
-                    <img
-                      src="../../../../assets/images/services/man-polishing-car-inside-car-service.jpg"
-                      class="services-image img-fluid"
-                      alt
-                    />
-                    <img
-                      src="../../../../assets/images/services/man-polishing-car-inside.jpg"
-                      class="services-image services-image-hover img-fluid"
-                      alt
-                    />
-                  </a>
-                </div>
-              </div>
-
-              <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                  <h4 class="services-title mb-1 mb-lg-2">
-                    <a
-                      class="services-title-link"
-                      routerLink="/service/car-washing"
-                      >Car Washing</a
-                    >
-                  </h4>
-
-                  <p>
-                    Professional cleaning services for vehicles, including interior vacuuming, upholstery cleaning, and exterior washing, to keep cars looking clean and fresh.
-                  </p>
-
-                  <a
-                    class="custom-btn ms-auto"
-                    routerLinkActive="active"
-                    routerLink="/service/car-washing"
-                  >
-                    <span >Learn More</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-12">
-          <div class="services-thumb mb-lg-0">
-            <div class="row">
-              <div class="col-lg-5 col-md-5 col-12">
-                <div class="services-image-wrap">
-                  <a routerLink="/service/factory-cleaning">
-                    <img
-                      src="../../../../assets/images/services/professional-industrial-cleaner-protective-uniform-cleaning-floor-food-processing-plant.jpg"
-                      class="services-image img-fluid"
-                      alt
-                    />
-                    <img
-                      src="../../../../assets/images/services/close-up-mop-cleaning-industrial-plant-floor.jpg"
-                      class="services-image services-image-hover img-fluid"
-                      alt
-                    />
-                  </a>
-                </div>
-              </div>
-
-              <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                  <h4 class="services-title mb-1 mb-lg-2">
-                    <a
-                      class="services-title-link"
-                      routerLink="/service/factory-cleaning"
-                      >Factory Cleaning</a
-                    >
-                  </h4>
-
-                  <p>
-                    Comprehensive cleaning services tailored for factories, including floor cleaning, equipment maintenance, and sanitation to ensure a safe and efficient working environment.
-                  </p>
-
-                  <a
-                    class="custom-btn ms-auto"
-                    routerLinkActive="active"
-                    routerLink="/service/factory-cleaning"
-                  >
-                    <span >Learn More</span>
-                  </a>
+                      <span >Learn More</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

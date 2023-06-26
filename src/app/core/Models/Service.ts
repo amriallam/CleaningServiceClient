@@ -3,7 +3,8 @@ export interface Service {
   id?: number
   name: string,
   description: string,
-  status: ServiceStatus
+  status: ServiceStatus,
+  imageUrls: string[]
 }
 
 export enum ServiceStatus {

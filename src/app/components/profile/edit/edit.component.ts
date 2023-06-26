@@ -69,7 +69,7 @@ export class EditComponent {
   get lastName() {
     return this.nameForm.get('lastName');
   }
-  
+
 
   ngOnInit(): void {
     console.log(1)
@@ -86,12 +86,12 @@ export class EditComponent {
     })
 
 
-    
-  }
-  
-  
 
- 
+  }
+
+
+
+
   UpdateName(){
     if(this.nameForm.valid){
       const user = new User()
@@ -109,7 +109,7 @@ export class EditComponent {
         }
       )
 
-     
+
     }
 
   }
@@ -131,7 +131,7 @@ export class EditComponent {
         }
       )
 
-     
+
     }
   }
   UpdateUserName(){
@@ -153,7 +153,7 @@ export class EditComponent {
         }
       )
 
-     
+
     }
   }
   UpdatePhone(){
@@ -172,7 +172,7 @@ export class EditComponent {
         }
       )
 
-     
+
     }
   }
 
@@ -192,16 +192,19 @@ export class EditComponent {
         }
       )
 
-     
+
     }
   }
 
- 
+
   EditActive():void{
   this.accordion.openAll();
   this.editActive = true;
 }
 
+toggleEditActive() {
+  this.editActive = !this.editActive;
+}
 EditDeactivate():void{
   this.accordion.closeAll();
   this.editActive = false;
@@ -222,22 +225,22 @@ fillFormToUpdate(){
   this.addressForm.setValue({
     address:this.user.address??""
   })
-  
+
 }
   Save():void{
-  
-    if(this.emailForm.valid 
+
+    if(this.emailForm.valid
       && this.nameForm.valid){
       const user = new User()
       user.id = this.userId;
       user.firstName = this.firstName?.value ?? undefined ;
       user.lastName = this.lastName?.value ?? undefined;
       user.email = this.email?.value ?? undefined ;
-      if(this.addressForm.valid 
+      if(this.addressForm.valid
         ){
           user.address = this.address?.value ?? undefined ;
         }
-        if( this.phoneForm.valid 
+        if( this.phoneForm.valid
           ){
             user.phoneNumber = this.phone?.value ?? undefined ;
           }
@@ -257,9 +260,9 @@ fillFormToUpdate(){
         }
       )
 
-     
+
     }
-    
+
 }
 
 
