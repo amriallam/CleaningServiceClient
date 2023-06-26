@@ -8,7 +8,7 @@ import { UserService } from '../../services/User.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  
+
   helper=new JwtHelperService();
   decodedToken:any;
   encodedToken!:string;
@@ -17,19 +17,18 @@ export class NavbarComponent {
 
   constructor(private service:UserService){
   }
-  
-
 
   ngOnInit(): void {
-    const encodedToken = localStorage.getItem("userBookingAppToken");
-    if (encodedToken !== null) {
-      this.encodedToken = encodedToken;
+    if(localStorage.getItem('userBookingAppToken')){
+      const encodedToken = localStorage.getItem("userBookingAppToken");
+      if (encodedToken !== null) {
+        this.encodedToken = encodedToken;
+      }
+      this.decodedToken=this.helper.decodeToken(this.encodedToken)
+       this.service.GetUserById( this.decodedToken.Id).subscribe(data=>{
+         this.user=data?.data;
+       })
     }
-   this.decodedToken=this.helper.decodeToken(this.encodedToken)
- 
-    this.service.GetUserById( this.decodedToken.Id).subscribe(data=>{
-      this.user=data?.data;
-    })
   }
 
 
