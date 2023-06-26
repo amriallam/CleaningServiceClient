@@ -19,6 +19,7 @@ export class SchedulerComponent implements AfterViewInit {
   loadingFlag:boolean = false;
   skeletonLoadingFlag:number=0;
   SwitchForm: boolean = false;
+
   BookingForm: FormGroup = this.formBuilder.group({
     day: ['', [Validators.required]],
     startTime: ['', [Validators.required]],
@@ -29,7 +30,6 @@ export class SchedulerComponent implements AfterViewInit {
   get startTime() { return this.BookingForm.controls['startTime'] }
   get endTime() { return this.BookingForm.controls['endTime'] }
 
-
   ServiceData: Select2Option[] = [];
   currentService: string = "";
   ServiceWarning: boolean = false;
@@ -37,6 +37,23 @@ export class SchedulerComponent implements AfterViewInit {
   RegionData: Select2Option[] = [];
   currentLocation: string = "";
   LocationWarning: boolean = false;
+
+  shifts:Select2Data=[
+    {
+      label:'09:00 AM - 12:00 PM',
+      value:'09:00-12:00'
+    },
+    {
+      label:'12:00 PM - 3:00 PM',
+      value:'12:00-15:00'
+    },
+    {
+      label:'03:00 PM - 6:00 PM',
+      value:'15:00-18:00'
+    },
+  ]
+  currentShift:string='';
+  ShiftWarning:boolean=false;
 
   updateService(value: any) {
     if (value == "") { return; }
@@ -70,8 +87,12 @@ export class SchedulerComponent implements AfterViewInit {
     )
   }
 
+  updateShift(value: any){
+    this.currentShift=value;
+  }
+
   IsBookingFormValid() {
-    if (this.currentService == '' || this.BookingForm.invalid) return false;
+    if (this.currentService == '' || this.currentShift== '' || this.BookingForm.controls['day'].value=='') return false;
     return true;
   }
 
@@ -102,7 +123,9 @@ export class SchedulerComponent implements AfterViewInit {
   SubmitBookingFilter() {
     if (this.currentService == '') this.ServiceWarning = true;
     if (!this.IsBookingFormValid()) return;
-    this.router.navigateByUrl(`resource?serviceId=1&date=${this.FormatNgbDate(this.day.value)}&from=${this.startTime.value}:00&to=${this.endTime.value}:00&&regionId=${this.currentLocation}`);
+    const dateSplit=this.currentShift.split("-");
+    this.router.navigateByUrl(`resource?serviceId=1&date=${this.FormatNgbDate(this.day.value)}&from=${dateSplit[0]}:00&to=${dateSplit[1]}:00&&regionId=${this.currentLocation}`);
+    // this.router.navigateByUrl(`resource?serviceId=1&date=${this.FormatNgbDate(this.day.value)}&from=${this.startTime.value}:00&to=${this.endTime.value}:00&&regionId=${this.currentLocation}`);
   }
 
   private FormatNgbDate(date: any) {
