@@ -66,9 +66,7 @@ export class RegistrationComponent implements OnInit {
         updateOn: 'submit',
         validators: [
           Validators.required,
-          Validators.pattern(
-            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};\':"\\\\|,.<>/?]).{8,}$'
-          ),
+          
         ],
       }),
     });
@@ -150,9 +148,12 @@ export class RegistrationComponent implements OnInit {
         .subscribe((res) => {
           if (res.status == 200) {
             this.router.navigate(['/email-sent']);
+          }else if (res.status == 400) {
+            this.toastr.error('error', res.data);
           }
-        });
-      // this.router.navigate(['/email-sent']);
+
+        })
+        
     }
   }
 
