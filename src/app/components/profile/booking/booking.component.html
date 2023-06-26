@@ -1,3 +1,22 @@
+
+<div class="row search">
+  <div  class="col-md-4 filters">Search : 
+    <input  class="filter-control" (keyup)="applyFilter($event)" placeholder="Ex.Pending" #input>
+  </div>
+  
+  <div class="col-md-4"></div>
+  <div class="col-md-4 dd filters">Status :
+    <select class="filter-control"  (change)="filterStatus($event)">
+      <option value="">--SELECT--</option>
+      <option value="Confirmed">Confirmed</option>
+      <option value="Pending">Pending</option>
+      <option value="Completed">Completed</option>
+      <option value="InProcess">InProcess</option>
+    </select>
+  </div>
+
+</div>
+
 <div class="mat-elevation-z8  ">
   <table  mat-table   [dataSource]="dataSource" matSort >
       <!-- Date Column -->

@@ -41,11 +41,19 @@ export class BookingComponent implements OnInit, AfterViewInit {
 
 
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue)
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
   ngOnInit(): void {
     this.clientBookingService.getAllClientBooking(this.userId).subscribe(data => {
       this.data = data.data
-      this.data[0].status = "Pending"
       this.dataSource = new MatTableDataSource(this.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -131,6 +139,16 @@ export class BookingComponent implements OnInit, AfterViewInit {
 
   openView2() {
     return this.modalService.open(PayOptionPopUpComponent, { centered:true});
+  }
+
+  filterStatus(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }
 

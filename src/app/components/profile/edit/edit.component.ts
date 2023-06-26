@@ -86,7 +86,6 @@ export class EditComponent {
 
     this.service.GetUserById(this.decodedToken.Id).subscribe(data=>{
       this.user=data?.data;
-      console.log(data)
       this.fillFormToUpdate()
     })
 
