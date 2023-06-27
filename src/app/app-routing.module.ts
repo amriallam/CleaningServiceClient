@@ -19,7 +19,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 const routes: Routes = [
   // Main
   { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'service/:servicename', component: DetailsServiceComponent },
+  //{ path: 'service/:servicename', component: DetailsServiceComponent },
   { path: 'resource', loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) },
   { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => m.BookingModule) },
   { path: 'faq', component: FaqComponent },
