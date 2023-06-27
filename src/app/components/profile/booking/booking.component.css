@@ -60,8 +60,24 @@
     text-align: end;
 }
 
-  
-  .filter-control{
+.filters{
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
 
+}
+  .filter-control {
+
+    padding: 0.275rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
   
