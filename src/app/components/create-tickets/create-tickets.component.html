@@ -1,0 +1,176 @@
+<section
+  class="banner-section-faq d-flex justify-content-center align-items-end"
+>
+  <div class="section-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        <h1 class="text-white mb-lg-0">Create a Support Ticket</h1>
+      </div>
+      <div
+        class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto"
+      >
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Create Ticket
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <ng-container>
+    <div class="container align-items-center gap-5">
+      <div class="row">
+        <div class="col-lg-6 col-12 order-2 order-lg-1 d-flex justify-content-center">
+          <img
+            src="../../../assets/images/support.svg"
+            alt=""
+            class="img-fluid mx-auto"
+            style="max-width: 25rem"
+          />
+        </div>
+        <div class="col-lg-6 col-12 order-1 order-lg-2">
+          <form
+            class="custom-form consulting-form bg-white shadow-lg mb-5 mb-lg-0 "
+            [formGroup]="TicketFormGroup"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="consulting-form-header d-flex align-items-center">
+              <h4 class="mb-4">Submit a Support Ticket</h4>
+            </div>
+
+            <div class="consulting-form-body">
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <label> Email <span class="text-danger">*</span> </label>
+                  <input
+                    class="form-control"
+                    placeholder="Enter your mail"
+                    type="email"
+                    formControlName="email"
+                  />
+                  <div
+                    class="col-md-12 mb-2"
+                    *ngIf="this.emailFEValidation || false"
+                  >
+                    <div class="text-danger" *ngIf="this.emailFEValidation">
+                      <div>
+                        <div
+                          *ngIf="
+                            TicketFormGroup.controls['email'].hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          email is required
+                        </div>
+                        <div
+                          *ngIf="
+                            TicketFormGroup.controls['email'].hasError(
+                              'pattern'
+                            )
+                          "
+                        >
+                          email must be in the folowing format
+                          example@example.com
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mb-3">
+                  <label>
+                    Your Issue details <span class="text-danger">*</span>
+                  </label>
+                  <textarea
+                    placeholder="What is your issue?"
+                    class="form-control"
+                    cols="30"
+                    rows="4"
+                    formControlName="ticketDescription"
+                  ></textarea>
+                  <div
+                    class="col-md-12 mb-2"
+                    *ngIf="this.ticketDescriptionFEValidation || false"
+                  >
+                    <div
+                      class="text-danger"
+                      *ngIf="this.ticketDescriptionFEValidation"
+                    >
+                      <div>
+                        <div
+                          *ngIf="
+                            TicketFormGroup.controls[
+                              'ticketDescription'
+                            ].hasError('required')
+                          "
+                        >
+                          Ticket Description is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-md-12 mb-2"
+                    *ngIf="this.ticketDescriptionFEValidation || false"
+                  >
+                    <div
+                      class="text-danger"
+                      *ngIf="this.ticketDescriptionFEValidation"
+                    >
+                      <div>
+                        <div
+                          *ngIf="
+                            TicketFormGroup.controls[
+                              'ticketDescription'
+                            ].hasError('minLength')
+                          "
+                        >
+                            Ticket Description must be at least 10 characters
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-md-12 mb-2"
+                    *ngIf="this.ticketDescriptionFEValidation || false"
+                  >
+                    <div
+                      class="text-danger"
+                      *ngIf="this.ticketDescriptionFEValidation"
+                    >
+                      <div>
+                        <div
+                          *ngIf="
+                            TicketFormGroup.controls[
+                              'ticketDescription'
+                            ].hasError('maxLength')
+                          "
+                        >
+                            Ticket Description must be at max 500 characters
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-10 col-8 mx-auto">
+                <button type="submit" class="form-control">
+                  Submit A Ticket
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>
