@@ -42,7 +42,7 @@ export class BookingDetailsComponent implements OnInit{
 
     this.route.params.subscribe(params => {
       this.BookingId = params['id'];
-      this.clientBookingService.getClientBookingById(this.userId,this.BookingId).subscribe(data=>{
+      this.clientBookingService.getClientBookingById("2f4d4152-871c-49c2-9355-0303bec672f6",this.BookingId).subscribe(data=>{
         this.data=data.data
         console.log("from oninit")
         console.log(data)

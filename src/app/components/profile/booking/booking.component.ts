@@ -29,6 +29,8 @@ export class BookingComponent implements OnInit, AfterViewInit {
   decodedToken:any;
   encodedToken!:string;
   helper=new JwtHelperService();
+  resultsLength!:number;
+  
 
   displayedColumns: string[] = ['Date', 'Location', 'Service', 'Amount', 'Status', 'Pay', 'Cancel', 'Details'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -65,6 +67,7 @@ export class BookingComponent implements OnInit, AfterViewInit {
     }
     this.clientBookingService.getAllClientBooking(this.userId).subscribe(data => {
       this.data = data.data
+      this.resultsLength = this.data.length
       this.dataSource = new MatTableDataSource(this.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -114,7 +117,8 @@ export class BookingComponent implements OnInit, AfterViewInit {
     this.openView2().closed.subscribe(res => {
       if (res.result) {
         this.paymentService.Pay(data.id, res.option).subscribe(res2 => {
-          console.log(res2)
+          this.route.navigateByUrl(res2.data.result)
+
         })
       }
     })
@@ -128,11 +132,18 @@ export class BookingComponent implements OnInit, AfterViewInit {
     })
   }
   refund(data: BookingClient) {
-    this.openView2().closed.subscribe(res => {
+   let config = new PopUpContent("Are You Sure You Wont To Refund This Booking", "Yes", "No")
+    this.openView(config).closed.subscribe(res => {
       if (res.result) {
-        this.paymentService.Refund(data.id, res.option).subscribe(data => {
-          console.log(data)
-        })
+        this.paymentService.Refund(data.id).subscribe(
+          res => {
+            data.status = "Cancelled";    
+            console.log(res);
+          },
+          error => {
+            console.log(error);  
+          }
+        );
       }
     })
   }
@@ -159,6 +170,8 @@ export class BookingComponent implements OnInit, AfterViewInit {
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
+      this.resultsLength = this.data.length
+
     }
   }
 }
