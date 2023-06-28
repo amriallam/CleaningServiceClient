@@ -19,7 +19,7 @@ export class PaymentService {
       return this.http.post<ResponseModel<string[]>>(apiUrl+'Payment/refund/'+id,null);
     }
     Pay(id:number , paymentType:string):Observable<ResponseModel<payment>> {
-      return this.http.put<ResponseModel<payment>>(apiUrl+'Payment/checkout/'+id+"?paymentType="+paymentType,null);
+      return this.http.post<ResponseModel<payment>>(apiUrl+'Payment/checkout/'+id+"?paymentType="+paymentType,null);
     }
   
 }

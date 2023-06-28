@@ -117,17 +117,17 @@ export class BookingComponent implements OnInit, AfterViewInit {
     this.openView2().closed.subscribe(res => {
       if (res.result) {
         this.paymentService.Pay(data.id, res.option).subscribe(res2 => {
-          this.route.navigateByUrl(res2.data.result)
-
+          window.location.href=res2.data.result
         })
       }
     })
   }
   cancel(data: BookingClient) {
-    this.openView().closed.subscribe((data: any) => {
-      if (data.result) {
-        this.paymentService.CancelBooking(data.id).subscribe(data => { console.log(data) })
-        this.ngOnInit()
+    this.openView().closed.subscribe((popRes: any) => {
+      if (popRes.result) {
+        this.paymentService.CancelBooking(data.id).subscribe(res => { 
+            data.status= "Cancelled";
+          })
       }
     })
   }
