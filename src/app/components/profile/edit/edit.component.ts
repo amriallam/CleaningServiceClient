@@ -4,6 +4,7 @@ import {UserService} from '../../../core/services/User.service';
 import { User } from 'src/app/core/Models/UserModel';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatAccordion } from '@angular/material/expansion';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,7 +32,9 @@ export class EditComponent {
   userId : string ="2f4d4152-871c-49c2-9355-0303bec672f6";
   user!:User;
 
-  constructor(private service:UserService){ }
+  constructor(private service:UserService,
+    private route: Router
+    ){ }
   emailForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
   });
@@ -69,29 +72,30 @@ export class EditComponent {
   get lastName() {
     return this.nameForm.get('lastName');
   }
-  
+
 
   ngOnInit(): void {
-    console.log(1)
     const encodedToken = localStorage.getItem("userBookingAppToken");
     if (encodedToken !== null) {
       this.encodedToken = encodedToken;
+      this.decodedToken=this.helper.decodeToken(this.encodedToken)
+      this.userId = this.decodedToken.Id
+    }else{
+      this.route.navigate(['/login'])
     }
-   //this.decodedToken=this.helper.decodeToken(this.encodedToken)
-   //this.userId = this.decodedToken.Id
-    this.service.GetUserById(this.userId).subscribe(data=>{
+
+    this.service.GetUserById(this.decodedToken.Id).subscribe(data=>{
       this.user=data?.data;
-      console.log(data)
       this.fillFormToUpdate()
     })
 
 
-    
-  }
-  
-  
 
- 
+  }
+
+
+
+
   UpdateName(){
     if(this.nameForm.valid){
       const user = new User()
@@ -109,7 +113,7 @@ export class EditComponent {
         }
       )
 
-     
+
     }
 
   }
@@ -131,7 +135,7 @@ export class EditComponent {
         }
       )
 
-     
+
     }
   }
   UpdateUserName(){
@@ -153,7 +157,7 @@ export class EditComponent {
         }
       )
 
-     
+
     }
   }
   UpdatePhone(){
@@ -172,7 +176,7 @@ export class EditComponent {
         }
       )
 
-     
+
     }
   }
 
@@ -192,16 +196,19 @@ export class EditComponent {
         }
       )
 
-     
+
     }
   }
 
- 
+
   EditActive():void{
   this.accordion.openAll();
   this.editActive = true;
 }
 
+toggleEditActive() {
+  this.editActive = !this.editActive;
+}
 EditDeactivate():void{
   this.accordion.closeAll();
   this.editActive = false;
@@ -222,22 +229,22 @@ fillFormToUpdate(){
   this.addressForm.setValue({
     address:this.user.address??""
   })
-  
+
 }
   Save():void{
-  
-    if(this.emailForm.valid 
+
+    if(this.emailForm.valid
       && this.nameForm.valid){
       const user = new User()
       user.id = this.userId;
       user.firstName = this.firstName?.value ?? undefined ;
       user.lastName = this.lastName?.value ?? undefined;
       user.email = this.email?.value ?? undefined ;
-      if(this.addressForm.valid 
+      if(this.addressForm.valid
         ){
           user.address = this.address?.value ?? undefined ;
         }
-        if( this.phoneForm.valid 
+        if( this.phoneForm.valid
           ){
             user.phoneNumber = this.phone?.value ?? undefined ;
           }
@@ -257,9 +264,9 @@ fillFormToUpdate(){
         }
       )
 
-     
+
     }
-    
+
 }
 
 

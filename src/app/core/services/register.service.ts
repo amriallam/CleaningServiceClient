@@ -40,7 +40,7 @@ export class RegisterService {
   //         // this.router.navigate(['/email-sent']);
   //         // }, 2000);
   //       }),
-        
+
   //       catchError((error: HttpErrorResponse) => {
   //         if (error.status === 400) {
   //           // this.ToastrService.error(
@@ -56,9 +56,9 @@ export class RegisterService {
   //         }
   //         return throwError(error);
   //       })
-        
 
-        
+
+
   //     );
   // }
   public register(
@@ -68,7 +68,7 @@ export class RegisterService {
     lastName: string,
     password: string
   ): Observable<any> {
-    return this.http.post<any>(this.baseUrl, { email , 
+    return this.http.post<any>(this.baseUrl, { email ,
       firstName,
       userName,
       lastName,
@@ -84,7 +84,7 @@ export class RegisterService {
           this.router.navigate(['/email-sent']);
         }
         , 2000);
-      
+
     }),
 
 

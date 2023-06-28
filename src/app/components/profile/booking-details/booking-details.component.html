@@ -18,113 +18,113 @@
         </div>
       </div>
     </section>
-  
+
     <section class="contact-section section-padding">
       <div class="container">
         <div class="row">
-  
+
           <div [ngClass]="largeScreen? 'col-lg-12': 'col-lg-6' "
-           class=" col-12 me-auto mb-lg-0 mb-5 booking-info bg-white shadow-lg ">
+          class=" col-12 me-auto mb-lg-0 mb-5 booking-info bg-white shadow-lg ">
                 <div class="card-header">
                     <h2>Booking Information</h2>
                     <h4>Service: {{data.serviceName}} </h4>
                 </div>
                 <div class="card-body">
-                    <h6 class="mt-4">Booking Details</h6> 
+                    <h6 class="mt-4">Booking Details</h6>
                     <div class="row col-12">
                         <ng-container  *ngIf="largeScreen">
 
                             <div class="col-6">
-                                <p>Date: {{data.date | date:'dd-MM-yyyy'}}</p> 
-                                <p>Start Time: {{data.startTime }}</p> 
+                                <p>Date: {{data.date | date:'dd-MM-yyyy'}}</p>
+                                <p>Start Time: {{data.startTime }}</p>
                                 <p>End Time: {{data.endTime  }}</p>
-                               <p>Location: {{data.location  }}</p>
-                           </div>
-   
-                           <div class="col-6">
-                               <p>Payment Method : {{data.paymentMethodName?? "Credit"  }}</p>
-                               <p>Payment Status : {{data.paymentStatus?? "Done"  }}</p>
-                               <p>Total Cost: {{data.totalCost | currency }}</p>
-                           </div>
+                              <p>Location: {{data.location  }}</p>
+                          </div>
+
+                          <div class="col-6">
+                              <p>Payment Method : {{data.paymentMethodName?? "Credit"  }}</p>
+                              <p>Payment Status : {{data.paymentStatus?? "Done"  }}</p>
+                              <p>Total Cost: {{data.totalCost | currency }}</p>
+                          </div>
                         </ng-container>
                         <ng-container  *ngIf="!largeScreen">
 
-                          <p>Date: {{data.date | date:'dd-MM-yyyy'}}</p> 
-                          <p>Start Time: {{data.startTime }}</p> 
+                          <p>Date: {{data.date | date:'dd-MM-yyyy'}}</p>
+                          <p>Start Time: {{data.startTime }}</p>
                           <p>End Time: {{data.endTime  }}</p>
-                         <p>Location: {{data.location  }}</p>
+                        <p>Location: {{data.location  }}</p>
 
-                         <p>Payment Method : {{data.paymentMethodName?? "Credit"  }}</p>
-                         <p>Payment Status : {{data.paymentStatus?? "Done"  }}</p>
-                         <p>Total Cost: {{data.totalCost | currency }}</p>
-                  
+                        <p>Payment Method : {{data.paymentMethodName?? "Credit"  }}</p>
+                        <p>Payment Status : {{data.paymentStatus?? "Done"  }}</p>
+                        <p>Total Cost: {{data.totalCost | currency }}</p>
+
                         </ng-container>
-                            
+
                     </div>
 
                 </div>
-               
-          
+
+
           </div>
 
           <div [ngClass]="largeScreen? 'col-lg-12': 'col-lg-6' "
-           class="row col-12 ">
+          class="row col-12 ">
             <ng-container *ngFor="let item of data.bookingItems ">
                 <div class="row col m-4" [ngClass]="largeScreen? 'col': 'col-lg-12'">
-               <div class="col-md-6 col-12 mb-lg-0 mb-md-5">
-                        <img [src]="item.resourceImages[0].uri" 
+              <div class="col-md-6 col-12 mb-lg-0 mb-md-5">
+                        <img [src]="item.resourceImages[0].uri"
                           class="team-image img-fluid">
                       </div>
-                      
+
                       <div
                         class=" col-md-6 col-12 d-flex justify-content-lg-center mt-4 mt-lg-0 mt-md-0 mb-5 mb-lg-0">
                         <div class="team-info ">
                                 <h4 class="mb-2">{{item.resourceName }}</h4>
                                 <p>Cost: {{item.price  }}</p>
-                                
+
                                 <div class=" flex justify-content-center">
                                 <p-rating (onRate)="rate($event)" class="rating" [(ngModel)]="value" [cancel]="false"></p-rating>
                                 </div>
                                 <div class="border-top mt-3 pt-3">
-                         
+
                           </div>
                         </div>
                       </div>
                 </div>
-                
+
             </ng-container>
-        
-           
-            
+
+
+
           </div>
-           <!-- <section class="team-section section-padding section-bg">
+          <!-- <section class="team-section section-padding section-bg">
             <div class="container">
               <div class="row">
-        
+
                 <div class="col-lg-12 col-12">
                   <h2 class="mb-4">Meet People</h2>
                 </div>
-        
-              
-        
+
+
+
                 <div class="col-lg-3 col-md-6 col-12">
                   <img
                     src="../../../../assets/images/teams/happy-young-woman-wiping-kitchen-counter-wearing-yellow-gloves.jpg"
                     class="team-image img-fluid">
                 </div>
-        
+
                 <div
                   class="col-lg-3 col-md-6 col-12 d-flex justify-content-lg-center mt-4 mt-lg-0 mt-md-0">
                   <div class="team-info mx-auto mx-lg-0">
                     <h4 class="mb-2">Marie</h4>
-        
+
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing tempor
                       incididunt dolore magna</p>
-        
+
                     <div class="border-top mt-3 pt-3">
                       <p class="d-flex mb-0">
                         <i class="bi-whatsapp me-2"></i>
-        
+
                         <a href="tel: 110-220-9800">
                           110-220-9800
                         </a>
@@ -132,16 +132,15 @@
                     </div>
                   </div>
                 </div>
-        
+
               </div>
             </div>
           </section>  -->
 
-  
 
-  
+
+
         </div>
       </div>
     </section>
   </main>
-  

@@ -55,7 +55,7 @@
   <mat-expansion-panel (click)="editActive=true">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Email 
+        Email
       </mat-panel-title>
       <mat-panel-description>
         {{user.email}}
@@ -71,7 +71,7 @@
               <div class="error-message" *ngIf="email?.errors?.['required']">Email is required</div>
               <div class="error-message" *ngIf="email?.errors">Invalid email format</div>
           </div>
-      </form>        
+      </form>
   </mat-expansion-panel>
 
   <mat-expansion-panel (click)="editActive=true">
@@ -113,14 +113,14 @@
           <div class="error-message" *ngIf="phone?.errors?.['required']">Phone is required</div>
           <div class="error-message" *ngIf="phone?.errors?.['pattern']">Invalid phone format</div>
         </div>
-      </form>                        
+      </form>
 
   </mat-expansion-panel>
 </mat-accordion>
 
 
 
-<div class="ay5ara">
+<div class="bu-e">
   <button  mat-button (click)="EditActive()"><i class="bi bi-pencil-square"></i></button>
 
 </div>

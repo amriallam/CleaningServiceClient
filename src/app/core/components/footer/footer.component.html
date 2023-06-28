@@ -6,7 +6,15 @@
         <h5 class="site-footer-title mb-3">Our Services</h5>
 
         <ul class="footer-menu">
-          <li class="footer-menu-item">
+
+          <li class="footer-menu-item" *ngFor="let ser of services">
+            <a class="footer-menu-link">
+              <i class="bi-chevron-double-right footer-menu-link-icon me-2"></i>
+              {{ser.name}}
+            </a>
+          </li>
+
+          <!-- <li class="footer-menu-item">
             <a class="footer-menu-link">
               <i class="bi-chevron-double-right footer-menu-link-icon me-2"></i>
               House Cleaning
@@ -39,7 +47,7 @@
               <i class="bi-chevron-double-right footer-menu-link-icon me-2"></i>
               Toilet Cleaning
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
 
@@ -48,60 +56,34 @@
 
         <p class="text-white d-flex mt-3 mb-2">
           <i class="bi-geo-alt-fill me-2"></i>
-          Akershusstranda 20, 0150 Oslo, Norway
+          5 St-Abbas ELakkad, Nasr City, Cairo
         </p>
 
         <p class="text-white d-flex mb-2">
           <i class="bi-telephone-fill me-2"></i>
 
           <a href="tel: 102-483-9986" class="site-footer-link">
-            102 483 9986
+            01063462156
           </a>
         </p>
 
         <p class="text-white d-flex">
           <i class="bi-envelope-fill me-2"></i>
 
-          <a href="mailto:info@company.com" class="site-footer-link">
-            info@company.com
+          <a href="mailto:ayaulshenawy@gmail.com" class="site-footer-link">
+            ayaulshenawy@gmail.com
           </a>
         </p>
-
-        <ul class="social-icon mt-4">
-          <li class="social-icon-item">
-            <a class="social-icon-link button button--skoll">
-              <span></span>
-              <span class="bi-twitter"></span>
-            </a>
-          </li>
-
-          <li class="social-icon-item">
-            <a class="social-icon-link button button--skoll">
-              <span></span>
-              <span class="bi-facebook"></span>
-            </a>
-          </li>
-
-          <li class="social-icon-item">
-            <a class="social-icon-link button button--skoll">
-              <span></span>
-              <span class="bi-instagram"></span>
-            </a>
-          </li>
-        </ul>
       </div>
 
       <div class="col-lg-3 col-md-6 col-6 mt-3 mt-lg-0 mt-md-0">
         <div class="featured-block">
           <h5 class="text-white mb-3">Service Hours</h5>
 
-          <strong class="d-block text-white mb-1">Mon - Fri</strong>
+          <strong class="d-block text-white mb-1">Every day</strong>
 
-          <p class="text-white mb-3">8:00 AM - 5:30 PM</p>
+          <p class="text-white mb-3">09:00 AM - 06:00 PM</p>
 
-          <strong class="d-block text-white mb-1">Sat</strong>
-
-          <p class="text-white mb-0">6:00 AM - 2:30 PM</p>
         </div>
       </div>
     </div>

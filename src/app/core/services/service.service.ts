@@ -17,8 +17,8 @@ export class ServiceService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<ResponseModel<Service>> {
-    return this.httpClient.get<ResponseModel<Service>>(`${apiUrl}Service`)
+  getAll(): Observable<ResponseModel<Service[]>> {
+    return this.httpClient.get<ResponseModel<Service[]>>(`${apiUrl}Service`)
   }
   getById(id: number): Observable<ResponseModel<Service>> {
     return this.httpClient.get<ResponseModel<Service>>(`${apiUrl}Service?Id=${id}`)

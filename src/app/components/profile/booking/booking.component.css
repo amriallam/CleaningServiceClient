@@ -51,3 +51,44 @@
     background: var(--custom-btn-bg-hover-color);
     color:white !important;
 }
+
+.search{
+    padding: 5px 5px 5px 10px;
+}
+.dd{
+    justify-content: end;
+    text-align: end;
+}
+
+.filters{
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+
+}
+  .filter-control {
+
+    padding: 0.275rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  .mat-elevation-z8{
+
+      box-shadow: none;
+      border: var(--bs-border-width) solid var(--bs-border-color);
+      border-radius: var(--bs-border-radius);
+
+  }
+  .NoData{
+    text-align: center;
+    font-size: large;
+    padding: 5px;
+  }

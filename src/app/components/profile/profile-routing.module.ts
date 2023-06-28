@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InfoComponent } from './info/info.component';
 import { ProfileComponent } from './profile.component';
 import { EditComponent } from './edit/edit.component';
 import { BookingComponent } from './booking/booking.component';

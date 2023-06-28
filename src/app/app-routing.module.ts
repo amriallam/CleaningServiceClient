@@ -15,11 +15,13 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SuccessComponent } from './components/success/success.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   // Main
   { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'service/:servicename', component: DetailsServiceComponent },
+  //{ path: 'service/:servicename', component: DetailsServiceComponent },
   { path: 'resource', loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) },
   { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => m.BookingModule) },
   { path: 'faq', component: FaqComponent },
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
 
+  {path: 'success', component:SuccessComponent},
+  {path: 'error', component:ErrorComponent},
   // Not Foudn
   { path: '**', component: NotFoundComponent },
 ];

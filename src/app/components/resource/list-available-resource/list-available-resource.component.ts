@@ -88,8 +88,7 @@ export class ListAvailableResourceComponent {
     readonly watchService: BookingWatchService,
     private bookingService: BookingService,
     private router: Router,
-    private modal: NgbModal,
-    private serviceService: ServiceService
+    private modal: NgbModal
   ) {
 
     this.status = false;
@@ -141,19 +140,12 @@ export class ListAvailableResourceComponent {
 
     });
 
-    this.serviceService.getMetadataById(this.serviceId).subscribe(res=>{
-      this.noOfResources = res.data[0].noOfResources;
-      console.log(res)
-    })
-
-  // this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
-  //   (maxNumberOfResources) => {
-  //     this.watchService.maxNumberOfResources = maxNumberOfResources;
-  //     console.log("max")
-  //     console.log(maxNumberOfResources);
-  //     this.noOfResources = maxNumberOfResources;
-  //   }
-  // );
+  this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
+    (maxNumberOfResources) => {
+      this.watchService.maxNumberOfResources = maxNumberOfResources;
+      this.noOfResources = maxNumberOfResources;
+    }
+  );
 
   }
 

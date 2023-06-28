@@ -1,5 +1,24 @@
+
+<div class="row search">
+  <div  class="col-md-4 filters">Search : 
+    <input  class="filter-control" (keyup)="applyFilter($event)" placeholder="Ex.Pending" #input>
+  </div>
+  
+  <div class="col-md-4"></div>
+  <div class="col-md-4 dd filters">Status :
+    <select class="filter-control"  (change)="filterStatus($event)">
+      <option value="">--SELECT--</option>
+      <option value="Confirmed">Confirmed</option>
+      <option value="Pending">Pending</option>
+      <option value="Completed">Completed</option>
+      <option value="InProcess">InProcess</option>
+    </select>
+  </div>
+
+</div>
+
 <div class="mat-elevation-z8  ">
-  <table  mat-table   [dataSource]="dataSource" matSort >
+  <table  mat-table    [dataSource]="dataSource" matSort >
       <!-- Date Column -->
       <ng-container matColumnDef="Date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
@@ -56,8 +75,12 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
   </table>
+  <div *ngIf="!this.data" class="NoData">No Data Are Available</div>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [length]="resultsLength" pageSize="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 
 </div>

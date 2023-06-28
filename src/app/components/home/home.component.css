@@ -260,3 +260,17 @@
     bottom: 60px;
     right: 80px;
   }
+
+
+  .custom-btn {
+    background: var(--custom-btn-bg-color);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-large);
+    color: var(--white-color);
+    font-size: var(--btn-font-size);
+    font-weight: var(--font-weight-normal);
+    line-height: normal;
+    transition: all 0.3s;
+    margin-top: 20px;
+    padding: 8px 25px;
+  }

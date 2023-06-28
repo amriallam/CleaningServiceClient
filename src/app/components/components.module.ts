@@ -12,6 +12,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UnderMaintenanceComponent } from './under-maintenance/under-maintenance.component';
+import { SuccessComponent } from './success/success.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -23,7 +25,9 @@ import { UnderMaintenanceComponent } from './under-maintenance/under-maintenance
     HomeComponent,
     NotFoundComponent,
     UnderMaintenanceComponent,
-    SchedulerComponent
+    SchedulerComponent,
+    SuccessComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,
