@@ -114,7 +114,8 @@ export class BookingComponent implements OnInit, AfterViewInit {
 
   }
   pay(data: BookingClient) {
-    this.openView2().closed.subscribe(res => {
+    let config = new PopUpContent("Are You Sure You Wont To Pay for This Booking", "Yes", "No")
+    this.openView(config).closed.subscribe(res => {
       if (res.result) {
         this.paymentService.Pay(data.id, res.option).subscribe(res2 => {
           window.location.href=res2.data.result
@@ -131,6 +132,7 @@ export class BookingComponent implements OnInit, AfterViewInit {
       }
     })
   }
+
   refund(data: BookingClient) {
    let config = new PopUpContent("Are You Sure You Wont To Refund This Booking", "Yes", "No")
     this.openView(config).closed.subscribe(res => {
