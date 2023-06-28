@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookingModel } from 'src/app/core/Models/BookinModel';
-import { BookingStaus } from 'src/app/core/Models/BookingStaus';
 import { Resource } from 'src/app/core/Models/Resource';
 import { Service } from 'src/app/core/Models/Service';
 import { BookingDetailsVM } from 'src/app/core/ViewModels/booking-details-vm';
@@ -61,6 +60,13 @@ export class BookinListItemsComponent {
         });
       })
     }
+    if(localStorage.getItem('location') != null && localStorage.getItem("paymentMethod") != null){
+      this.bookingForm.patchValue({
+        address :localStorage.getItem('location'),
+        paymentMethod:localStorage.getItem('paymentMethod')
+      })
+
+    }
   }
 
   back(){
@@ -79,6 +85,8 @@ export class BookinListItemsComponent {
     this.fullAddress = this.bookingForm.get('region')?.value +", "+this.bookingForm.get('address')?.value;
     this.userId = localStorage.getItem('userBookingAppId');
     if(this.userId == null){
+          localStorage.setItem("location", this.bookingForm.get('address')?.value);
+          localStorage.setItem("paymentMethod", this.bookingForm.get('paymentMethod')?.value )
           this.router.navigate(['/login'])
       }else{
         this.bookingmodel = new BookingModel(
@@ -94,11 +102,9 @@ export class BookinListItemsComponent {
         console.log(this.fullAddress)
         const paymentMethod = this.bookingForm.get('paymentMethod')?.value;
         if(this.bookingmodel){
-          console.log(this.bookingmodel);
-          console.log(paymentMethod)
-          // this.bookingmodel.userID = "2f4d4152-871c-49c2-9355-0303bec672f6";
+        
           this.bookingService.AddNewBoooking(this.bookingmodel, paymentMethod).subscribe(res =>{
-            console.log(res.data);
+            
             window.location.href =res.data.result;
           })
         }
