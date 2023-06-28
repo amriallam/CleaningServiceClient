@@ -26,7 +26,10 @@ export class BookingDetailsComponent implements OnInit{
 
     private route:ActivatedRoute
 
-    ){}
+    ){
+
+      
+    }
 
 
   ngOnInit(): void {
@@ -44,12 +47,10 @@ export class BookingDetailsComponent implements OnInit{
       this.BookingId = params['id'];
       this.clientBookingService.getClientBookingById( this.userId,this.BookingId).subscribe(data=>{
         this.data=data.data
-        console.log("from oninit")
-        console.log(data)
+        console.log(this.data)
         if(data.data.bookingItems.length >1 ){
           this.largeScreen =true;
         }
-
        })
     });
 

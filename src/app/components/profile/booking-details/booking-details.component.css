@@ -1,74 +1,79 @@
-
-  
-  .booking-info {
-    background: var(--white-color);
-    border-radius: var(--border-radius-medium);
-    display: inline-block;
-    padding: 40px;
-  }
-  
-  .team-info a,
-  .contact-info h5,
-  .contact-info h5 a {
-    color: var(--p-color);
-  }
-  .team-info{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+.booking-info {
+  background: var(--white-color);
+  border-radius: var(--border-radius-medium);
+  display: inline-block;
+  padding: 40px;
 }
 
- 
-  .team-image{
-    height: 250px;
-  }
-
- 
-  
-  .card-header {
-    padding: 10px 10px 0px 10px;
-    
-  }
-  .card-header {
-    margin-top: 0;
-  }
-  
-  .card-header h2 {
-    color: #333;
-    font-size: 24px;
-    margin-top: 0;
-  }
-  
-  .card-header h4 {
-    color: #666;
-    font-size: 16px;
-    margin-top: 0;
-  }
-  
-  .card-body {
-    padding: 5px;
-  }
-  
-  .card-body h4 {
-    color: #333;
-    font-size: 18px;
-    margin-top: 0;
-  }
-  
-  .card-body p {
-    color: #666;
-    font-size: 14px;
-    margin: 0 0 10px 0;
-  }
-  
-  .card-body p:last-child {
-    margin-bottom: 0;
-  }
-  .rating{
-    width: 100px ;
- 
+td{
+  padding-left:40px
 }
-  
-  
+
+.team-info a,
+.contact-info h5,
+.contact-info h5 a {
+  color: var(--p-color);
+}
+.team-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.team-image {
+  height: 250px;
+}
+
+.card-header {
+  padding: 10px 10px 0px 10px;
+}
+.card-header {
+  margin-top: 0;
+}
+
+.card-header h2 {
+  color: #333;
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.card-header h4 {
+  color: #666;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.card-body {
+  padding: 5px;
+}
+
+.card-body h4 {
+  color: #333;
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.card-body p {
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 10px 0;
+}
+
+.card-body p:last-child {
+  margin-bottom: 0;
+}
+.rating {
+  width: 100px;
+}
+.item tr td{
+  margin-bottom: 40px;
+}
+table {
+  border-spacing: 10px;
+}
+
+tr {
+  margin-bottom: 10px;
+}
