@@ -28,8 +28,8 @@
     <div class="container col-9">
       <div class="row">
         <div
-          [ngClass]="largeScreen ? 'col-lg-12' : 'col-lg-6'"
-          class="col-12 me-auto mb-lg-0 mb-5 booking-info bg-white shadow-lg"
+         
+          class="col-12 me-auto mb-lg-0 mb-5 booking-info bg-white shadow-lg col-lg-12"
         >
           <div class="card-header d-flex justify-content-between mb-2">
             <p>{{ data.date }}</p>
@@ -45,6 +45,7 @@
             </div>
             <table class="col-12" >
               <tbody class="item">
+
                 <tr class="m-5" *ngFor="let item of data.bookingItems">
                   <td >
                     <img [src]="item.resourceImages[0].uri" alt="Resource Image" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
@@ -57,35 +58,6 @@
             
           </div>
         </div>
-        <!-- <div [ngClass]="largeScreen? 'col-lg-12': 'col-lg-6' "
-          class="row col-12 ">
-            <ng-container *ngFor="let item of data.bookingItems">
-                <div class="row col m-4" [ngClass]="largeScreen? 'col': 'col-lg-12'">
-              <div class="col-md-6 col-12 mb-lg-0 mb-md-5">
-                       
-                      </div>
-
-                      <div
-                        class=" col-md-6 col-12 d-flex justify-content-lg-center mt-4 mt-lg-0 mt-md-0 mb-5 mb-lg-0">
-                        <div class="team-info ">
-                                <h2 class="mb-2">{{item.resourceName }}</h2>
-                                <p>Cost: {{item.price}}</p>
-
-                                <div class=" flex justify-content-center">
-                                <p-rating (onRate)="rate($event)" class="rating" [(ngModel)]="value" [cancel]="false"></p-rating>
-                                </div>
-                                <div class="border-top mt-3 pt-3">
-
-                          </div>
-                        </div>
-                      </div>
-                </div>
-
-            </ng-container>
-
-
-
-          </div> -->
       </div>
     </div>
   </section>
