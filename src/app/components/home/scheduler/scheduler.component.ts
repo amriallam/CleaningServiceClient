@@ -77,12 +77,15 @@ export class SchedulerComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.regionService.getSystemRegions().subscribe(
-      e =>{
+      {
+        next:e =>{
         if(e.data.length > 0){
         this.RegionData =this.RegionToSelect2Option(e.data)
         this.skeletonLoadingFlag = 2;
         }
         else  this.skeletonLoadingFlag = 1;
+      },
+      error:()=> this.skeletonLoadingFlag = 1
       }
     )
   }
