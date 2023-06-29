@@ -5,6 +5,7 @@ import { ResponseModel } from '../Models/ResponseModel';
 import { apiUrl } from '../../../environment';
 import { Resource } from '../Models/Resource';
 import { Time } from '@angular/common';
+import { HiddenMaterial } from '../Models/hidden-material';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class ResourceService {
     const sId = Number(serviceId)
     const regId = Number(regionId);
     return this.http.get<ResponseModel<Resource[]>>(apiUrl + `Schedule/GetAvailableResources?_day=${date}&_serviceId=${sId}&_startTime=${from}&_endTime=${to}&RegionId=${regId}`);
+  }
+
+  GetMaterialPrice(serviceId: number):Observable<ResponseModel<HiddenMaterial>>{
+    const sId = Number(serviceId);
+    return this.http.get<ResponseModel<HiddenMaterial>>(apiUrl + 'Schedule/GetHiddenCostWithNoSchedule?serviceId=' + sId);
   }
 
   GetTopResources(NoOfResources: number=100):Observable<ResponseModel<Resource[]>>{

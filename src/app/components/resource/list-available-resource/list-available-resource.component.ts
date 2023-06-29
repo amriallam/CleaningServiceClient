@@ -66,6 +66,7 @@ export class ListAvailableResourceComponent {
   to!: string;
   regionId !: number;
   uri!: string;
+  materialPrice!: number;
 
   counter: number = 0;
   selectedResources: any[] = [];
@@ -78,7 +79,6 @@ export class ListAvailableResourceComponent {
 
   p: number = 1;
   resPerPage: number = 6;
-  totalNoOfResources !: number
 
   noResourcesExist: boolean = false;
 
@@ -102,7 +102,6 @@ export class ListAvailableResourceComponent {
 
     this.watchService.LimitReached.subscribe((LimitReachedStatus) => {
       this.status = LimitReachedStatus;
-      console.log(this.status);
     });
 
   }
@@ -111,16 +110,15 @@ export class ListAvailableResourceComponent {
     this.resourceService
     .GetAvailableResources(this.serviceId, this.date, this.from, this.to, this.regionId)
     .subscribe((res) => {
-
       this.availableResources = res.data;
       this.filteredResources = res.data;
-      this.totalNoOfResources = res.data.length;
 
       this.noResourcesExist = this.filteredResources.length === 0;
 
       if(this.noOfResources == 0){
         this.status = false
       }
+
       if(this.bookingService.bookingBackVM   != null ){
         this.bookingService.bookingBackVM.selectedIDs?.forEach(resId => {
           this.availableResources.forEach(res => {
@@ -129,6 +127,7 @@ export class ListAvailableResourceComponent {
             }
           })
           this.totalPrice = this.bookingService.bookingBackVM.totalCost as number;
+          this.totalPrice = this.totalPrice-this.materialPrice
         });
       }
       this.availableResources.forEach((resource) => {
@@ -147,6 +146,10 @@ export class ListAvailableResourceComponent {
     }
   );
 
+    this.resourceService.GetMaterialPrice(this.serviceId).subscribe(res=> {
+      this.materialPrice = res.data.resultPrice;
+      console.log("Material ",res);
+    })
   }
 
   isSelectionDisabled(res: any): boolean {
@@ -194,7 +197,7 @@ export class ListAvailableResourceComponent {
       this.from,
       this.to,
       this.serviceId,
-      this.totalPrice,
+      this.totalPrice+ this.materialPrice,
       this.regionId
     );
 
