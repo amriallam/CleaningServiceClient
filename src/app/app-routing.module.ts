@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
 
   {path: 'success', component:SuccessComponent},
-  {path: 'error', component:ErrorComponent},
+  {path: 'cancel', component:ErrorComponent},
   // Not Foudn
   { path: '**', component: NotFoundComponent },
 ];
