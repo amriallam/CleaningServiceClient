@@ -17,6 +17,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SuccessComponent } from './components/success/success.component';
 import { ErrorComponent } from './components/error/error.component';
+import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
 
 const routes: Routes = [
   // Main
@@ -37,7 +38,7 @@ const routes: Routes = [
   { path: 'email-sent', component: EmailVerfiySentComponent },
   { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
-
+  { path: "ticket", component: CreateTicketsComponent},
   {path: 'success', component:SuccessComponent},
   {path: 'cancel', component:ErrorComponent},
   // Not Foudn

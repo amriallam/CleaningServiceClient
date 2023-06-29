@@ -8,11 +8,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { PayOptionPopUpComponent } from './components/PayOptionPopUp/PayOptionPopUp.component';
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    PayOptionPopUpComponent
+    PayOptionPopUpComponent,
+ 
   ],
   imports: [
     CommonModule,

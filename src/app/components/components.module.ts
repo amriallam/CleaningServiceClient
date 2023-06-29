@@ -12,6 +12,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UnderMaintenanceComponent } from './under-maintenance/under-maintenance.component';
+import { CreateTicketsComponent } from './create-tickets/create-tickets.component';
 import { SuccessComponent } from './success/success.component';
 import { ErrorComponent } from './error/error.component';
 
@@ -26,6 +27,7 @@ import { ErrorComponent } from './error/error.component';
     NotFoundComponent,
     UnderMaintenanceComponent,
     SchedulerComponent,
+    CreateTicketsComponent,
     SuccessComponent,
     ErrorComponent
   ],
