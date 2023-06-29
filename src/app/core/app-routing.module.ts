@@ -34,9 +34,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
-  { path: 'resetPassword', component: ResetPasswordComponent },
+  { path: 'auth/resetPassword', component: ResetPasswordComponent },
   { path: 'email-sent', component: EmailVerfiySentComponent },
-  { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
+  { path: 'auth/ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: "profile", loadChildren: () => import("../components/profile/profile.module").then(m => m.ProfileModule) },
 
   // Not Found
