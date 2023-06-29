@@ -4,6 +4,7 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpErrorResponse,
+  HttpParams,
 } from '@angular/common/http';
 import { Observable, catchError, throwError, tap } from 'rxjs';
 import { Router } from '@angular/router';
@@ -12,30 +13,35 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class RetryInterceptor implements HttpInterceptor {
   constructor(private router: Router, private toastr: ToastrService) {}
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-    // if (req.url === 'https://localhost:7158/api/Account/register') {
-    //   return next.handle(req);
-    // } else {
-    return next.handle(req).pipe(
+    let modifiedReq = req;
+
+    if (req.method === 'GET' && (!req.params.has('Page') || !req.params.has('PageSize'))) {
+      const updatedParams = new HttpParams()
+        .set('Page', '1')
+        .set('PageSize', '10');
+
+      modifiedReq = req.clone({ params: updatedParams });
+    }
+
+    return next.handle(modifiedReq).pipe(
       tap((data: any) => {
-        // show toast from ngx-toastr
         console.log(data);
       }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 400) {
           this.toastr.error(
-            'Please try again later',
-            error.error.data[0].description
+            error.error.data[0].description,
+            'Please try again later'
           );
-
-          // console.log('An error occurred:', error.error);
         } else {
-         // this.router.navigateByUrl('/maintenance'); // Redirect to maintenance page
+          // Redirect to the maintenance page
+          // this.router.navigateByUrl('/maintenance');
         }
         return throwError(error);
       })
     );
-    // }
   }
 }
 
