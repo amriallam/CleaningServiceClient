@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/core/services/login.service';
 import jwt_decode from 'jwt-decode';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private bookinService : BookingService 
   ) {
     this.loginFormGroup = new FormGroup({
       // ssn: new FormControl('', [
@@ -94,7 +96,12 @@ export class LoginComponent {
             // show toast from ngx-toastr
             this.toastr.success('Login Successful', 'Welcome');
             setTimeout(() => {
-              this.router.navigate(['/']);
+              if(this.bookinService.bookingDetails != null){
+                this.router.navigate(['/booking/bookingList'])
+              }
+              else{
+                 this.router.navigate(['/']);
+              }
             }, 3000);
           } else {
             console.log(res);
