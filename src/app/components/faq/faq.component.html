@@ -25,7 +25,7 @@
       <ngx-skeleton-loader count="5" appearance="line" animation="pulse"></ngx-skeleton-loader>
     </div>
   </ng-container>
-  
+
   <ng-container *ngIf="skeletonLoading==1">
     <div class="container d-flex align-items-center gap-5">
       <div class="col-lg-7 col-12">
@@ -113,7 +113,7 @@
             </h2>
             <div class="flex-grow-1 mt-2" ngbAccordionCollapse>
               <div ngbAccordionBody>
-                <p [innerHTML]="faq.answer"></p>
+                <p [innerHTML]="sanitizeHtml(faq.answer)"></p>
               </div>
             </div>
           </div>

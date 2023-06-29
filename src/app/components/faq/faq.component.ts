@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Faq } from 'src/app/core/Models/faq';
 import { FaqCategory } from 'src/app/core/Models/faqCategory';
 import { FaqService } from 'src/app/core/services/faq.service';
@@ -6,24 +7,25 @@ import { FaqService } from 'src/app/core/services/faq.service';
 @Component({
   selector: 'app-list-faq',
   templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.css']
+  styleUrls: ['./faq.component.css'],
 })
 export class FaqComponent implements OnInit {
-  skeletonLoading:number=0;
+  skeletonLoading: number = 0;
   faqCategories: FaqCategory[] = [];
-  @ViewChild("search") search !: ElementRef;
+  @ViewChild('search') search!: ElementRef;
   selectedCategory: FaqCategory = { name: '', faqs: [] };
-  searchTerm: string = "";
-  constructor(private faqService: FaqService) { }
+  searchTerm: string = '';
+  constructor(
+    private faqService: FaqService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
-    this.faqService.getAllFAQ().subscribe(res => {
-      if(res.data.length > 0) {
-        this.faqCategories = res.data;
-        this.skeletonLoading=2
-      }
-      else
-        this.skeletonLoading=1
+    this.faqService.getAllFAQ().subscribe((res) => {
+      if (res.data.length > 0) {
+        this.faqCategories = res.data.filter(e=>e.faqs.length > 0);
+        this.skeletonLoading = 2;
+      } else this.skeletonLoading = 1;
     });
   }
 
@@ -31,8 +33,7 @@ export class FaqComponent implements OnInit {
     this.selectedCategory = category;
   }
   matchesSearchTerm(faq: Faq): boolean {
-    if (!this.searchTerm)
-      return true; // If no search term provided, show all resources
+    if (!this.searchTerm) return true; // If no search term provided, show all resources
     this.searchTerm = this.search.nativeElement.value.toLowerCase();
     const searchParam = faq.question.toLowerCase();
     return searchParam.includes(this.searchTerm); // Check if faq questions/answers includes the search term
@@ -49,5 +50,8 @@ export class FaqComponent implements OnInit {
       }
     }
     return false; // Hide the category if no matching question is found
+  }
+  sanitizeHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }
