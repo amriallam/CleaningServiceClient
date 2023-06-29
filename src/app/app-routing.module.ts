@@ -19,6 +19,7 @@ import { SuccessComponent } from './components/success/success.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
 
+
 const routes: Routes = [
   // Main
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -42,7 +43,7 @@ const routes: Routes = [
   {path: 'success', component:SuccessComponent},
   {path: 'cancel', component:ErrorComponent},
   // Not Foudn
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
