@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'email-sent', component: EmailVerfiySentComponent },
   { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
-  { path: "ticket", component: CreateTicketsComponent , canActivate: [AuthgaurdsGuard]},
+  { path: "support-tickets", component: CreateTicketsComponent , canActivate: [AuthgaurdsGuard]},
   {path: 'success', component:SuccessComponent},
   {path: 'cancel', component:ErrorComponent},
   // Not Foudn
