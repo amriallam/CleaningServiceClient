@@ -6,6 +6,7 @@ import { ResponseModel } from '../Models/ResponseModel';
 import { BookingItem } from '../Models/BookingItem';
 import { apiUrl } from 'src/environment';
 import { BookingClient } from '../Models/BookingClient';
+import { TransitionFees } from '../Models/transition-fees';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,7 @@ export class ClientBookingService {
 
 
   constructor(private httpClient: HttpClient) {
-    
+
   }
  public getAllClientBooking(id:string): Observable<ResponseModel<BookingClient[]>> {
     return this.httpClient.get<ResponseModel<BookingClient[]>>(apiUrl + `ClientBooking/user/`+ id);
@@ -23,6 +24,7 @@ export class ClientBookingService {
     return this.httpClient.get<ResponseModel<BookingClient>>(apiUrl + `ClientBooking/user/`+ id +`?bookingId=`+bookingId);
   }
 
+  
 }
 
 

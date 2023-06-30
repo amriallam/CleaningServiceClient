@@ -1,3 +1,4 @@
+import { TransitionFees } from './../../../core/Models/transition-fees';
 import {
   animate,
   state,
@@ -67,6 +68,7 @@ export class ListAvailableResourceComponent {
   regionId !: number;
   uri!: string;
   materialPrice!: number;
+  transitionFees!: number;
 
   counter: number = 0;
   selectedResources: any[] = [];
@@ -139,6 +141,11 @@ export class ListAvailableResourceComponent {
 
     });
 
+    this.bookingService.getTransitionfees(this.serviceId, this.date, this.from, this.to, this.regionId).subscribe(res=>{
+        this.transitionFees = res.data.item2;
+        console.log("transition",this.transitionFees)
+    })
+
   this.watchService.GetMaxNumberOfResource(this.serviceId).subscribe(
     (maxNumberOfResources) => {
       this.watchService.maxNumberOfResources = maxNumberOfResources;
@@ -198,7 +205,8 @@ export class ListAvailableResourceComponent {
       this.to,
       this.serviceId,
       this.totalPrice+ this.materialPrice,
-      this.regionId
+      this.regionId,
+      this.transitionFees
     );
 
     console.log("from book");

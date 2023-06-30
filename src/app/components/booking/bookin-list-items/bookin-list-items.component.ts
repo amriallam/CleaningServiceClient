@@ -1,3 +1,4 @@
+import { TransitionFees } from './../../../core/Models/transition-fees';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,6 +27,7 @@ export class BookinListItemsComponent {
   service ?: Service ;
   fullAddress ! : string ;
   userId ? : any ;
+  transitionFees!: number;
   constructor(private resourceService: ResourceService,
     private location :Location,
     private bookingService : BookingService,
@@ -67,6 +69,8 @@ export class BookinListItemsComponent {
       })
 
     }
+
+    this.transitionFees = this.bookingService.bookingDetails.transitionFees as number;
   }
 
   back(){
@@ -102,9 +106,9 @@ export class BookinListItemsComponent {
         console.log(this.fullAddress)
         const paymentMethod = this.bookingForm.get('paymentMethod')?.value;
         if(this.bookingmodel){
-        
+
           this.bookingService.AddNewBoooking(this.bookingmodel, paymentMethod).subscribe(res =>{
-            
+
             window.location.href =res.data.result;
           })
         }

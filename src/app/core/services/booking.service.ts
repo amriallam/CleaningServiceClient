@@ -8,6 +8,7 @@ import { apiUrl } from 'src/environment';
 import { BookingModel } from '../Models/BookinModel';
 import { BookingResModel } from '../Models/BookingResModel';
 import { BookingBackVM } from '../ViewModels/BookinBackVM';
+import { TransitionFees } from '../Models/transition-fees';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class BookingService {
   AddBookingDetails(selectedResourceIds : number[],
                     selectedResourceNames: string[],
                     date: string, from : string, to : string,
-                    servId: number,totalCost: number, regionId: number ){
+                    servId: number,totalCost: number, regionId: number, transitionFees : number ){
     this.bookingDetails.selectedResIds = selectedResourceIds;
     this.bookingDetails.selectedResourceNames = selectedResourceNames;
     this.bookingDetails.date = date;
@@ -35,6 +36,7 @@ export class BookingService {
     this.bookingDetails.totalCost = totalCost;
     this.bookingDetails.serviceId = servId;
     this.bookingDetails.regionId = regionId;
+    this.bookingDetails.transitionFees = transitionFees;
   }
   AddBookingBack(selectedIds :number[], totalCost: number){
     this.bookingBackVM.selectedIDs = selectedIds;
@@ -44,7 +46,7 @@ export class BookingService {
     return this.httpClient.get<ResponseModel<BookingItem>>(apiUrl + `BookingItem`);
   }
 
-  
+
 
   // getBookingItemsByResourceId(ResourceId: number): Observable<ResponseModel<BookingItem>> {
   //   return this.httpClient.get<ResponseModel<BookingItem>>(`${apiUrl}BookingItem?ResourceId=${ResourceId}`);
@@ -69,4 +71,9 @@ export class BookingService {
   AddNewBoooking(BookingModel: BookingModel , paymentMethod: string):Observable<ResponseModel<BookingResModel>>{
     return this.httpClient.post<ResponseModel<BookingResModel>>(`${apiUrl}ClientBooking/CreateNewBooking?paymentType=${paymentMethod}`,BookingModel );
   }
+
+  public getTransitionfees(serviceId: number, _day: string, _startTime:string, _endTime:string, regionID:number): Observable<ResponseModel<TransitionFees>>{
+    return this.httpClient.get<ResponseModel<TransitionFees>>(apiUrl + `Schedule/GetTransitionfees?serviceId=${serviceId}&_day=${_day}&_startTime=${_startTime}&_endTime=${_endTime}&regionID=${regionID}`)
+  }
+
 }
