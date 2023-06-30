@@ -60,5 +60,15 @@ export class BookingDetailsComponent implements OnInit{
     console.log(event)
   }
 
+   formatTime(timeString: string): any {
+    const [hours, minutes, seconds] = timeString.split(':');
+    const date = new Date();
+    date.setHours(Number(hours));
+    date.setMinutes(Number(minutes));
+    date.setSeconds(Number(seconds));
+    const datePipe = new DatePipe('en-US');
+    return datePipe.transform(date, 'h:mm a');
+  }
+
 
 }

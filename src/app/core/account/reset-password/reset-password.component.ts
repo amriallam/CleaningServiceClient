@@ -68,6 +68,7 @@ export class ResetPasswordComponent {
     const email = this.resetPasswordForm.value.Email;
     const password = this.resetPasswordForm.value.Password;
 
+    
     this.resetPasswordService
       .resetPassword(token, email, password)
       .subscribe((response) => {

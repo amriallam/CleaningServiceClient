@@ -7,8 +7,6 @@ import { EmailVerfiySentComponent } from './core/account/email-verfiy-sent/email
 import { ForgetPasswordComponent } from './core/account/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './core/account/reset-password/reset-password.component';
 import { ConfirmEmailComponent } from './core/account/confirm-email/confirm-email.component';
-// import { BookingModule } from './components/booking/booking.module';
-import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
 import { UnderMaintenanceComponent } from './components/under-maintenance/under-maintenance.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,15 +16,29 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SuccessComponent } from './components/success/success.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
+import { AuthgaurdsGuard } from './Guards/authguards.gaurd';import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
 
 
 const routes: Routes = [
   // Main
   { path: '', pathMatch: 'full', component: HomeComponent },
-  //{ path: 'service/:servicename', component: DetailsServiceComponent },
-  { path: 'resource', loadChildren: () => import("./components/resource/resource.module").then(m => m.ResourceModule) },
-  { path: 'booking', loadChildren: () => import("./components/booking/booking.module").then(m => m.BookingModule) },
+  { path: 'service/:servicename', component: DetailsServiceComponent },
+  {
+    path: 'resource',
+    loadChildren: () =>
+      import('./components/resource/resource.module').then(
+        (m) => m.ResourceModule
+      ),
+  },
+  {
+    path: 'booking',
+    loadChildren: () =>
+      import('./components/booking/booking.module').then(
+        (m) => m.BookingModule
+      ),
+  },
   { path: 'faq', component: FaqComponent },
+  { path: 'support-tickets', component: CreateTicketsComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'maintenance', component: UnderMaintenanceComponent },
@@ -35,11 +47,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
-  { path: 'resetPassword', component: ResetPasswordComponent },
+  { path: 'auth/resetPassword', component: ResetPasswordComponent },
   { path: 'email-sent', component: EmailVerfiySentComponent },
-  { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
+  { path: 'auth/ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
-  { path: "ticket", component: CreateTicketsComponent},
+  { path: "support-tickets", component: CreateTicketsComponent , canActivate: [AuthgaurdsGuard]},
   {path: 'success', component:SuccessComponent},
   {path: 'cancel', component:ErrorComponent},
   // Not Foudn
@@ -50,4 +62,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -46,7 +46,7 @@ export class ForgetPasswordComponent {
           this.toastr.info('Redirecting to reset password page');
 
           setTimeout(() => {
-            this.router.navigate(['/resetPassword']);
+            this.router.navigate(['auth/resetPassword']);
           }, 2000);
         });
       this.toastr.success(
