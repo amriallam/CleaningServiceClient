@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'auth/resetPassword', component: ResetPasswordComponent },
   { path: 'email-sent', component: EmailVerfiySentComponent },
-  { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
+  { path: 'auth/ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
   { path: "support-tickets", component: CreateTicketsComponent , canActivate: [AuthgaurdsGuard]},
   {path: 'success', component:SuccessComponent},
