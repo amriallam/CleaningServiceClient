@@ -17,35 +17,51 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto text-center">
-              <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active" routerLink="/about">About</a>
-              </li>
-              <!-- <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active" routerLink="/contact">Contact</a>
-              </li> -->
-              <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="/faq">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/support-tickets"
-                *ngIf="checkIfLoggedIn()"
-              >Open a Ticket</a>
-          </li>
-              <li class="nav-item">
-              <li class="nav-item" *ngIf="!checkIfLoggedIn()">
-                <a class="nav-link" routerLinkActive="active" routerLink="/login">Login</a>
-            </li>
-            <li class="nav-item" *ngIf="!checkIfLoggedIn()">
-                <a class="nav-link" routerLinkActive="active" routerLink="/register">Register</a>
-            </li>
-            <li class="nav-item" *ngIf="checkIfLoggedIn()">
-                <a class="nav-link" routerLinkActive="active" routerLink="/profile">{{user.userName}}</a>
-            </li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto text-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/about"
+            >About</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/contact"
+            >Contact</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/faq"
+            >FAQ</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/support-tickets"
+            *ngIf="checkIfLoggedIn()"
+            >Open a Ticket</a
+          >
+        </li>
+        <li class="nav-item"></li>
+        <li class="nav-item" *ngIf="!checkIfLoggedIn()">
+          <a class="nav-link" routerLinkActive="active" routerLink="/login"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="!checkIfLoggedIn()">
+          <a class="nav-link" routerLinkActive="active" routerLink="/register"
+            >Register</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="checkIfLoggedIn()">
+          <a class="nav-link" routerLinkActive="active" routerLink="/profile">{{
+            user.userName
+          }}</a>
+        </li>
 
         <li class="nav-item" *ngIf="checkIfLoggedIn()">
-          <a class="nav-link cursor-pointer" (click)="logout()">Logout </a>
+          <a class="nav-link" style="cursor: pointer;" (click)="logout()">Logout </a>
         </li>
       </ul>
     </div>
