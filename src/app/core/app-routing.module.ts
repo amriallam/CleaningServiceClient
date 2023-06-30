@@ -17,6 +17,7 @@ import { HomeComponent } from '../components/home/home.component';
 import { AboutUsComponent } from '../components/about-us/about-us.component';
 import { ContactUsComponent } from '../components/contact-us/contact-us.component';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
+import { AuthgaurdsGuard } from '../Guards/authguards.gaurd';
 
 const routes: Routes = [
   // Main
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'resource', loadChildren: () => import("../components/resource/resource.module").then(m => m.ResourceModule) },
   { path: 'booking', loadChildren: () => import("../components/booking/booking.module").then(m => m.BookingModule) },
   { path: 'faq', component: FaqComponent },
-  { path: 'support-tickets', component: CreateTicketsComponent},
+  { path: 'support-tickets', component: CreateTicketsComponent, canActivate: [AuthgaurdsGuard] },
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'maintenance', component: UnderMaintenanceComponent },
