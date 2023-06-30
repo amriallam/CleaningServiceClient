@@ -102,7 +102,7 @@ export class LoginComponent {
               else{
                  this.router.navigate(['/']);
               }
-            }, 3000);
+            }, 1000);
           } else {
             console.log(res);
             // return res.json().then((data: any) => {

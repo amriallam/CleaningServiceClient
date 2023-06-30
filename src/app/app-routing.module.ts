@@ -16,7 +16,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SuccessComponent } from './components/success/success.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
-import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
+import { AuthgaurdsGuard } from './Guards/authguards.gaurd';import { DetailsServiceComponent } from './components/service/details-service/details-service.component';
 
 const routes: Routes = [
   // Main
@@ -48,23 +48,12 @@ const routes: Routes = [
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'auth/resetPassword', component: ResetPasswordComponent },
   { path: 'email-sent', component: EmailVerfiySentComponent },
-  {
-    path: 'auth/ConfirmEmail',
-    component: ConfirmEmailComponent,
-    data: { queryParams: ['userId', 'token'] },
-  },
-  {
-    path: 'profile',
-    loadChildren: () =>
-      import('./components/profile/profile.module').then(
-        (m) => m.ProfileModule
-      ),
-  },
-
-  { path: 'success', component: SuccessComponent },
-  { path: 'cancel', component: ErrorComponent },
-
-  // Not Found
+  { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
+  { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
+  { path: "support-tickets", component: CreateTicketsComponent , canActivate: [AuthgaurdsGuard]},
+  {path: 'success', component:SuccessComponent},
+  {path: 'cancel', component:ErrorComponent},
+  // Not Foudn
   { path: '**', component: NotFoundComponent },
 ];
 
