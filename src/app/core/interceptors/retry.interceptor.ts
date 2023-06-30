@@ -15,20 +15,17 @@ export class RetryInterceptor implements HttpInterceptor {
   constructor(private router: Router, private toastr: ToastrService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
-    let modifiedReq = req;
+    // let modifiedReq = req;
 
-    if (req.method === 'GET' && (!req.params.has('Page') || !req.params.has('PageSize'))) {
-      const updatedParams = new HttpParams()
-        .set('Page', '1')
-        .set('PageSize', '10');
+    // if (req.method === 'GET' && (!req.params.has('Page') || !req.params.has('PageSize'))) {
+    //   const updatedParams = new HttpParams()
+    //     .set('Page', '1')
+    //     .set('PageSize', '10');
 
-      modifiedReq = req.clone({ params: updatedParams });
-    }
+    //   modifiedReq = req.clone({ params: updatedParams });
+    // }
 
-    return next.handle(modifiedReq).pipe(
-      tap((data: any) => {
-        console.log(data);
-      }),
+    return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 400) {
           this.toastr.error(
