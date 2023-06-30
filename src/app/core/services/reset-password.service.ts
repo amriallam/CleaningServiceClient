@@ -28,6 +28,6 @@ export class ResetPasswordService {
       confirmedPassword: password,
     };
 
-    return this.http.post(url, data, { headers: this.headers });
+    return this.http.post(url, data, { headers: this.headers })
   }
 }
