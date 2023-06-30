@@ -18,7 +18,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SuccessComponent } from './components/success/success.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CreateTicketsComponent } from './components/create-tickets/create-tickets.component';
-
+import { AuthgaurdsGuard } from './Guards/authguards.gaurd';
 const routes: Routes = [
   // Main
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'email-sent', component: EmailVerfiySentComponent },
   { path: 'ConfirmEmail', component: ConfirmEmailComponent, data: { queryParams: ['userId', 'token'] } },
   { path: "profile", loadChildren: () => import("./components/profile/profile.module").then(m => m.ProfileModule) },
-  { path: "ticket", component: CreateTicketsComponent},
+  { path: "ticket", component: CreateTicketsComponent , canActivate: [AuthgaurdsGuard]},
   {path: 'success', component:SuccessComponent},
   {path: 'cancel', component:ErrorComponent},
   // Not Foudn
